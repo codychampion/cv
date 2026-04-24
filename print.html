@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Champion — CV (Printable)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #e8e4dc;
+    font-family: "Source Serif 4", Georgia, serif;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 16px;
+    min-height: 100vh;
+  }
+
+  /* Screen preview — letterbox background */
+  .page {
+    width: 816px;   /* 8.5in × 96dpi */
+    min-height: 1056px; /* 11in × 96dpi */
+    background: #fafaf7;
+    padding: 64px 72px 72px 72px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    position: relative;
+    font-size: 10.5px;
+    line-height: 1.45;
+  }
+
+  /* Print — one page per sheet, no shadows, no bg */
+  @media print {
+    @page { size: letter; margin: 0; }
+    body { background: white; padding: 0; gap: 0; display: block; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+      background: white;
+    }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  h1.name {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .role-line {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    color: #555;
+    margin-top: 6px;
+  }
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1.5px solid #1a1a1a;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+  .header .right {
+    font-family: "Inter", sans-serif;
+    font-size: 9.5px;
+    color: #555;
+    text-align: right;
+    line-height: 1.55;
+  }
+  .header .right a { color: #555; text-decoration: none; }
+  .header .right a:hover { text-decoration: underline; }
+
+  .section-h {
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 0.5px solid #1a1a1a;
+  }
+
+  p { margin: 0; text-wrap: pretty; }
+
+  .job { margin-bottom: 14px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+    gap: 16px;
+  }
+  .job-title { font-weight: 600; }
+  .job-org { color: #555; }
+  .job-sub {
+    font-family: "Inter", sans-serif;
+    font-size: 9.5px;
+    color: #888;
+    margin-left: 6px;
+  }
+  .job-meta {
+    font-family: "Inter", sans-serif;
+    font-size: 9.5px;
+    color: #555;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  ul.bullets {
+    margin: 4px 0 0;
+    padding-left: 16px;
+  }
+  ul.bullets li {
+    margin-bottom: 2px;
+    text-wrap: pretty;
+  }
+
+  .continued-bar {
+    font-family: "Inter", sans-serif;
+    font-size: 8px;
+    color: #888;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid #c8c3b8;
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer-meta {
+    position: absolute;
+    bottom: 28px;
+    left: 72px;
+    right: 72px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+    font-size: 8px;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pub {
+    margin-bottom: 5px;
+    text-indent: -16px;
+    padding-left: 16px;
+    text-wrap: pretty;
+  }
+  .pub .year { color: #888; }
+  .pub .title { font-style: italic; }
+  .pub .venue { color: #555; }
+  .pub a { color: #555; text-decoration: none; margin-left: 4px; }
+
+  .award-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 24px;
+  }
+  .award {
+    display: flex;
+    gap: 8px;
+    text-wrap: pretty;
+  }
+  .award .year {
+    font-family: "Inter", sans-serif;
+    font-size: 9.5px;
+    color: #888;
+    min-width: 52px;
+    flex-shrink: 0;
+  }
+  .award .org { color: #555; }
+
+  .skill-row { margin-bottom: 3px; text-wrap: pretty; }
+  .skill-group {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 9.5px;
+  }
+  .skill-items { color: #555; }
+
+  .ed { margin-bottom: 8px; }
+  .ed:last-child { margin-bottom: 0; }
+  .ed-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .ed-detail {
+    margin-top: 2px;
+    text-wrap: pretty;
+  }
+
+  .print-hint {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    background: #1a1a1a;
+    color: #fafaf7;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+  }
+  @media print { .print-hint { display: none; } }
+</style>
+</head>
+<body>
+
+<button class="print-hint" onclick="window.print()">⎙ Print / Save as PDF</button>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <header class="header">
+    <div>
+      <h1 class="name">Cody Champion</h1>
+      <div class="role-line">AI Technical Lead @ Accenture · PhD &nbsp;·&nbsp; Dublin, Ireland</div>
+    </div>
+    <div class="right">
+      <div><a href="mailto:cody.james.champion@gmail.com">cody.james.champion@gmail.com</a></div>
+      <div><a href="https://codychampion.bitsandbeakers.com">codychampion.bitsandbeakers.com</a></div>
+      <div><a href="https://github.com/codychampion">github.com/codychampion</a></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-h">Summary</div>
+    <p>Technology and AI leader with experience spanning enterprise AI strategy, production GenAI delivery, applied machine learning, computer vision, and AI governance across digital platforms, telecommunications, public-sector, defense, and scientific research environments. Track record of leading cross-functional teams, advising senior executives, designing secure and scalable AI architectures, and delivering hands-on technical solutions in mission-critical and regulated settings.</p>
+  </section>
+
+  <section>
+    <div class="section-h">Experience</div>
+    <div id="exp-list"></div>
+  </section>
+
+  <div class="footer-meta">
+    <span>Cody Champion</span>
+    <span>1 / 2</span>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="continued-bar">
+    <span>Cody Champion — continued</span>
+    <span>cody.james.champion@gmail.com</span>
+  </div>
+
+  <section>
+    <div class="section-h">Education</div>
+    <div id="ed-list"></div>
+  </section>
+
+  <section>
+    <div class="section-h">Selected Publications</div>
+    <div style="font-family: Inter, sans-serif; font-size: 9px; color: #888; margin-bottom: 6px; letter-spacing: 0.02em;">* denotes first author</div>
+    <div id="pub-list"></div>
+  </section>
+
+  <section>
+    <div class="section-h">Patents</div>
+    <div id="pat-list"></div>
+  </section>
+
+  <section>
+    <div class="section-h">Awards & Certifications</div>
+    <div id="awd-list" class="award-grid"></div>
+  </section>
+
+  <section>
+    <div class="section-h">Technical Skills</div>
+    <div id="skl-list"></div>
+  </section>
+
+  <div class="footer-meta">
+    <span>Cody Champion</span>
+    <span>2 / 2</span>
+  </div>
+</div>
+
+<script src="cv-data.js?v=7"></script>
+<script>
+  const d = window.CV_DATA;
+  const esc = s => String(s).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+
+  // Experience
+  document.getElementById('exp-list').innerHTML = d.experience.map(j => `
+    <div class="job">
+      <div class="job-row">
+        <div>
+          <span class="job-title">${esc(j.role)}</span><span class="job-org">, ${esc(j.company)}</span>${j.sub ? `<span class="job-sub">· ${esc(j.sub)}</span>` : ''}
+        </div>
+        <div class="job-meta">${esc(j.period)} · ${esc(j.location)}</div>
+      </div>
+      <ul class="bullets">
+        ${j.bullets.slice(0, 5).map(b => `<li>${esc(b)}</li>`).join('')}
+      </ul>
+    </div>
+  `).join('');
+
+  // Education
+  document.getElementById('ed-list').innerHTML = d.education.map(e => `
+    <div class="ed">
+      <div class="ed-head">
+        <div><span class="job-title">${esc(e.degree)}</span><span class="job-org">, ${esc(e.school)}</span></div>
+        <div class="job-meta">${esc(e.period)}</div>
+      </div>
+      <div class="ed-detail">${esc(e.detail)}</div>
+    </div>
+  `).join('');
+
+  // Publications
+  document.getElementById('pub-list').innerHTML = d.publications.map(p => `
+    <div class="pub">
+      <span class="year">${esc(p.year)} · </span><span class="title">${esc(p.title)}</span>${p.firstAuthor ? '*' : ''}<span class="venue">. ${esc(p.venue)}.</span>${p.href ? `<a href="${esc(p.href)}" target="_blank" rel="noopener">↗</a>` : ''}
+    </div>
+  `).join('');
+
+  // Patents
+  document.getElementById('pat-list').innerHTML = d.patents.map(p => `
+    <div style="margin-bottom: 3px;"><span class="title" style="font-style:italic">${esc(p.title)}</span><span class="venue" style="color:#555"> — ${esc(p.id)}.</span></div>
+  `).join('');
+
+  // Awards
+  document.getElementById('awd-list').innerHTML = d.awards.map(a => `
+    <div class="award"><span class="year">${esc(a.year)}</span><span>${esc(a.title)}<span class="org"> — ${esc(a.org)}</span></span></div>
+  `).join('');
+
+  // Skills
+  document.getElementById('skl-list').innerHTML = d.skills.map(s => `
+    <div class="skill-row"><span class="skill-group">${esc(s.group)}:</span> <span class="skill-items">${esc(s.items.join(', '))}.</span></div>
+  `).join('');
+</script>
+
+</body>
+</html>

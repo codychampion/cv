@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cody Champion — CV Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="cv-data.js?v=7"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="variant-classical.jsx"></script>
+<script type="text/babel" src="variant-terminus.jsx"></script>
+<script type="text/babel" src="variant-infographics.jsx?v=5"></script>
+<script type="text/babel" src="variant-quiet-weight.jsx?v=6"></script>
+<script type="text/babel" src="variant-signal.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const App = () => {
+  const W = 1280;
+  const H_TERM = 2800;
+  const H_QUIET = 11000;
+  const H_SIGNAL = 3400;
+  // Classical: two US-Letter pages + outer padding
+  const W_CLASSICAL = 816 + 64;  // page width + outer 32px padding ×2
+  const H_CLASSICAL = (1056 * 2) + 32 + 24 + 64; // 2 pages + gap + padding
+
+  return (
+    <DesignCanvas>
+      <DCSection id="cv-classical" title="Classical — printable CV" subtitle="2-page US-Letter. Neutral, HR-ready. Use this for applications. Click ⤢ for fullscreen.">
+        <DCArtboard id="classical" label="Classical — 2-page printable CV" width={W_CLASSICAL} height={H_CLASSICAL}>
+          <ClassicalCV />
+        </DCArtboard>
+      </DCSection>
+      <DCSection id="cv-site" title="Personal site — Quiet Weight" subtitle="Scrollable web version for codychampion.bitsandbeakers.com. Editorial but muted.">
+        <DCArtboard id="quiet-weight" label="Quiet Weight — personal site" width={W} height={H_QUIET}>
+          <QuietWeightCV />
+        </DCArtboard>
+      </DCSection>
+      <DCSection id="cv-alts" title="Earlier directions (for reference)" subtitle="Kept so you can compare; deprioritized.">
+        <DCArtboard id="terminus" label="Terminus — terminal / green" width={W} height={H_TERM}>
+          <TerminusCV />
+        </DCArtboard>
+        <DCArtboard id="signal" label="Signal — Swiss / blue" width={W} height={H_SIGNAL}>
+          <SignalCV />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

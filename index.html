@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cody Champion — AI Technical Lead</title>
+<meta name="description" content="AI Technical Lead @ Accenture · PhD · Dublin. Building enterprise GenAI in regulated environments — from drone ML to NSF AI governance to production Claude architecture." />
+<link rel="canonical" href="https://codychampion.bitsandbeakers.com/" />
+<meta property="og:title" content="Cody Champion — AI Technical Lead" />
+<meta property="og:description" content="Building enterprise GenAI in regulated environments. Dublin." />
+<meta property="og:url" content="https://codychampion.bitsandbeakers.com/" />
+<meta property="og:image" content="https://codychampion.bitsandbeakers.com/assets/cody-headshot.png" />
+<meta property="og:type" content="profile" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  html, body { margin: 0; padding: 0; background: #0f0d0a; }
+  body {
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: #e8e1d5;
+  }
+  * { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script src="cv-data.js"></script>
+<script type="text/babel" src="variant-infographics.jsx"></script>
+<script type="text/babel" src="variant-quiet-weight.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+  ReactDOM.createRoot(document.getElementById('root')).render(<QuietWeightCV />);
+</script>
+</body>
+</html>
