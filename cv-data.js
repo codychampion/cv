@@ -4,7 +4,7 @@ window.CV_DATA = {
   tagline: 'Building Enterprise GenAI Systems in Regulated Environments',
   role: 'AI Technical Lead @ Accenture · PhD',
   location: 'Dublin, Ireland',
-  email: 'cody.james.champion@gmail.com',
+  email: 'cody@bitsandbeakers.com',
   linkedin: 'linkedin.com/in/cody-champion',
   github: 'github.com/codychampion',
   site: 'codychampion.bitsandbeakers.com',
