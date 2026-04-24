@@ -1,60 +1,6 @@
 // variant-quiet-weight.jsx — Editorial bold aesthetic
 // Warm black, amber accent, Instrument Serif display + Manrope body
 
-const ReadingShelf = ({ amber, S }) => {
-  const [papers, setPapers] = React.useState(null);
-  const [err, setErr] = React.useState(false);
-
-  React.useEffect(() => {
-    // arXiv Atom feed for cs.AI, newest first
-    const url = 'https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=2';
-    fetch(url)
-      .then(r => r.text())
-      .then(xml => {
-        const doc = new DOMParser().parseFromString(xml, 'text/xml');
-        const entries = [...doc.getElementsByTagName('entry')].slice(0, 2).map(e => {
-          const title = e.getElementsByTagName('title')[0]?.textContent?.trim().replace(/\s+/g, ' ') || '';
-          const summary = e.getElementsByTagName('summary')[0]?.textContent?.trim().replace(/\s+/g, ' ').slice(0, 260) || '';
-          const authors = [...e.getElementsByTagName('author')].map(a => a.getElementsByTagName('name')[0]?.textContent || '').slice(0, 3);
-          const link = [...e.getElementsByTagName('link')].find(l => l.getAttribute('rel') === 'alternate')?.getAttribute('href') || '#';
-          const published = e.getElementsByTagName('published')[0]?.textContent?.slice(0, 10) || '';
-          return { title, summary, authors, link, published };
-        });
-        setPapers(entries);
-      })
-      .catch(() => setErr(true));
-  }, []);
-
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-      {(papers || [0, 1]).map((p, i) => (
-        <a key={i} href={p?.link || '#'} target="_blank" rel="noopener" style={{
-          display: 'block', padding: '24px 28px', border: '1px solid rgba(232,164,76,0.22)',
-          background: 'rgba(232,164,76,0.03)', textDecoration: 'none', transition: 'border-color 0.15s, background 0.15s',
-        }}
-        onMouseOver={e => { e.currentTarget.style.borderColor = amber; e.currentTarget.style.background = 'rgba(232,164,76,0.06)'; }}
-        onMouseOut={e => { e.currentTarget.style.borderColor = 'rgba(232,164,76,0.22)'; e.currentTarget.style.background = 'rgba(232,164,76,0.03)'; }}>
-          <div style={{ ...S.mono, fontSize: 10, color: amber, letterSpacing: '0.1em' }}>
-            ARXIV · CS.AI{p?.published && ` · ${p.published}`}
-          </div>
-          <div style={{ ...S.serif, fontSize: 22, color: '#faf5eb', lineHeight: 1.25, letterSpacing: '-0.01em', marginTop: 12, textWrap: 'pretty' }}>
-            {p?.title || (err ? 'arXiv feed unavailable' : 'Loading latest cs.AI paper…')}
-          </div>
-          {p?.authors?.length > 0 && (
-            <div style={{ ...S.serif, fontStyle: 'italic', fontSize: 14, color: '#b8afa0', marginTop: 8 }}>
-              {p.authors.join(', ')}{p.authors.length === 3 ? ' et al.' : ''}
-            </div>
-          )}
-          <div style={{ fontSize: 13, color: '#c4bba9', marginTop: 14, lineHeight: 1.5, textWrap: 'pretty' }}>
-            {p?.summary ? p.summary + '…' : '\u00A0'}
-          </div>
-          <div style={{ ...S.mono, fontSize: 11, color: amber, marginTop: 16, letterSpacing: '0.04em' }}>READ ON ARXIV ↗</div>
-        </a>
-      ))}
-    </div>
-  );
-};
-
 const QuietWeightCV = () => {
   const d = window.CV_DATA;
   const amber = '#e8a44c';
@@ -99,7 +45,6 @@ const QuietWeightCV = () => {
     { n: '11', id: 'speaking', label: 'Speaking' },
     { n: '12', id: 'patents', label: 'Patents' },
     { n: '13', id: 'awards', label: 'Awards' },
-    { n: '14', id: 'reading', label: 'Reading Now' },
     { n: '·',  id: 'contact', label: 'Contact' },
   ];
 
@@ -513,20 +458,6 @@ const QuietWeightCV = () => {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* READING NOW — live arXiv feed */}
-      <section id="sec-reading" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(232,164,76,0.14)' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: 12 }}>
-          <Num n="14" />
-          <div style={S.eyebrow}>Reading Now</div>
-        </div>
-        <p style={{ fontSize: 15, color: '#b8afa0', margin: '0 0 36px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 640 }}>
-          Live feed — latest <em style={{ color: amber }}>cs.AI</em> papers on arXiv. What I’m keeping an eye on.
-        </p>
-        <div style={{ marginLeft: 72 }}>
-          <ReadingShelf amber={amber} S={S} />
         </div>
       </section>
 
