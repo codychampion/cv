@@ -9,7 +9,7 @@
 <meta property="og:title" content="Cody Champion — AI Technical Lead" />
 <meta property="og:description" content="Building enterprise GenAI in regulated environments. Dublin." />
 <meta property="og:url" content="https://codychampion.bitsandbeakers.com/" />
-<meta property="og:image" content="https://codychampion.bitsandbeakers.com/assets/cody-headshot.png" />
+<meta property="og:image" content="https://codychampion.bitsandbeakers.com/assets/cody-headshot.jpg" />
 <meta property="og:type" content="profile" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -105,6 +105,29 @@
     /* Reduce big aspirational headshot frame so it doesn't dominate */
     body section img[alt="Cody Champion"] {
       max-height: 320px;
+    }
+    /* Long email / github links must not push the page wide */
+    body a[href^="mailto:"],
+    body a[href^="https://github"],
+    body a[href^="https://www.github"] {
+      word-break: break-word !important;
+      overflow-wrap: anywhere !important;
+      max-width: 100% !important;
+    }
+    /* Hero header (top-of-page flex row) — stack on mobile */
+    body #root > div > section:first-of-type > div:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+    }
+    body #root > div > section:first-of-type > div:first-child > div:last-child {
+      text-align: left !important;
+    }
+    /* Contact section buttons — pad less, allow wrap */
+    body section[id="sec-contact"] a {
+      font-size: 11px !important;
+      padding: 12px 16px !important;
+      max-width: 100% !important;
     }
   }
 </style>

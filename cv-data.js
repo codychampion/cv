@@ -8,7 +8,7 @@ window.CV_DATA = {
   linkedin: 'linkedin.com/in/cody-champion',
   github: 'github.com/codychampion',
   site: 'codychampion.bitsandbeakers.com',
-  photo: 'assets/cody-headshot.png',
+  photo: 'assets/cody-headshot.jpg',
 
   featured: {
     eyebrow: 'Early Adopter · March 2026',
