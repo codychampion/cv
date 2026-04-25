@@ -18,12 +18,95 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
 <style>
-  html, body { margin: 0; padding: 0; background: #0f0d0a; }
+  html, body { margin: 0; padding: 0; background: #0f0d0a; overflow-x: hidden; }
   body {
     font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     color: #e8e1d5;
   }
   * { box-sizing: border-box; }
+  img { max-width: 100%; height: auto; }
+
+  /* ──────────────────────────────────────────────
+     Mobile (≤ 768px) — overrides for inline React styles.
+     React inline styles win without !important; we use it
+     here for that exact reason.
+     ────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    body section {
+      padding: 48px 20px !important;
+    }
+    /* Force any direct-child grid container in a section to stack */
+    body section > div,
+    body section > article,
+    body section > article > div,
+    body section > div > div {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+    /* Sections that are themselves grids */
+    body section[id="sec-patents"] {
+      grid-template-columns: 1fr !important;
+      gap: 48px !important;
+    }
+    /* Index nav: 2 columns instead of 5 */
+    body section > div[style*="grid-template-columns"]:nth-of-type(2) {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    /* Hero h1 — was 200px */
+    body h1 {
+      font-size: clamp(56px, 18vw, 120px) !important;
+      line-height: 0.92 !important;
+    }
+    /* Outcome metrics — were 84px */
+    body section[id="sec-outcomes"] div[style*="font-size: 84"],
+    body section[id="sec-outcomes"] > div:nth-of-type(2) > div > div:first-child {
+      font-size: 56px !important;
+    }
+    /* Contact heading — was 64px */
+    body section[id="sec-contact"] > div:first-child {
+      font-size: 40px !important;
+    }
+    /* Featured callout title — was 36 */
+    body section h3 {
+      font-size: 26px !important;
+      line-height: 1.15 !important;
+    }
+    /* About big serif quote — was 36 */
+    body section[id="sec-about"] > div:nth-of-type(2) > div:first-child {
+      font-size: 24px !important;
+    }
+    /* Hero "Currently" + intro paragraph */
+    body section p,
+    body section[id="sec-about"] p {
+      font-size: 16px !important;
+    }
+    /* Publications list items — was 60px 1fr 100px */
+    body section[id="sec-publications"] ol li {
+      grid-template-columns: 36px 1fr !important;
+      gap: 12px !important;
+    }
+    body section[id="sec-publications"] ol li > span:last-child {
+      grid-column: 2 !important;
+      text-align: left !important;
+      font-size: 11px !important;
+    }
+    /* Education header sub-grid — was 200px 1fr */
+    body section[id="sec-education"] > div {
+      grid-template-columns: 1fr !important;
+    }
+    /* Awards rows — keep 80px 1fr but tighter */
+    body section[id="sec-patents"] div[style*="grid-template-columns: 80px"] {
+      grid-template-columns: 56px 1fr !important;
+    }
+    /* Big italic-color metric text */
+    body div[style*="font-size: 48"] {
+      font-size: 32px !important;
+    }
+    /* Reduce big aspirational headshot frame so it doesn't dominate */
+    body section img[alt="Cody Champion"] {
+      max-height: 320px;
+    }
+  }
 </style>
 </head>
 <body>
