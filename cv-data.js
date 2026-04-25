@@ -138,12 +138,7 @@ window.CV_DATA = {
         { label: 'GitHub', href: 'https://github.com/MarjorieRWillner/DisasterHack' },
         { label: 'Live dashboard', href: 'https://afs.maps.arcgis.com/apps/dashboards/c1ee9e7bf2ca4a549bca5c01ff288ccc' },
       ],
-      images: [
-        { src: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/827/256/datas/gallery.jpg', caption: 'Example model output — predicted mortality vs. ground truth' },
-        { src: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/827/258/datas/gallery.jpg', caption: 'Train / test split mask over Landsat tile' },
-        { src: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/827/259/datas/gallery.jpg', caption: 'Model metrics — per-class performance' },
-        { src: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/827/261/datas/gallery.jpg', caption: 'Transfer learning curves' },
-      ],
+      images: [],
     },
   ],
   focus: [
