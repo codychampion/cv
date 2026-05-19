@@ -231,18 +231,18 @@
   <header class="header">
     <div>
       <h1 class="name">Cody Champion</h1>
-      <div class="role-line">AI Technical Lead @ Accenture · PhD &nbsp;·&nbsp; Dublin, Ireland</div>
+      <div id="print-role-line" class="role-line">AI Decision Science Manager @ Accenture · PhD &nbsp;·&nbsp; Dublin, Ireland</div>
     </div>
     <div class="right">
-      <div><a href="mailto:cody.james.champion@gmail.com">cody.james.champion@gmail.com</a></div>
-      <div><a href="https://codychampion.bitsandbeakers.com">codychampion.bitsandbeakers.com</a></div>
-      <div><a href="https://github.com/codychampion">github.com/codychampion</a></div>
+      <div><a id="print-email" href="mailto:cody@bitsandbeakers.com">cody@bitsandbeakers.com</a></div>
+      <div><a id="print-site" href="https://codychampion.bitsandbeakers.com">codychampion.bitsandbeakers.com</a></div>
+      <div><a id="print-github" href="https://github.com/codychampion">github.com/codychampion</a></div>
     </div>
   </header>
 
   <section>
     <div class="section-h">Summary</div>
-    <p>Technology and AI leader with experience spanning enterprise AI strategy, production GenAI delivery, applied machine learning, computer vision, and AI governance across digital platforms, telecommunications, public-sector, defense, and scientific research environments. Track record of leading cross-functional teams, advising senior executives, designing secure and scalable AI architectures, and delivering hands-on technical solutions in mission-critical and regulated settings.</p>
+    <p id="print-summary">AI/ML leader with a background that spans scientific research, geospatial computer vision, federal AI governance, and production GenAI delivery. I am strongest where architecture, implementation, evaluation, and organizational trust all have to meet.</p>
   </section>
 
   <section>
@@ -260,7 +260,7 @@
 <div class="page">
   <div class="continued-bar">
     <span>Cody Champion — continued</span>
-    <span>cody.james.champion@gmail.com</span>
+    <span id="continued-email">cody@bitsandbeakers.com</span>
   </div>
 
   <section>
@@ -299,6 +299,17 @@
 <script>
   const d = window.CV_DATA;
   const esc = s => String(s).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+
+  document.getElementById('print-role-line').innerHTML =
+    `${esc(d.role)} &nbsp;·&nbsp; ${esc(d.location)}`;
+  document.getElementById('print-email').href = `mailto:${d.email}`;
+  document.getElementById('print-email').textContent = d.email;
+  document.getElementById('print-site').href = `https://${d.site}`;
+  document.getElementById('print-site').textContent = d.site;
+  document.getElementById('print-github').href = `https://${d.github}`;
+  document.getElementById('print-github').textContent = d.github;
+  document.getElementById('continued-email').textContent = d.email;
+  document.getElementById('print-summary').textContent = d.summary;
 
   // Experience
   document.getElementById('exp-list').innerHTML = d.experience.map(j => `

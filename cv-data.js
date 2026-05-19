@@ -1,25 +1,45 @@
 // cv-data.js — shared CV content
 window.CV_DATA = {
   name: 'Cody Champion',
-  tagline: 'Building Enterprise GenAI Systems in Regulated Environments',
-  role: 'AI Technical Lead @ Accenture · PhD',
+  tagline: 'AI systems that make it from prototype to production',
+  role: 'AI Decision Science Manager @ Accenture · PhD',
+  current: {
+    title: 'AI Decision Science Manager',
+    company: 'Accenture',
+    location: 'Dublin, Ireland',
+    since: '2025',
+  },
   location: 'Dublin, Ireland',
   email: 'cody@bitsandbeakers.com',
   linkedin: 'linkedin.com/in/cody-champion',
   github: 'github.com/codychampion',
   site: 'codychampion.bitsandbeakers.com',
-  photo: 'assets/cody-headshot.jpg',
+  photo: 'assets/cody-headshot-2026.jpg',
 
   featured: {
     eyebrow: 'Early Adopter · March 2026',
     title: 'Claude Certified Architect, Foundations',
-    body: 'Passed as an Early Adopter within the first cohort of Anthropic\u2019s first official technical certification — a proctored, scenario-based exam covering agentic system design, tool orchestration, context management, and production-grade Claude architecture. Not a prompting badge: a systems-design exam for the problems enterprise AI is actually shipping against.',
+    body: 'Passed Anthropic\u2019s proctored, scenario-based Claude architecture exam as an Early Adopter. The exam maps closely to the work I do day to day: agent design, tool orchestration, context management, evaluation, and operating Claude-based systems beyond the demo stage.',
     badge: 'ANTHROPIC · CCA-F',
   },
 
-  summary: `Technology and AI leader with experience spanning enterprise AI strategy, production GenAI delivery, applied machine learning, computer vision, and AI governance across digital platforms, telecommunications, public-sector, defense, and scientific research environments.`,
+  summary: `AI/ML leader with a background that spans scientific research, geospatial computer vision, federal AI governance, and production GenAI delivery. I am strongest where architecture, implementation, evaluation, and organizational trust all have to meet.`,
 
-  narrative: `My career has taken me from designing machine learning systems on drones for the Intelligence Community, to governing AI adoption at the National Science Foundation as advisor to the Chief AI Officer, to leading enterprise GenAI and agentic AI implementations at Accenture. I've both written the governance playbook and shipped the production code — including GenAI into classified, air-gapped environments and a 99% infrastructure cost reduction on a global-scale platform.`,
+  hero: {
+    lead: 'I turn AI prototypes into systems that survive security reviews, budgets, users, and production.',
+    proofA: '99% infrastructure cost reduction',
+    proofB: 'advisor to NSF\u2019s Chief AI Officer',
+    scope: `now leading GenAI architecture and delivery at Accenture.`,
+    close: '',
+  },
+
+  heroStats: [
+    { value: '99%', label: 'ML infra cost reduction' },
+    { value: '$30M+', label: 'AI/ML program funding advised' },
+    { value: '100+', label: 'AI governance community co-chaired' },
+  ],
+
+  narrative: `I started in scientific machine learning: drones, remote sensing, microbiology, and messy real-world data. Later I moved into federal delivery and AI governance, including advising the National Science Foundation\u2019s Chief AI Officer. Today I lead GenAI and agentic AI work at Accenture. The through-line is practical: build the thing, understand the institution around it, and make sure the system can survive contact with users, budgets, and oversight.`,
 
   outcomes: [
     { metric: '99%', label: 'reduction in ML infrastructure cost via codebase and cloud architecture optimization' },
@@ -28,22 +48,32 @@ window.CV_DATA = {
     { metric: '2', label: 'patents granted across AI-adjacent biology and synergist pharmacology research' },
   ],
 
+  proof: [
+    { label: 'Shipped Systems', value: 'State Department GenAI, secured Army automation, IARPA geospatial CV, and enterprise GenAI delivery' },
+    { label: 'Cost Impact', value: '99% ML infrastructure cost reduction on a global geospatial platform' },
+    { label: 'Governance', value: 'Advisor to NSF Chief AI Officer; co-chaired 100+ member AI Community of Practice' },
+    { label: 'Research', value: 'First-author 2026 Zenodo DOI, 6 peer-reviewed papers, and 2 granted patents' },
+    { label: 'Third-party Proof', value: 'Recommended by NSF CAIO Dorothy Aronson and Accenture Managing Director Marc Bosch Ruiz' },
+  ],
+
   projects: [
     {
       id: 'agent-decomposition',
       title: 'Agent Decomposition — original academic research',
       role: 'Primary author · independent research',
       year: '2026',
-      award: 'Paper in progress · preprint forthcoming',
+      award: 'Zenodo preprint · DOI: 10.5281/zenodo.19848867',
       summary: 'Original research comparing micro-agent vs. monolithic-agent architectures: when decomposition helps, when it hurts, and how decomposition choices affect cost, latency, reliability, and recoverability in production-grade agentic systems. Builds directly on systems I’ve shipped in enterprise settings.',
       details: [
         'Formal taxonomy of decomposition strategies: by skill, by data boundary, by latency budget, and by blast-radius.',
         'Evaluation framework comparing end-to-end task success, token economics, and failure-mode distributions across decomposition strategies on matched workloads.',
         'Empirical findings on the crossover points where monoliths outperform micro-agents and vice-versa — with guidance for architects choosing patterns under real constraints.',
-        'Preprint and code release planned; will be linked here on publication.',
+        'Preprint released on Zenodo with DOI; code release planned as follow-on work.',
       ],
       stack: ['Agentic architecture', 'Evaluation', 'Empirical AI research'],
-      links: [],
+      links: [
+        { label: 'Zenodo DOI', href: 'https://doi.org/10.5281/zenodo.19848867' },
+      ],
       images: [],
     },
     {
@@ -68,16 +98,16 @@ window.CV_DATA = {
     {
       id: 'genai-systems',
       title: 'Enterprise GenAI systems — Accenture client delivery',
-      role: 'AI Technical Lead · architecture + production delivery',
+      role: 'Architecture + production delivery',
       year: '2025',
       award: 'Multiple client engagements · Confidential · global enterprise, telco, public-sector',
-      summary: 'Led architecture and production delivery across multiple GenAI pilot and production systems, integrating retrieval, agentic tool use, and human-in-the-loop workflows into regulated enterprise operations. Owned target-state architecture, evaluation framework, observability posture, and responsible-AI guardrails end-to-end.',
+      summary: 'Led the technical work of moving GenAI use cases from promising demos into systems clients could actually operate: retrieval, tool use, human review, evaluation, and observability.',
       details: [
-        'Target-state reference architectures spanning ingestion, retrieval, LLM orchestration, tool use, evaluation, and observability — grounded in enterprise security and compliance constraints.',
+        'Designed reference architectures for ingestion, retrieval, LLM orchestration, tool use, evaluation, and observability.',
         'Hybrid retrieval stacks (vector + keyword + graph) with source attribution and confidence signals surfaced in the user interface.',
-        'Evaluation frameworks combining annotated ground truth, user-satisfaction signal, and LLM-as-judge hallucination sampling for continuous quality monitoring.',
-        'Observability via Langfuse and conventional logging covering quality, safety, latency, and cost — enabling production operations and incident response.',
-        'Prompt-injection sanitization and platform-native role-based access control aligned to client identity and data-governance postures.',
+        'Evaluation loops combining ground truth, user feedback, and LLM-as-judge sampling so quality could be tracked after launch.',
+        'Operational logging for quality, safety, latency, and cost, using Langfuse where it fit and conventional telemetry where it did not.',
+        'Prompt-injection handling and role-based access controls aligned to client identity and data rules.',
       ],
       stack: ['Azure AI Foundry', 'GCP', 'RAG', 'Agents', 'Langfuse', 'MLflow', 'Python'],
       links: [],
@@ -93,7 +123,7 @@ window.CV_DATA = {
       details: [
         'Role-based agent roster (spec, architect, implementer, reviewer, tester, release) wired through a shared context and artifact store for reproducibility.',
         'Human-in-the-loop checkpoints at every state transition with structured approvals, generated change diffs, and rationale capture for audit.',
-        'Evaluation harness measuring correctness, review-comment quality, test coverage deltas, and rework rate — so the system improves on evidence, not vibes.',
+        'Evaluation harness measuring correctness, review quality, test coverage deltas, and rework rate, so the system improves from evidence rather than opinion.',
         'Security controls: sandboxed execution, secret-free prompts, least-privilege tool access, and MCP-based tool orchestration so capabilities are explicit and auditable.',
       ],
       stack: ['Agents', 'MCP', 'Claude Code', 'Evaluation harnesses', 'GitLab CI/CD', 'Azure'],
@@ -136,10 +166,10 @@ window.CV_DATA = {
     },
   ],
   focus: [
-    'Enterprise GenAI & agentic AI architectures',
-    'End-to-end delivery — target-state design through production ops',
-    'AI-enabled process automation with responsible AI guardrails',
-    'Helping leadership teams move from AI strategy to measurable outcomes',
+    'Production GenAI and agent workflows that can be measured and operated',
+    'Retrieval, evaluation, and observability for LLM systems',
+    'AI governance that helps delivery instead of freezing it',
+    'Technical leadership that stays close to the implementation details',
   ],
 
   expertise: {
@@ -151,7 +181,7 @@ window.CV_DATA = {
       // 2018 ODNI drone CV → 2026
       { axis: 'Computer Vision',  years: 8,  projects: 8,  note: 'AWS Wildfire, ODNI drone, IARPA global geospatial, WACV 2023, 2× IGARSS 2024, IGARSS 2023 biome, sensor-sim platform' },
       // 2011 B.S./M.S. research → 2026
-      { axis: 'Research',         years: 15, projects: 10, note: '6 peer-reviewed publications + 2 granted patents + PhD + M.S. dissertations' },
+      { axis: 'Research',         years: 15, projects: 11, note: '6 peer-reviewed publications + 1 Zenodo publication + 2 granted patents + PhD + M.S. dissertations' },
       // 2021 Accenture Federal production ML → 2026
       { axis: 'MLOps / LLMOps',   years: 5,  projects: 5,  note: '99% cost-reduction pipeline, Langfuse observability, AI monitoring framework, micro-vs-monolithic agent eval, GenAI security controls' },
       // Accenture Federal GenAI (diplomatic cable gen, ~2023) → 2026
@@ -218,6 +248,21 @@ window.CV_DATA = {
     ],
   },
 
+  recommendations: [
+    {
+      name: 'Dorothy Aronson',
+      relationship: 'Chief AI Officer, NSF · managed Cody directly',
+      date: 'April 2026',
+      quote: 'More than just a brilliant scientist, he is dedicated, generous, creative and kind.',
+    },
+    {
+      name: 'Marc Bosch Ruiz',
+      relationship: 'Managing Director, Accenture · managed Cody directly',
+      date: 'April 2026',
+      quote: 'Cody excels at rapid prototyping. He can quickly turn complex ideas into working models with impressive speed and quality, helping teams validate ideas faster and accelerate R&D cycles. He also elevates the people around him: mentoring junior engineers, sharing knowledge openly, and building collaborative environments.',
+    },
+  ],
+
   speaking: [
     { year: '2025', type: 'Internal talk', title: 'Building enterprise GenAI in regulated environments', venue: 'Accenture — internal audience' },
     { year: '2025', type: 'Panel', title: 'From AI strategy to production delivery', venue: 'Accenture — internal panel' },
@@ -235,11 +280,11 @@ window.CV_DATA = {
       period: 'Aug 2025 — Present',
       location: 'Dublin, Ireland',
       bullets: [
-        'Lead end-to-end design and delivery of production GenAI and AI systems, translating complex business and mission use cases into secure, scalable implementations across global enterprises.',
-        'Define target-state AI architectures spanning data pipelines, LLM/RAG and agentic patterns, orchestration, evaluation frameworks, and system observability.',
-        'Serve as technical authority for GenAI solutioning, guiding clients from proof-of-concept through hardened production under enterprise, regulatory, and security constraints.',
-        'Design and implement cloud-native ML and GenAI systems across GCP and Azure with modern MLOps/LLMOps — evaluation, observability, and monitoring of quality, safety, cost, and latency.',
-        'Established GenAI security controls including prompt sanitization and platform-native, role-based access controls.',
+        'Lead design and delivery for AI and GenAI systems that have to pass security, delivery, and operational scrutiny.',
+        'Shape architectures across data pipelines, RAG, agent workflows, orchestration, evaluation, and observability.',
+        'Help clients move from proof-of-concept to production without losing sight of cost, reliability, access control, or user trust.',
+        'Build cloud-native ML and GenAI systems across GCP and Azure, with practical MLOps/LLMOps around quality, safety, latency, and spend.',
+        'Implemented GenAI security controls including prompt sanitization and platform-native role-based access.',
       ],
     },
     {
@@ -313,6 +358,7 @@ window.CV_DATA = {
   ],
 
   publications: [
+    { title: 'Parallelized Atomic Evaluation Framework (PAEF) for Contract Compliance: A Multi-Contract, Multi-Model Study with Token-Level Margin Analysis', venue: 'Zenodo · Publication', year: 2026, firstAuthor: true, href: 'https://doi.org/10.5281/zenodo.19848867' },
     { title: 'Advancing Multi-Scale Remote Sensing Analysis Through Self-Supervised Learning Fine-Tuning Strategies', venue: 'IEEE IGARSS', year: 2024, href: 'https://ieeexplore.ieee.org/document/10642493' },
     { title: 'Koopman-based Transition Detection in Satellite Imagery: Unveiling Construction Phase Dynamics Through Material Histogram Analysis', venue: 'IEEE IGARSS', year: 2024, href: 'https://ieeexplore.ieee.org/document/10642336' },
     { title: 'Semantic Segmentation in Aerial Imagery Using Multi-level Contrastive Learning with Local Consistency', venue: 'WACV', year: 2023, href: 'https://openaccess.thecvf.com/content/WACV2023/papers/Tang_Semantic_Segmentation_in_Aerial_Imagery_Using_Multi-Level_Contrastive_Learning_With_WACV_2023_paper.pdf' },
