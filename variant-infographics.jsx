@@ -1,13 +1,13 @@
 // variant-infographics.jsx — Domain Expertise infographics
-// Designed for Quiet Weight aesthetic (warm black + amber + Instrument Serif)
+// Designed for Quiet Weight aesthetic (deep ink + steel-teal + IBM Plex)
 
 const DOMAIN_COLORS = {
-  genai: '#e8a44c',     // amber — primary
-  cv: '#d4885a',        // warm terracotta
-  mlops: '#b8926a',     // warm taupe
-  gov: '#e8c67c',       // lighter amber
-  ml: '#c79a5c',        // ochre
-  research: '#a88654',  // muted bronze
+  genai: '#68b8ad',     // steel teal — primary
+  cv: '#86a7d8',        // muted blue
+  mlops: '#91bd88',     // sage
+  gov: '#b894c8',       // muted violet
+  ml: '#d0a36f',        // restrained brass
+  research: '#9aa8a2',  // mineral gray
 };
 
 // ——— DOMAIN EXPERTISE (quantified bars) ———————————————
@@ -25,15 +25,15 @@ const DomainBars = ({ data, amber, S }) => {
         gridTemplateColumns: '200px 1fr 1fr',
         gap: 32,
         padding: '0 0 14px',
-        borderBottom: '1px solid rgba(232,164,76,0.35)',
-        fontFamily: 'JetBrains Mono, monospace',
+        borderBottom: '1px solid rgba(104,184,173,0.35)',
+        fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
         fontSize: 10,
         letterSpacing: '0.12em',
         color: amber,
       }}>
         <div>DOMAIN</div>
-        <div>YEARS ACTIVE <span style={{ color: '#8a8275' }}>/ max {maxYears}</span></div>
-        <div>SHIPPED PROJECTS <span style={{ color: '#8a8275' }}>/ max {maxProj}</span></div>
+        <div>YEARS ACTIVE <span style={{ color: '#82928d' }}>/ max {maxYears}</span></div>
+        <div>SHIPPED PROJECTS <span style={{ color: '#82928d' }}>/ max {maxProj}</span></div>
       </div>
 
       {data.map((d, i) => (
@@ -42,41 +42,41 @@ const DomainBars = ({ data, amber, S }) => {
           gridTemplateColumns: '200px 1fr 1fr',
           gap: 32,
           padding: '18px 0',
-          borderBottom: '1px solid rgba(232,164,76,0.15)',
+          borderBottom: '1px solid rgba(104,184,173,0.15)',
           alignItems: 'center',
         }}>
           {/* label */}
           <div>
-            <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 20, color: '#faf5eb', lineHeight: 1.15, letterSpacing: '-0.005em' }}>
+            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 20, color: '#f0f6f3', lineHeight: 1.15, letterSpacing: '-0.005em' }}>
               {d.axis}
             </div>
-            <div style={{ fontSize: 12, color: '#8a8275', marginTop: 4, lineHeight: 1.45 }}>
+            <div style={{ fontSize: 12, color: '#82928d', marginTop: 4, lineHeight: 1.45 }}>
               {d.note}
             </div>
           </div>
           {/* years bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ flex: 1, height: 10, background: 'rgba(232,164,76,0.08)', position: 'relative' }}>
+            <div style={{ flex: 1, height: 10, background: 'rgba(104,184,173,0.08)', position: 'relative' }}>
               <div style={{
                 position: 'absolute', top: 0, bottom: 0, left: 0,
                 width: `${(d.years / maxYears) * 100}%`,
                 background: amber,
               }} />
             </div>
-            <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 26, color: amber, lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
+            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 26, color: amber, lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
               {d.years}
             </div>
           </div>
           {/* projects bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ flex: 1, height: 10, background: 'rgba(232,164,76,0.08)', position: 'relative' }}>
+            <div style={{ flex: 1, height: 10, background: 'rgba(104,184,173,0.08)', position: 'relative' }}>
               <div style={{
                 position: 'absolute', top: 0, bottom: 0, left: 0,
                 width: `${(d.projects / maxProj) * 100}%`,
-                background: 'rgba(232,164,76,0.55)',
+                background: 'rgba(104,184,173,0.55)',
               }} />
             </div>
-            <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 26, color: '#faf5eb', lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
+            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 26, color: '#f0f6f3', lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
               {d.projects}
             </div>
           </div>
@@ -100,11 +100,11 @@ const Timeline = ({ data, amber, S }) => {
         {/* axis line — dead center */}
         <div style={{
           position: 'absolute', left: 0, right: 0, top: 140, height: 1,
-          background: 'rgba(232,164,76,0.3)',
+          background: 'rgba(104,184,173,0.3)',
         }} />
         {/* end caps */}
-        <div style={{ position: 'absolute', left: 0, top: 134, width: 1, height: 13, background: 'rgba(232,164,76,0.35)' }} />
-        <div style={{ position: 'absolute', right: 0, top: 134, width: 1, height: 13, background: 'rgba(232,164,76,0.35)' }} />
+        <div style={{ position: 'absolute', left: 0, top: 134, width: 1, height: 13, background: 'rgba(104,184,173,0.35)' }} />
+        <div style={{ position: 'absolute', right: 0, top: 134, width: 1, height: 13, background: 'rgba(104,184,173,0.35)' }} />
 
         {data.map((d, i) => {
           const pct = ((d.year - yMin) / span) * 100;
@@ -126,13 +126,13 @@ const Timeline = ({ data, amber, S }) => {
                 visibility: isTop ? 'visible' : 'hidden',
               }}>
                 <div style={{
-                  fontFamily: 'JetBrains Mono, monospace', fontSize: 10.5, color: amber,
+                  fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 10.5, color: amber,
                   letterSpacing: '0.12em', marginBottom: 6,
                 }}>
                   {d.year}
                 </div>
                 <div style={{
-                  fontFamily: 'Instrument Serif, serif', fontSize: 15, color: '#faf5eb',
+                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: '#f0f6f3',
                   lineHeight: 1.3, textAlign: 'center', textWrap: 'pretty',
                 }}>
                   {d.label}
@@ -141,20 +141,20 @@ const Timeline = ({ data, amber, S }) => {
 
               {/* connector stub (top) */}
               <div style={{
-                width: 1, height: 10, background: 'rgba(232,164,76,0.4)',
+                width: 1, height: 10, background: 'rgba(104,184,173,0.4)',
                 visibility: isTop ? 'visible' : 'hidden',
               }} />
 
               {/* node — baseline = 140px */}
               <div style={{
                 width: 10, height: 10, borderRadius: '50%', background: c,
-                boxShadow: `0 0 0 3px #0f0d0a, 0 0 0 4px ${c}55`,
+                  boxShadow: `0 0 0 3px #090f0e, 0 0 0 4px ${c}55`,
                 flexShrink: 0,
               }} />
 
               {/* connector stub (bottom) */}
               <div style={{
-                width: 1, height: 10, background: 'rgba(232,164,76,0.4)',
+                width: 1, height: 10, background: 'rgba(104,184,173,0.4)',
                 visibility: isTop ? 'hidden' : 'visible',
               }} />
 
@@ -166,13 +166,13 @@ const Timeline = ({ data, amber, S }) => {
                 visibility: isTop ? 'hidden' : 'visible',
               }}>
                 <div style={{
-                  fontFamily: 'JetBrains Mono, monospace', fontSize: 10.5, color: amber,
+                  fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 10.5, color: amber,
                   letterSpacing: '0.12em', marginBottom: 6,
                 }}>
                   {d.year}
                 </div>
                 <div style={{
-                  fontFamily: 'Instrument Serif, serif', fontSize: 15, color: '#faf5eb',
+                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: '#f0f6f3',
                   lineHeight: 1.3, textAlign: 'center', textWrap: 'pretty',
                 }}>
                   {d.label}
@@ -197,10 +197,10 @@ const SkillTree = ({ data, amber, S }) => {
             {/* domain header */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, paddingBottom: 16, borderBottom: `1px solid ${c}55` }}>
               <div style={{ width: 10, height: 10, background: c, marginTop: 4 }} />
-              <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 28, color: '#faf5eb', letterSpacing: '-0.015em', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 28, color: '#f0f6f3', letterSpacing: '-0.015em', lineHeight: 1 }}>
                 {d.domain}
               </div>
-              <div style={{ marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: c, letterSpacing: '0.08em' }}>
+              <div style={{ marginLeft: 'auto', fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 11, color: c, letterSpacing: '0.08em' }}>
                 {d.count} PROJECTS
               </div>
             </div>
@@ -210,10 +210,10 @@ const SkillTree = ({ data, amber, S }) => {
                 const heavy = child.size === 'heavy';
                 return (
                   <span key={j} style={{
-                    fontFamily: 'Manrope, system-ui, sans-serif',
+                    fontFamily: 'IBM Plex Sans, system-ui, sans-serif',
                     fontSize: heavy ? 14 : 12.5,
                     fontWeight: heavy ? 600 : 400,
-                    color: heavy ? '#faf5eb' : '#c4bba9',
+                    color: heavy ? '#f0f6f3' : '#b7c9c3',
                     padding: heavy ? '8px 14px' : '6px 12px',
                     border: heavy ? `1px solid ${c}` : `1px solid ${c}55`,
                     background: heavy ? `${c}22` : 'transparent',
@@ -237,12 +237,12 @@ const ExpertiseInfographics = ({ data, amber, S, Num }) => {
   return (
     <>
       {/* RADAR + LEGEND */}
-      <section id="sec-domain" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(232,164,76,0.14)' }}>
+      <section id="sec-domain" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: 8 }}>
           <Num n="04" />
           <div style={S.eyebrow}>Domain Expertise</div>
         </div>
-        <p style={{ fontSize: 15, color: '#b8afa0', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 760 }}>
+        <p style={{ fontSize: 15, color: '#9eb2ac', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 760 }}>
           Two countable metrics per domain, derived only from documented work: <em style={{ color: amber }}>years active</em> (from first shipped artifact in that area — job, publication, or patent) and <em style={{ color: amber }}>shipped projects</em> (distinct production systems, peer-reviewed papers, patents, or named programs — not sub-tasks). Hover a row to see what the count contains.
         </p>
 
@@ -252,7 +252,7 @@ const ExpertiseInfographics = ({ data, amber, S, Num }) => {
       </section>
 
       {/* TIMELINE */}
-      <section id="sec-trajectory" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(232,164,76,0.14)' }}>
+      <section id="sec-trajectory" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: 8 }}>
           <Num n="05" />
           <div style={S.eyebrow}>Trajectory</div>
@@ -261,12 +261,12 @@ const ExpertiseInfographics = ({ data, amber, S, Num }) => {
       </section>
 
       {/* SKILL TREE */}
-      <section id="sec-capabilities" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(232,164,76,0.14)' }}>
+      <section id="sec-capabilities" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: 8 }}>
           <Num n="06" />
           <div style={S.eyebrow}>Capability Map</div>
         </div>
-        <p style={{ fontSize: 15, color: '#b8afa0', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 720 }}>
+        <p style={{ fontSize: 15, color: '#9eb2ac', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 720 }}>
           Sub-capabilities by domain. <em style={{ color: amber }}>Filled tags</em> = heavy production experience; outlined = working familiarity.
         </p>
         <div style={{ marginLeft: 72 }}>
