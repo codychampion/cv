@@ -15,7 +15,7 @@ This repo exists so the CV can be served and reviewed independently while the so
 |---|---|
 | `cv-data.js` | Structured CV content and professional history |
 | `index.html` | Public CV / portfolio markup |
-| `wrangler.toml` | Cloudflare deployment configuration |
+| `wrangler.jsonc` | Cloudflare Workers deployment configuration |
 | GitHub mirror | Clean public copy generated from `satellites/cv/**` |
 
 ## Edit workflow
@@ -24,7 +24,7 @@ Edits should be made in the source monorepo, not directly in this mirror.
 
 ```bash
 cd ~/nox-code/satellites/cv
-# Edit cv-data.js, index.html, or wrangler.toml
+# Edit cv-data.js, index.html, or wrangler.jsonc
 git add -p
 git commit -m "satellites/cv: refresh <description>"
 git push origin main
