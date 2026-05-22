@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="obsidian">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,135 +15,289 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<!-- All design system font stacks: obsidian (IBM Plex), signal (Fraunces/Lora/DM), field (Newsreader/Literata/Karla) -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Literata:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
 
 <style>
-  html, body { margin: 0; padding: 0; background: #090f0e; overflow-x: hidden; }
-  body {
-    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    color: #dde9e5;
-  }
-  * { box-sizing: border-box; }
-  img { max-width: 100%; height: auto; }
+/* ============================================================
+   Champion Design System — tokens.css (inlined)
+   github.com/codychampion/design-system
+   ============================================================ */
 
-  /* ──────────────────────────────────────────────
-     Mobile/tablet (≤ 900px) — overrides for inline React styles.
-     React inline styles win without !important; we use it
-     here for that exact reason.
-     ────────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    body section {
-      padding: 48px 20px !important;
-    }
-    /* Force any direct-child grid container in a section to stack */
-    body section > div,
-    body section > article,
-    body section > article > div,
-    body section > div > div {
-      grid-template-columns: 1fr !important;
-      gap: 20px !important;
-    }
-    /* Sections that are themselves grids */
-    body section[id="sec-patents"] {
-      grid-template-columns: 1fr !important;
-      gap: 48px !important;
-    }
-    /* Index nav: 2 columns instead of 5 */
-    body section > div[style*="grid-template-columns"]:nth-of-type(2) {
-      grid-template-columns: 1fr 1fr !important;
-    }
-    /* Impact snapshot: stack proof tiles */
-    body #root > div > section:nth-of-type(2) > div:nth-of-type(2) {
-      grid-template-columns: 1fr !important;
-    }
-    /* Hero h1 — was 200px */
-    body h1 {
-      font-size: clamp(56px, 18vw, 120px) !important;
-      line-height: 0.92 !important;
-    }
-    /* Outcome metrics — were 84px */
-    body section[id="sec-outcomes"] div[style*="font-size: 84"],
-    body section[id="sec-outcomes"] > div:nth-of-type(2) > div > div:first-child {
-      font-size: 56px !important;
-    }
-    /* Contact heading — was 64px */
-    body section[id="sec-contact"] > div:first-child {
-      font-size: 40px !important;
-    }
-    /* Featured callout title — was 36 */
-    body section h3 {
-      font-size: 26px !important;
-      line-height: 1.15 !important;
-    }
-    /* About big serif quote — was 36 */
-    body section[id="sec-about"] > div:nth-of-type(2) > div:first-child {
-      font-size: 24px !important;
-    }
-    /* Hero "Currently" + intro paragraph */
-    body section p,
-    body section[id="sec-about"] p {
-      font-size: 16px !important;
-    }
-    /* Publications list items — was 60px 1fr 100px */
-    body section[id="sec-publications"] ol li {
-      grid-template-columns: 36px 1fr !important;
-      gap: 12px !important;
-    }
-    body section[id="sec-publications"] ol li > span:last-child {
-      grid-column: 2 !important;
-      text-align: left !important;
-      font-size: 11px !important;
-    }
-    /* Education header sub-grid — was 200px 1fr */
-    body section[id="sec-education"] > div {
-      grid-template-columns: 1fr !important;
-    }
-    /* Awards rows — keep 80px 1fr but tighter */
-    body section[id="sec-patents"] div[style*="grid-template-columns: 80px"] {
-      grid-template-columns: 56px 1fr !important;
-    }
-    /* Big italic-color metric text */
-    body div[style*="font-size: 48"] {
-      font-size: 32px !important;
-    }
-    /* Reduce big aspirational headshot frame so it doesn't dominate */
-    body section img[alt="Cody Champion"] {
-      max-height: 320px;
-    }
-    /* Long email / github links must not push the page wide */
-    body a[href^="mailto:"],
-    body a[href^="https://github"],
-    body a[href^="https://www.github"] {
-      word-break: break-word !important;
-      overflow-wrap: anywhere !important;
-      max-width: 100% !important;
-    }
-    /* Utility bar — tighter on mobile */
-    body #cv-utility-bar {
-      padding: 10px 20px !important;
-      gap: 16px !important;
-      justify-content: flex-start !important;
-    }
-    /* Hero header (top-of-page flex row) — stack on mobile */
-    body #root > div > section:first-of-type > div:first-child {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 12px !important;
-    }
-    body #root > div > section:first-of-type > div:first-child > div:last-child {
-      text-align: left !important;
-    }
-    /* Contact section buttons — pad less, allow wrap */
-    body section[id="sec-contact"] a {
-      font-size: 11px !important;
-      padding: 12px 16px !important;
-      max-width: 100% !important;
-    }
+:root {
+  --t-xs: 10px; --t-sm: 12px; --t-base: 16px; --t-md: 20px;
+  --t-lg: 25px; --t-xl: 31px; --t-2xl: 39px; --t-3xl: 49px; --t-4xl: 64px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px;
+  --s-8: 32px; --s-12: 48px; --s-16: 64px; --s-24: 96px;
+  --r-sm: 3px; --r-md: 6px; --r-lg: 12px; --r-full: 9999px;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 200ms; --dur-comp: 350ms; --dur-page: 600ms;
+  --shadow-1: 0 1px 3px rgba(0,0,0,.12);
+  --shadow-2: 0 4px 12px rgba(0,0,0,.16);
+  --shadow-3: 0 16px 48px rgba(0,0,0,.24);
+  --container: 1280px; --readable: 68ch;
+}
+
+:root, [data-mode="signal"] {
+  --c-bg:            #f8f7f4; --c-bg-subtle:     #eeecea; --c-bg-raised:     #ffffff;
+  --c-border:        #d8d5cf; --c-border-strong: #9c9890;
+  --c-text:          #1a1916; --c-text-subtle:   #6b6760; --c-text-disabled: #b8b4ae;
+  --c-accent:        #1a4fd6; --c-accent-subtle: #eef2fc; --c-accent-text:   #ffffff;
+  --c-success:       #1a7f4b; --c-warning:       #a15f00; --c-danger:        #c8342e;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Lora", Georgia, serif;
+  --font-ui:      "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono:    "DM Mono", ui-monospace, "SF Mono", monospace;
+  --lh-body: 1.55; --lh-display: 1.05; --symbol: "◆";
+}
+
+[data-mode="obsidian"] {
+  --c-bg:            #2D2A2E; --c-bg-subtle:     #221F22; --c-bg-raised:     #3a3739;
+  --c-border:        #4a474b; --c-border-strong: #6e6b70;
+  --c-text:          #FCFCFA; --c-text-subtle:   #939293; --c-text-disabled: #5b5862;
+  --c-accent:        #FC9867; --c-accent-subtle: #3d2f24; --c-accent-text:   #2D2A2E;
+  --c-success:       #A9DC76; --c-warning:       #FFD866; --c-danger:        #FF6188;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body:    "IBM Plex Sans", system-ui, sans-serif;
+  --font-ui:      "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+  --lh-body: 1.4; --lh-display: 1.15; --symbol: "∎";
+}
+
+[data-mode="field"] {
+  --c-bg:            #1a1a14; --c-bg-subtle:     #242418; --c-bg-raised:     #2e2e22;
+  --c-border:        #3c3c2e; --c-border-strong: #6a6a52;
+  --c-text:          #e8e6d8; --c-text-subtle:   #9c9a82; --c-text-disabled: #505040;
+  --c-accent:        #c8a84b; --c-accent-subtle: #2e2814; --c-accent-text:   #1a1a14;
+  --c-success:       #7ab87a; --c-warning:       #d4844a; --c-danger:        #c85a5a;
+  --font-display: "Newsreader", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body:    "Literata", "Palatino Linotype", serif;
+  --font-ui:      "Karla", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+  --lh-body: 1.65; --lh-display: 1.1; --symbol: "⌬";
+}
+
+[data-mode="signal"][data-theme="dark"] {
+  --c-bg:            #1a1916; --c-bg-subtle:     #232220; --c-bg-raised:     #2a2825;
+  --c-border:        #3a3835; --c-border-strong: #5a5754;
+  --c-text:          #f0eee9; --c-text-subtle:   #a89e8e; --c-text-disabled: #5a5754;
+  --c-accent:        #5d8fff; --c-accent-subtle: #1f2845; --c-accent-text:   #1a1916;
+  --c-success:       #5dc287; --c-warning:       #d59f4a; --c-danger:        #e85f5f;
+}
+[data-mode="obsidian"][data-theme="light"] {
+  --c-bg:            #f5f1ea; --c-bg-subtle:     #ece7dd; --c-bg-raised:     #ffffff;
+  --c-border:        #cfcabf; --c-border-strong: #9c9890;
+  --c-text:          #2D2A2E; --c-text-subtle:   #6e6b70; --c-text-disabled: #b8b4ae;
+  --c-accent:        #d96b3a; --c-accent-subtle: #fce8d8; --c-accent-text:   #f5f1ea;
+}
+[data-mode="field"][data-theme="light"] {
+  --c-bg:            #f3eed8; --c-bg-subtle:     #ebe5cd; --c-bg-raised:     #f9f6e6;
+  --c-border:        #d8d2b8; --c-border-strong: #a89e7a;
+  --c-text:          #1a1a14; --c-text-subtle:   #5a5840; --c-text-disabled: #a89e7a;
+  --c-accent:        #8a6f1f; --c-accent-subtle: #f0e8c8; --c-accent-text:   #f3eed8;
+}
+
+/* ============================================================
+   CV identity — obsidian customised for the deep-ink + teal palette.
+   IBM Plex Serif is the CV display font in obsidian (not Mono).
+   ============================================================ */
+[data-mode="obsidian"] {
+  --font-display:    "IBM Plex Serif", Georgia, serif;
+  --c-bg:            #090f0e;
+  --c-bg-subtle:     #0d1714;
+  --c-bg-raised:     #141e1b;
+  --c-border:        rgba(104,184,173,0.18);
+  --c-border-strong: rgba(104,184,173,0.42);
+  --c-text:          #dde9e5;
+  --c-text-subtle:   #82928d;
+  --c-text-disabled: #536762;
+  --c-accent:        #68b8ad;
+  --c-accent-subtle: rgba(104,184,173,0.08);
+  --c-accent-text:   #090f0e;
+}
+/* Light sibling also gets the Serif display */
+[data-mode="obsidian"][data-theme="light"] {
+  --font-display:    "IBM Plex Serif", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; }
+::selection { background: var(--c-accent); color: var(--c-accent-text); }
+
+/* ── Mode toggle pill ───────────────────────────────────────── */
+#ds-mode-bar {
+  position: fixed; bottom: 20px; right: 20px;
+  display: flex; gap: 4px; align-items: center;
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-full);
+  padding: 5px 10px;
+  z-index: 9999;
+  box-shadow: var(--shadow-2);
+}
+#ds-mode-bar button {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text-subtle);
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  transition: color var(--dur-micro), background var(--dur-micro);
+}
+#ds-mode-bar button:hover { color: var(--c-text); background: var(--c-bg-subtle); }
+#ds-mode-bar button.active { color: var(--c-accent); background: var(--c-accent-subtle); }
+#ds-mode-bar .sep {
+  width: 1px; height: 14px;
+  background: var(--c-border);
+  margin: 0 2px; flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Mobile/tablet (≤ 900px) — overrides for inline React styles.
+   React inline styles win without !important; we use it
+   here for that exact reason.
+   ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  body section {
+    padding: 48px 20px !important;
   }
+  body section > div,
+  body section > article,
+  body section > article > div,
+  body section > div > div {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  body section[id="sec-patents"] {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+  body section > div[style*="grid-template-columns"]:nth-of-type(2) {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  body #root > div > section:nth-of-type(2) > div:nth-of-type(2) {
+    grid-template-columns: 1fr !important;
+  }
+  body h1 {
+    font-size: clamp(56px, 18vw, 120px) !important;
+    line-height: 0.92 !important;
+  }
+  body section[id="sec-outcomes"] div[style*="font-size: 84"],
+  body section[id="sec-outcomes"] > div:nth-of-type(2) > div > div:first-child {
+    font-size: 56px !important;
+  }
+  body section[id="sec-contact"] > div:first-child { font-size: 40px !important; }
+  body section h3 { font-size: 26px !important; line-height: 1.15 !important; }
+  body section[id="sec-about"] > div:nth-of-type(2) > div:first-child { font-size: 24px !important; }
+  body section p,
+  body section[id="sec-about"] p { font-size: 16px !important; }
+  body section[id="sec-publications"] ol li {
+    grid-template-columns: 36px 1fr !important;
+    gap: 12px !important;
+  }
+  body section[id="sec-publications"] ol li > span:last-child {
+    grid-column: 2 !important;
+    text-align: left !important;
+    font-size: 11px !important;
+  }
+  body section[id="sec-education"] > div { grid-template-columns: 1fr !important; }
+  body section[id="sec-patents"] div[style*="grid-template-columns: 80px"] {
+    grid-template-columns: 56px 1fr !important;
+  }
+  body div[style*="font-size: 48"] { font-size: 32px !important; }
+  body section img[alt="Cody Champion"] { max-height: 320px; }
+  body a[href^="mailto:"],
+  body a[href^="https://github"],
+  body a[href^="https://www.github"] {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    max-width: 100% !important;
+  }
+  body #cv-utility-bar {
+    padding: 10px 20px !important;
+    gap: 16px !important;
+    justify-content: flex-start !important;
+  }
+  body #root > div > section:first-of-type > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  body #root > div > section:first-of-type > div:first-child > div:last-child {
+    text-align: left !important;
+  }
+  body section[id="sec-contact"] a {
+    font-size: 11px !important;
+    padding: 12px 16px !important;
+    max-width: 100% !important;
+  }
+  #ds-mode-bar { bottom: 10px; right: 10px; }
+}
 </style>
 </head>
 <body>
 <div id="root"></div>
+
+<!-- Mode toggle pill -->
+<div id="ds-mode-bar">
+  <button id="btn-obsidian" class="active" onclick="dsSetMode('obsidian')">◉ nox</button>
+  <button id="btn-signal" onclick="dsSetMode('signal')">◑ signal</button>
+  <button id="btn-field" onclick="dsSetMode('field')">◐ field</button>
+  <div class="sep"></div>
+  <button id="btn-theme" onclick="dsToggleTheme()" title="Toggle light/dark sibling">⇌</button>
+</div>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('cv-mode');
+  var savedTheme = localStorage.getItem('cv-theme');
+  if (saved) document.documentElement.setAttribute('data-mode', saved);
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  function syncButtons() {
+    var m = document.documentElement.getAttribute('data-mode') || 'obsidian';
+    ['obsidian','signal','field'].forEach(function(id) {
+      var btn = document.getElementById('btn-' + id);
+      if (btn) btn.classList.toggle('active', id === m);
+    });
+  }
+  window.dsSetMode = function(m) {
+    document.documentElement.setAttribute('data-mode', m);
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('cv-mode', m);
+    localStorage.removeItem('cv-theme');
+    syncButtons();
+  };
+  window.dsToggleTheme = function() {
+    var m = document.documentElement.getAttribute('data-mode') || 'obsidian';
+    var naturalDark = (m === 'obsidian' || m === 'field');
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = '';
+    if (naturalDark) { next = current === 'light' ? '' : 'light'; }
+    else             { next = current === 'dark'  ? '' : 'dark'; }
+    if (next) {
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('cv-theme', next);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('cv-theme');
+    }
+  };
+  document.addEventListener('DOMContentLoaded', syncButtons);
+})();
+</script>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
