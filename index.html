@@ -15,97 +15,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- All design system font stacks: signal (Fraunces/Lora/DM), obsidian (IBM Plex), field (Newsreader/Literata/Karla) -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Literata:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
 /* ============================================================
-   Champion Design System — tokens.css (inlined)
+   Champion Design System — signal mode
    github.com/codychampion/design-system
    ============================================================ */
 
 :root {
+  /* Type scale */
   --t-xs: 10px; --t-sm: 12px; --t-base: 16px; --t-md: 20px;
   --t-lg: 25px; --t-xl: 31px; --t-2xl: 39px; --t-3xl: 49px; --t-4xl: 64px;
+  /* Spacing */
   --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px;
   --s-8: 32px; --s-12: 48px; --s-16: 64px; --s-24: 96px;
+  /* Radius */
   --r-sm: 3px; --r-md: 6px; --r-lg: 12px; --r-full: 9999px;
+  /* Motion */
   --easing: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-micro: 200ms; --dur-comp: 350ms; --dur-page: 600ms;
+  --dur-micro: 200ms; --dur-comp: 350ms;
+  /* Elevation */
   --shadow-1: 0 1px 3px rgba(0,0,0,.12);
   --shadow-2: 0 4px 12px rgba(0,0,0,.16);
-  --shadow-3: 0 16px 48px rgba(0,0,0,.24);
+  /* Layout */
   --container: 1280px; --readable: 68ch;
-}
 
-:root, [data-mode="signal"] {
-  --c-bg:            #f8f7f4; --c-bg-subtle:     #eeecea; --c-bg-raised:     #ffffff;
-  --c-border:        #d8d5cf; --c-border-strong: #9c9890;
-  --c-text:          #1a1916; --c-text-subtle:   #6b6760; --c-text-disabled: #b8b4ae;
-  --c-accent:        #1a4fd6; --c-accent-subtle: #eef2fc; --c-accent-text:   #ffffff;
-  --c-success:       #1a7f4b; --c-warning:       #a15f00; --c-danger:        #c8342e;
+  /* Signal palette */
+  --c-bg:            #f8f7f4;
+  --c-bg-subtle:     #eeecea;
+  --c-bg-raised:     #ffffff;
+  --c-border:        #d8d5cf;
+  --c-border-strong: #9c9890;
+  --c-text:          #1a1916;
+  --c-text-subtle:   #6b6760;
+  --c-text-disabled: #b8b4ae;
+  --c-accent:        #1a4fd6;
+  --c-accent-subtle: #eef2fc;
+  --c-accent-text:   #ffffff;
+  --c-success:       #1a7f4b;
+  --c-warning:       #a15f00;
+  --c-danger:        #c8342e;
+
+  /* Signal type stacks */
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body:    "Lora", Georgia, serif;
   --font-ui:      "DM Sans", system-ui, -apple-system, sans-serif;
   --font-mono:    "DM Mono", ui-monospace, "SF Mono", monospace;
-  --lh-body: 1.55; --lh-display: 1.05; --symbol: "◆";
-}
 
-[data-mode="obsidian"] {
-  --c-bg:            #2D2A2E; --c-bg-subtle:     #221F22; --c-bg-raised:     #3a3739;
-  --c-border:        #4a474b; --c-border-strong: #6e6b70;
-  --c-text:          #FCFCFA; --c-text-subtle:   #939293; --c-text-disabled: #5b5862;
-  --c-accent:        #FC9867; --c-accent-subtle: #3d2f24; --c-accent-text:   #2D2A2E;
-  --c-success:       #A9DC76; --c-warning:       #FFD866; --c-danger:        #FF6188;
-  --font-display: "IBM Plex Mono", ui-monospace, monospace;
-  --font-body:    "IBM Plex Sans", system-ui, sans-serif;
-  --font-ui:      "IBM Plex Mono", ui-monospace, monospace;
-  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
-  --lh-body: 1.4; --lh-display: 1.15; --symbol: "∎";
+  --lh-body: 1.55;
+  --lh-display: 1.05;
+  --symbol: "◆";
 }
-
-[data-mode="field"] {
-  --c-bg:            #1a1a14; --c-bg-subtle:     #242418; --c-bg-raised:     #2e2e22;
-  --c-border:        #3c3c2e; --c-border-strong: #6a6a52;
-  --c-text:          #e8e6d8; --c-text-subtle:   #9c9a82; --c-text-disabled: #505040;
-  --c-accent:        #c8a84b; --c-accent-subtle: #2e2814; --c-accent-text:   #1a1a14;
-  --c-success:       #7ab87a; --c-warning:       #d4844a; --c-danger:        #c85a5a;
-  --font-display: "Newsreader", "Palatino Linotype", "Book Antiqua", serif;
-  --font-body:    "Literata", "Palatino Linotype", serif;
-  --font-ui:      "Karla", system-ui, sans-serif;
-  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
-  --lh-body: 1.65; --lh-display: 1.1; --symbol: "⌬";
-}
-
-[data-mode="signal"][data-theme="dark"] {
-  --c-bg:            #1a1916; --c-bg-subtle:     #232220; --c-bg-raised:     #2a2825;
-  --c-border:        #3a3835; --c-border-strong: #5a5754;
-  --c-text:          #f0eee9; --c-text-subtle:   #a89e8e; --c-text-disabled: #5a5754;
-  --c-accent:        #5d8fff; --c-accent-subtle: #1f2845; --c-accent-text:   #1a1916;
-  --c-success:       #5dc287; --c-warning:       #d59f4a; --c-danger:        #e85f5f;
-}
-[data-mode="obsidian"][data-theme="light"] {
-  --c-bg:            #f5f1ea; --c-bg-subtle:     #ece7dd; --c-bg-raised:     #ffffff;
-  --c-border:        #cfcabf; --c-border-strong: #9c9890;
-  --c-text:          #2D2A2E; --c-text-subtle:   #6e6b70; --c-text-disabled: #b8b4ae;
-  --c-accent:        #d96b3a; --c-accent-subtle: #fce8d8; --c-accent-text:   #f5f1ea;
-}
-[data-mode="field"][data-theme="light"] {
-  --c-bg:            #f3eed8; --c-bg-subtle:     #ebe5cd; --c-bg-raised:     #f9f6e6;
-  --c-border:        #d8d2b8; --c-border-strong: #a89e7a;
-  --c-text:          #1a1a14; --c-text-subtle:   #5a5840; --c-text-disabled: #a89e7a;
-  --c-accent:        #8a6f1f; --c-accent-subtle: #f0e8c8; --c-accent-text:   #f3eed8;
-}
-
-/* CV identity — obsidian uses deep-ink + teal + IBM Plex Serif display */
-[data-mode="obsidian"] {
-  --font-display:    "IBM Plex Serif", Georgia, serif;
-  --c-bg:            #090f0e; --c-bg-subtle:     #0d1714; --c-bg-raised:     #141e1b;
-  --c-border:        rgba(104,184,173,0.18); --c-border-strong: rgba(104,184,173,0.42);
-  --c-text:          #dde9e5; --c-text-subtle:   #82928d; --c-text-disabled: #536762;
-  --c-accent:        #68b8ad; --c-accent-subtle: rgba(104,184,173,0.08); --c-accent-text: #090f0e;
-}
-[data-mode="obsidian"][data-theme="light"] { --font-display: "IBM Plex Serif", Georgia, serif; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body {
@@ -117,7 +78,6 @@ html, body {
   line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background var(--dur-comp) var(--easing), color var(--dur-comp) var(--easing);
 }
 img { max-width: 100%; height: auto; }
 ::selection { background: var(--c-accent); color: var(--c-accent-text); }
@@ -172,7 +132,7 @@ img { max-width: 100%; height: auto; }
   padding: var(--s-4) var(--s-6);
   background: var(--c-bg-subtle);
   border: 1px solid var(--c-border);
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "DM Mono", ui-monospace, monospace;
   font-size: 12px;
   color: var(--c-text);
   line-height: 1.6;
@@ -231,50 +191,6 @@ img { max-width: 100%; height: auto; }
 .postscript__foot a { color: var(--c-accent); text-decoration: none; }
 .postscript__foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* ── Fidelity widget — used as mode selector ───────────────── */
-.fid {
-  position: fixed;
-  top: 16px; right: 16px;
-  z-index: 9999;
-  background: var(--c-bg-raised);
-  border: 1px solid var(--c-border-strong);
-  border-radius: var(--r-sm);
-  padding: var(--s-1);
-  display: flex;
-  align-items: center;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: var(--t-xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-1);
-}
-.fid button {
-  all: unset;
-  cursor: pointer;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: var(--t-xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-text-subtle);
-  padding: 5px 10px;
-  border-radius: 2px;
-  transition: color var(--dur-micro), background var(--dur-micro);
-}
-.fid button:hover { color: var(--c-text); background: var(--c-bg-subtle); }
-.fid button.is-on { background: var(--c-accent); color: var(--c-accent-text); }
-.fid .fid__theme {
-  all: unset;
-  cursor: pointer;
-  padding: 5px 9px;
-  color: var(--c-text-subtle);
-  font-size: 13px;
-  line-height: 1;
-  border-right: 1px solid var(--c-border);
-  margin-right: 4px;
-  transition: color var(--dur-micro);
-}
-.fid .fid__theme:hover { color: var(--c-accent); }
-
 /* ──────────────────────────────────────────────
    Mobile/tablet (≤ 900px) overrides
    ────────────────────────────────────────────── */
@@ -305,90 +221,25 @@ img { max-width: 100%; height: auto; }
   body a[href^="mailto:"], body a[href^="https://github"], body a[href^="https://www.github"] {
     word-break: break-word !important; overflow-wrap: anywhere !important; max-width: 100% !important;
   }
+  body section[id="sec-contact"] a {
+    font-size: 11px !important; padding: 12px 16px !important; max-width: 100% !important;
+  }
 
-  /* Brand strip */
   .brand-strip { padding: var(--s-2) var(--s-4) !important; gap: var(--s-3) !important; }
   .brand { font-size: 15px !important; }
   .brand-nav { gap: var(--s-3) !important; font-size: 11px !important; }
   .brand-nav .sep { display: none; }
-  /* Hide case study + print on mobile (keep section nav) */
   .brand-nav a[href="case-study-ml-cost.html"],
   .brand-nav a[href="print.html"] { display: none; }
 
-  /* Postscript */
   .postscript { margin: var(--s-12) var(--s-4) var(--s-6) !important; }
   .postscript__grid { grid-template-columns: 1fr !important; }
   .postscript__foot { grid-template-columns: 1fr !important; }
-
-  /* Mode selector — smaller */
-  .fid { top: 8px; right: 8px; }
-  .fid button { padding: 3px 7px; }
-  .fid .fid__theme { padding: 3px 7px; font-size: 11px; }
-
-  /* Hero layout fixes */
-  body #root > div > section:first-of-type > div:first-child {
-    flex-direction: column !important; align-items: flex-start !important; gap: 12px !important;
-  }
-  body #root > div > section:first-of-type > div:first-child > div:last-child { text-align: left !important; }
-  body section[id="sec-contact"] a {
-    font-size: 11px !important; padding: 12px 16px !important; max-width: 100% !important;
-  }
 }
 </style>
 </head>
 <body>
 <div id="root"></div>
-
-<!-- Mode selector — fidelity widget style, top-right -->
-<div id="cv-mode-bar" class="fid">
-  <button class="fid__theme" id="btn-theme" onclick="dsToggleTheme()" title="Toggle light/dark">☀</button>
-  <button id="btn-signal" class="is-on" onclick="dsSetMode('signal')">Signal</button>
-  <button id="btn-obsidian" onclick="dsSetMode('obsidian')">Nox</button>
-  <button id="btn-field" onclick="dsSetMode('field')">Field</button>
-</div>
-
-<script>
-(function() {
-  var saved = localStorage.getItem('cv-mode');
-  var savedTheme = localStorage.getItem('cv-theme');
-  if (saved) document.documentElement.setAttribute('data-mode', saved);
-  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-
-  function syncButtons() {
-    var m = document.documentElement.getAttribute('data-mode') || 'signal';
-    ['signal','obsidian','field'].forEach(function(id) {
-      var btn = document.getElementById('btn-' + id);
-      if (btn) btn.classList.toggle('is-on', id === m);
-    });
-  }
-
-  window.dsSetMode = function(m) {
-    document.documentElement.setAttribute('data-mode', m);
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('cv-mode', m);
-    localStorage.removeItem('cv-theme');
-    syncButtons();
-  };
-
-  window.dsToggleTheme = function() {
-    var m = document.documentElement.getAttribute('data-mode') || 'signal';
-    var naturalDark = (m === 'obsidian' || m === 'field');
-    var current = document.documentElement.getAttribute('data-theme') || '';
-    var next = naturalDark
-      ? (current === 'light' ? '' : 'light')
-      : (current === 'dark'  ? '' : 'dark');
-    if (next) {
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('cv-theme', next);
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.removeItem('cv-theme');
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', syncButtons);
-})();
-</script>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
