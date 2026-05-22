@@ -310,7 +310,7 @@ window.CV_DATA = {
       bullets: [
         'Led lean, multi-disciplinary teams within Accenture Federal\u2019s innovation hub, delivering applied AI across GenAI, computer vision, and geospatial analytics for federal clients.',
         'Shipped a GenAI diplomatic cable generator for the State Department, GenAI task-management automation in secured Army environments, and global-scale geospatial CV for IARPA.',
-        'Achieved 99% infrastructure cost reduction through ML codebase optimization and cloud architecture redesign.',
+        'Personally wrote the ML codebase and cloud architecture optimizations that achieved a 99% infrastructure cost reduction on a global geospatial platform.',
         'Designed and customized foundation models and ML pipelines for cost-optimized, production-ready deployments in secured environments.',
         'Co-led the Computer Vision Community of Interest, setting technical standards and best practices across the organization.',
       ],
