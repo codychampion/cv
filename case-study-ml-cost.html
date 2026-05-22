@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en" data-mode="signal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>99.6% ML Infrastructure Cost Reduction | Cody Champion</title>
+<meta name="description" content="How five compounding engineering defects in a research-origin geospatial ML pipeline generated $26,200/month in avoidable cloud spend — and how a production rebuild brought that to $90.">
+<meta property="og:title" content="99.6% ML Infrastructure Cost Reduction — Cody Champion">
+<meta property="og:description" content="Five defects. $26,200/month → $90. No new algorithms. Just production engineering discipline applied to research-origin code.">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets/crest_dark.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:wght@400;500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Champion Design System — tokens.css (full)
+   github.com/codychampion/design-system
+   ============================================================ */
+:root {
+  --t-xs:10px; --t-sm:12px; --t-base:16px; --t-md:20px;
+  --t-lg:25px; --t-xl:31px; --t-2xl:39px; --t-3xl:49px; --t-4xl:64px;
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px;
+  --s-8:32px; --s-12:48px; --s-16:64px; --s-24:96px;
+  --r-sm:3px; --r-md:6px; --r-lg:12px; --r-full:9999px;
+  --easing:cubic-bezier(.16,1,.3,1); --dur-micro:200ms; --dur-comp:350ms;
+  --shadow-1:0 1px 3px rgba(0,0,0,.12); --shadow-2:0 4px 12px rgba(0,0,0,.16); --shadow-3:0 16px 48px rgba(0,0,0,.24);
+  --container:1280px; --readable:68ch;
+}
+
+:root, [data-mode="signal"] {
+  --c-bg:#f8f7f4; --c-bg-subtle:#eeecea; --c-bg-raised:#ffffff;
+  --c-border:#d8d5cf; --c-border-strong:#9c9890;
+  --c-text:#1a1916; --c-text-subtle:#6b6760; --c-text-disabled:#b8b4ae;
+  --c-accent:#1a4fd6; --c-accent-subtle:#eef2fc; --c-accent-text:#ffffff;
+  --c-success:#1a7f4b; --c-warning:#a15f00; --c-danger:#c8342e;
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Lora",Georgia,serif;
+  --font-ui:"DM Sans",system-ui,-apple-system,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,"SF Mono",monospace;
+  --lh-body:1.55; --lh-display:1.05; --symbol:"◆";
+}
+[data-mode="signal"][data-theme="dark"] {
+  --c-bg:#1a1916; --c-bg-subtle:#232220; --c-bg-raised:#2a2825;
+  --c-border:#3a3835; --c-border-strong:#5a5754;
+  --c-text:#f0eee9; --c-text-subtle:#a89e8e; --c-text-disabled:#5a5754;
+  --c-accent:#5d8fff; --c-accent-subtle:#1f2845; --c-accent-text:#1a1916;
+  --c-success:#5dc287; --c-warning:#d59f4a; --c-danger:#e85f5f;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--c-bg);color:var(--c-text);font-family:var(--font-body);font-size:var(--t-base);line-height:var(--lh-body);font-feature-settings:"kern","liga","calt";-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);line-height:var(--lh-display);font-weight:500;margin:0;letter-spacing:-.01em;}
+p{margin:0;max-width:var(--readable);}
+a{color:var(--c-accent);text-decoration:none;}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em;}
+::selection{background:var(--c-accent);color:var(--c-accent-text);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* ── FIDELITY TOGGLE ── */
+body{padding:0;min-height:100vh;}
+.fid{position:fixed;top:16px;right:16px;z-index:50;background:var(--c-bg-raised);border:1px solid var(--c-border-strong);border-radius:var(--r-sm);padding:var(--s-1);display:flex;font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;box-shadow:var(--shadow-1);}
+.fid button{background:transparent;color:var(--c-text-subtle);border:0;padding:6px 12px;cursor:pointer;border-radius:2px;font-family:var(--font-mono);}
+.fid button.is-on{background:var(--c-accent);color:var(--c-accent-text);}
+.fid__label{padding:6px 10px 6px 12px;color:var(--c-text-subtle);border-right:1px solid var(--c-border);margin-right:4px;}
+.fid__theme{background:transparent;border:0;padding:6px 10px;cursor:pointer;color:var(--c-text-subtle);font-size:14px;line-height:1;border-right:1px solid var(--c-border);margin-right:4px;}
+.fid__theme:hover{color:var(--c-accent);}
+.wire,.lo,.real{display:none;}
+body[data-fid="wire"] .wire{display:block;}
+body[data-fid="lo"]   .lo{display:block;}
+body[data-fid="hi"]   .real{display:block;}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{position:fixed;top:0;left:0;right:0;height:2px;background:var(--c-border);z-index:200;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--c-accent),var(--c-warning));width:0%;transition:width .1s;}
+
+/* ── PAGE ── */
+.page{max-width:1080px;margin:0 auto;padding:var(--s-12) var(--s-12) var(--s-24);}
+
+/* ── NAV ── */
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:var(--s-8);font-family:var(--font-ui);font-size:var(--t-sm);color:var(--c-text-subtle);}
+.nav-bar a{color:var(--c-text-subtle);}
+.nav-bar a:hover{color:var(--c-text);text-decoration:none;}
+.brand{display:flex;align-items:baseline;gap:var(--s-2);font-family:var(--font-display);font-weight:600;font-size:var(--t-md);color:var(--c-text);letter-spacing:.04em;}
+.brand .crest{display:inline-block;width:14px;height:16px;background-color:var(--c-text);-webkit-mask:url('assets/crest_white.png') center/contain no-repeat;mask:url('assets/crest_white.png') center/contain no-repeat;vertical-align:-2px;margin-right:4px;}
+
+/* ── HERO ── */
+.hero{border-top:1px solid var(--c-border-strong);padding-top:var(--s-12);margin-top:var(--s-4);}
+.hero__eye{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--c-text-subtle);display:flex;gap:var(--s-4);flex-wrap:wrap;}
+.hero__title{font-family:var(--font-display);font-size:clamp(40px,5.5vw,72px);font-weight:500;letter-spacing:-.025em;line-height:1.0;margin-top:var(--s-6);max-width:18ch;}
+.hero__title em{font-style:italic;color:var(--c-text-subtle);font-weight:400;}
+.hero__deck{font-family:var(--font-body);font-size:var(--t-md);color:var(--c-text-subtle);margin-top:var(--s-6);max-width:60ch;line-height:1.5;}
+.hero__byline{margin-top:var(--s-8);padding-top:var(--s-4);border-top:1px solid var(--c-border);display:grid;grid-template-columns:repeat(4,auto);gap:var(--s-8);font-family:var(--font-ui);font-size:var(--t-sm);}
+.hero__byline dt{font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+.hero__byline dd{margin:0;}
+
+/* ── RESULTS ── */
+.results{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-6);margin:var(--s-12) 0 var(--s-16);padding:var(--s-8) 0;border-top:1px solid var(--c-border-strong);border-bottom:1px solid var(--c-border-strong);}
+.result__num{font-family:var(--font-display);font-size:var(--t-3xl);font-weight:500;letter-spacing:-.04em;line-height:.9;color:var(--c-accent);}
+.result__num em{font-style:italic;font-weight:400;color:var(--c-text-subtle);}
+.result__num.success{color:var(--c-success);}
+.result__num.warning{color:var(--c-warning);}
+.result__num.danger {color:var(--c-danger);}
+.result__label{font-family:var(--font-ui);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--c-text-subtle);margin-top:var(--s-3);}
+.result__sub{font-family:var(--font-body);font-size:var(--t-sm);color:var(--c-text-subtle);margin-top:var(--s-2);line-height:1.5;}
+
+/* ── BODY 3-COL ── */
+.cs-body{display:grid;grid-template-columns:180px 1fr 180px;gap:var(--s-12);align-items:start;}
+
+/* ── RAIL ── */
+.cs-rail{position:sticky;top:var(--s-6);align-self:start;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.06em;border-top:1px solid var(--c-border-strong);padding-top:var(--s-3);}
+.cs-rail__num{color:var(--c-accent);}
+.cs-rail__item{padding:3px 0;display:grid;grid-template-columns:22px 1fr;gap:var(--s-2);cursor:pointer;color:var(--c-text-subtle);text-decoration:none;}
+.cs-rail__item:hover{color:var(--c-text);text-decoration:none;}
+.cs-rail__item.is-on{color:var(--c-text);}
+.cs-rail__item.is-on .cs-rail__num::before{content:"■ ";font-size:6px;vertical-align:2px;}
+
+/* ── MAIN CONTENT ── */
+.cs-main{font-family:var(--font-body);font-size:var(--t-base);line-height:1.6;color:var(--c-text);}
+.cs-main p{margin:0 0 var(--s-4);}
+.cs-main p:last-child{margin-bottom:0;}
+.cs-main p strong{font-weight:600;}
+.cs-section{margin-bottom:var(--s-16);}
+.cs-main h3{font-family:var(--font-display);font-size:var(--t-lg);font-weight:500;letter-spacing:-.015em;margin-top:var(--s-12);margin-bottom:var(--s-3);}
+.cs-main h3 .num{font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:var(--s-2);}
+.cs-main h4{font-family:var(--font-display);font-size:var(--t-md);font-weight:500;letter-spacing:-.01em;margin:var(--s-8) 0 var(--s-3);}
+
+/* ── PULL QUOTE ── */
+.cs-main .pull{font-family:var(--font-display);font-size:var(--t-lg);font-style:italic;font-weight:400;color:var(--c-accent);line-height:1.3;border-left:3px solid var(--c-accent);padding:var(--s-2) 0 var(--s-2) var(--s-4);margin:var(--s-6) 0;max-width:40ch;}
+
+/* ── CALLOUT ── */
+.callout{border-left:3px solid var(--c-warning);background:rgba(161,95,0,.06);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--s-3) var(--s-4);margin:var(--s-4) 0;font-size:.93rem;}
+.callout strong{color:var(--c-warning);}
+
+/* ── DEFECT CARDS ── */
+.defect-card{border:1px solid var(--c-border);border-radius:var(--r-sm);overflow:hidden;margin-bottom:var(--s-8);}
+.defect-header{display:flex;align-items:center;gap:var(--s-4);padding:var(--s-3) var(--s-6);background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border);}
+.defect-num{font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-disabled);flex-shrink:0;letter-spacing:.08em;}
+.defect-title{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--c-text);flex:1;}
+.severity{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:var(--r-sm);flex-shrink:0;}
+.sev-critical{background:rgba(200,52,46,.08);color:var(--c-danger);border:1px solid rgba(200,52,46,.25);}
+.sev-high{background:rgba(161,95,0,.08);color:var(--c-warning);border:1px solid rgba(161,95,0,.25);}
+.defect-body{padding:var(--s-6);background:var(--c-bg-raised);}
+.defect-body p{font-size:.93rem;margin-bottom:var(--s-3);}
+.defect-body p:last-child{margin-bottom:0;}
+
+/* ── CODE / MATH BLOCKS ── */
+.math-block,pre{background:var(--c-bg-subtle);border:1px solid var(--c-border);border-radius:var(--r-sm);padding:var(--s-4) var(--s-6);margin:var(--s-4) 0;font-family:var(--font-mono);font-size:.77rem;line-height:1.8;color:var(--c-text-subtle);overflow-x:auto;max-width:none;}
+.math-block .result{color:var(--c-success);font-weight:500;}
+.math-block .warn{color:var(--c-danger);}
+.math-block .comment,.cm{color:var(--c-text-disabled);font-style:italic;}
+pre .kw{color:var(--c-accent);}
+pre .fn{color:var(--c-success);}
+pre .st{color:var(--c-warning);}
+pre .cm{color:var(--c-text-disabled);font-style:italic;}
+pre .num{color:#7a22a0;}
+pre .dec{color:var(--c-danger);}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:var(--s-6) 0;border:1px solid var(--c-border);border-radius:var(--r-sm);max-width:none;}
+table{width:100%;border-collapse:collapse;font-size:.84rem;font-family:var(--font-mono);}
+thead tr{background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border-strong);}
+thead th{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--c-text-disabled);padding:.85rem var(--s-6);text-align:left;font-weight:500;}
+tbody tr{border-bottom:1px solid var(--c-border);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--c-accent-subtle);}
+tbody td{padding:.7rem var(--s-6);color:var(--c-text);}
+tbody td:first-child{color:var(--c-text-subtle);}
+.td-before{color:var(--c-danger)!important;}
+.td-after{color:var(--c-success)!important;}
+
+/* ── ARCH DIAGRAM ── */
+.arch-diagram{background:var(--c-bg-subtle);border:1px solid var(--c-border);border-radius:var(--r-sm);padding:var(--s-8);margin:var(--s-6) 0;font-family:var(--font-mono);font-size:.72rem;line-height:2;color:var(--c-text-subtle);overflow-x:auto;max-width:none;white-space:pre;}
+.arch-diagram .stage{color:var(--c-accent);font-weight:500;}
+.arch-diagram .arrow{color:var(--c-text-disabled);}
+.arch-diagram .comment{color:var(--c-text-disabled);font-style:italic;}
+.arch-diagram .warn{color:var(--c-danger);}
+.arch-diagram .ok{color:var(--c-success);}
+
+/* ── DELTA GRID ── */
+.delta-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin:var(--s-6) 0;}
+.delta-col{background:var(--c-bg-raised);border:1px solid var(--c-border);border-radius:var(--r-sm);overflow:hidden;}
+.delta-col-header{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;padding:.6rem var(--s-4);border-bottom:1px solid var(--c-border);}
+.delta-col-header.before{color:var(--c-danger);background:rgba(200,52,46,.05);}
+.delta-col-header.after{color:var(--c-success);background:rgba(26,127,75,.05);}
+.delta-col ul{list-style:none;padding:var(--s-3) var(--s-4);}
+.delta-col li{font-family:var(--font-mono);font-size:.73rem;color:var(--c-text-subtle);padding:.25rem 0;border-bottom:1px solid var(--c-border);display:flex;align-items:flex-start;gap:var(--s-2);}
+.delta-col li:last-child{border-bottom:none;}
+.delta-col li::before{flex-shrink:0;margin-top:2px;}
+.delta-col.before li::before{content:"✗";color:var(--c-danger);font-size:.65rem;}
+.delta-col.after  li::before{content:"✓";color:var(--c-success);font-size:.65rem;}
+
+/* ── MARGIN NOTES ── */
+.cs-margin{font-family:var(--font-mono);font-size:var(--t-xs);line-height:1.6;color:var(--c-text-subtle);border-top:1px solid var(--c-border-strong);padding-top:var(--s-3);}
+.cs-margin strong{color:var(--c-text);font-weight:500;}
+.cs-margin p{margin-bottom:var(--s-6);}
+.cs-margin hr{border:0;border-top:1px solid var(--c-border);margin:var(--s-4) 0;}
+
+/* ── SKELETON ── */
+.skel{background:var(--c-border);border-radius:2px;}
+
+/* ── FOOTER ── */
+.foot{margin-top:var(--s-24);padding-top:var(--s-6);border-top:1px solid var(--c-border-strong);display:flex;justify-content:space-between;align-items:end;font-family:var(--font-ui);font-size:var(--t-sm);color:var(--c-text-subtle);}
+.foot a{color:var(--c-text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--c-accent);}
+.foot__crest{width:40px;height:46px;background-color:var(--c-text);-webkit-mask:url('assets/crest_white.png') center/contain no-repeat;mask:url('assets/crest_white.png') center/contain no-repeat;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .cs-body{grid-template-columns:1fr;}
+  .cs-rail{position:static;}
+  .cs-margin{border-top:1px dashed var(--c-border);margin-top:var(--s-12);position:static;}
+  .results{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:720px){
+  .page{padding:var(--s-6) var(--s-4) var(--s-12);}
+  .hero__title{font-size:clamp(28px,7.4vw,40px);line-height:1.05;max-width:none;margin-top:var(--s-4);}
+  .hero__deck{font-size:15px;line-height:1.45;margin-top:var(--s-4);}
+  .hero__byline{grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-6);}
+  .results{grid-template-columns:repeat(2,1fr);gap:var(--s-4);margin:var(--s-8) 0 var(--s-12);padding:var(--s-6) 0;}
+  .result__num{font-size:32px;}
+  .result__label{font-size:10px;}
+  .fid{top:6px;right:6px;font-size:8.5px;padding:2px;}
+  .fid button,.fid__label{padding:3px 6px;}
+  .delta-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .hero__byline{grid-template-columns:1fr;}
+  .results{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body data-fid="hi">
+
+<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<div class="fid">
+  <button class="fid__theme" data-theme-toggle>☾</button>
+  <span class="fid__label">Fidelity</span>
+  <button data-fid="wire">Wire</button>
+  <button data-fid="lo">Lo-fi</button>
+  <button data-fid="hi" class="is-on">Hi-fi</button>
+</div>
+
+<div class="page">
+
+  <!-- WIRE -->
+  <div class="wire">
+    <div class="skel" style="height:14px;width:25%;"></div>
+    <div class="skel" style="height:80px;margin-top:var(--s-6);"></div>
+    <div class="skel" style="height:16px;width:70%;margin-top:var(--s-4);"></div>
+    <div class="skel" style="height:16px;width:55%;margin-top:8px;"></div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-4);margin-top:var(--s-12);">
+      <div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div>
+    </div>
+    <div class="skel" style="height:320px;margin-top:var(--s-12);"></div>
+  </div>
+
+  <!-- LO-FI -->
+  <div class="lo" style="font-family:var(--font-mono);font-size:var(--t-sm);line-height:1.6;">
+    <div style="color:var(--c-text-subtle);margin-bottom:var(--s-4);">case-study · hero / 5 stats / 7-section body / margin notes</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">[hero] 99.6% ML Inference Cost Reduction · Federal · MLOps · Geospatial ML</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-4);">
+      <div>99.6%<br>cost reduction</div><div>111M<br>chips</div><div>35×<br>throughput</div><div>50+<br>validations</div><div>100%<br>GPU eliminated</div>
+    </div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 01 — Context · federally-funded geospatial program, research notebooks inherited</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 02 — Workload · 111M chips, every per-chip defect multiplied</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 03 — Baseline · per-region GPU fan-out, $26,200/mo</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 04 — Five defects · fan-out, no batching, band duplication, masked pixels, preprocessing on GPU</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 05 — Rebuild · stage-separated pipeline, Airflow DAG, slim Docker</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 06 — Results · $90/month, 50+ gov't eval cycles, accuracy held</div>
+    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);">§ 07 — Lessons · five principles applied to the next one</div>
+  </div>
+
+  <!-- HI-FI -->
+  <div class="real">
+
+    <div class="nav-bar">
+      <div class="brand"><span class="crest"></span>cody.champion</div>
+      <div><a href="index.html">← CV</a></div>
+    </div>
+
+    <section class="hero">
+      <div class="hero__eye">
+        <span>§ · Case study</span>
+        <span>Federal · undisclosed</span>
+        <span>MLOps · Geospatial ML</span>
+        <span>Production Engineering</span>
+      </div>
+      <h1 class="hero__title">99.6% ML inference cost reduction, <em>at planetary scale.</em></h1>
+      <p class="hero__deck">How five compounding engineering defects in a research-origin codebase were generating $26,000/month in avoidable cloud spend — and how a ground-up production rebuild brought that to $90. No new algorithms. No changed requirements.</p>
+      <dl class="hero__byline">
+        <div><dt>Role</dt><dd>Technical Lead · classification pipeline</dd></div>
+        <div><dt>Domain</dt><dd>Federal geospatial ML</dd></div>
+        <div><dt>Stack</dt><dd>PyTorch · Airflow · Docker</dd></div>
+        <div><dt>Validated</dt><dd>50+ independent gov't evaluations</dd></div>
+      </dl>
+    </section>
+
+    <div class="results">
+      <div>
+        <div class="result__num success">99.6<em>%</em></div>
+        <div class="result__label">Cost reduction</div>
+        <div class="result__sub">$26,200 → $90/mo</div>
+      </div>
+      <div>
+        <div class="result__num">111<em>M</em></div>
+        <div class="result__label">Chips processed</div>
+        <div class="result__sub">full program workload</div>
+      </div>
+      <div>
+        <div class="result__num warning">35<em>×</em></div>
+        <div class="result__label">Throughput gain</div>
+        <div class="result__sub">from batching alone</div>
+      </div>
+      <div>
+        <div class="result__num">50<em>+</em></div>
+        <div class="result__label">Gov't validations</div>
+        <div class="result__sub">independent eval cycles</div>
+      </div>
+      <div>
+        <div class="result__num danger">100<em>%</em></div>
+        <div class="result__label">GPU eliminated</div>
+        <div class="result__sub">A100 → CPU only</div>
+      </div>
+    </div>
+
+    <div class="cs-body">
+
+      <aside class="cs-rail">
+        <div style="margin-bottom:var(--s-2);font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--c-text-disabled);">Contents</div>
+        <a href="#sec-context"  class="cs-rail__item is-on"><span class="cs-rail__num">01</span><span>Context</span></a>
+        <a href="#sec-workload" class="cs-rail__item"><span class="cs-rail__num">02</span><span>Workload</span></a>
+        <a href="#sec-baseline" class="cs-rail__item"><span class="cs-rail__num">03</span><span>Baseline</span></a>
+        <a href="#sec-defects"  class="cs-rail__item"><span class="cs-rail__num">04</span><span>Root causes</span></a>
+        <a href="#sec-rebuild"  class="cs-rail__item"><span class="cs-rail__num">05</span><span>The rebuild</span></a>
+        <a href="#sec-results"  class="cs-rail__item"><span class="cs-rail__num">06</span><span>Results</span></a>
+        <a href="#sec-lessons"  class="cs-rail__item"><span class="cs-rail__num">07</span><span>Lessons</span></a>
+      </aside>
+
+      <article class="cs-main">
+
+        <section class="cs-section" id="sec-context">
+          <h3><span class="num">§ 01 — Program context and constraints</span>An inherited notebook. A $26,200/month billing surprise.</h3>
+          <p>This engagement was a federally-funded geospatial intelligence program requiring automated detection of heavy construction activity from multispectral satellite imagery. The scope was planetary: geographic coverage 10–20× the size of Moscow, with imagery revisits every two weeks spanning 5–10 year historical windows per area of interest.</p>
+          <p>The program's primary evaluation metric was <strong>cost per unit of processed area</strong> — not accuracy alone, not throughput alone. Cost efficiency was a first-class scored deliverable, validated by the government client across 50+ independent release cycles throughout the program lifecycle. Budget overruns were not recoverable.</p>
+          <p>The baseline inference system was inherited from a university research partner and delivered as Jupyter notebooks. My mandate was to transform that research artifact into a production-grade pipeline. What the notebooks contained was a set of compounding engineering defects that, left unaddressed, would have made the program economically unviable.</p>
+        </section>
+
+        <section class="cs-section" id="sec-workload">
+          <h3><span class="num">§ 02 — Workload sizing</span>111 million chips. Every per-chip inefficiency multiplied.</h3>
+          <p>Understanding the cost problem requires understanding the scale. Every per-chip inefficiency multiplied across 111 million chips.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Parameter</th><th>Value</th><th>Derivation</th></tr></thead>
+              <tbody>
+                <tr><td>Coverage per run</td><td>~37,500 km²</td><td>Midpoint of 10–20× Moscow (2,511 km²)</td></tr>
+                <tr><td>Image resolution</td><td>2m/px</td><td>Program specification</td></tr>
+                <tr><td>Chip size</td><td>256 × 256 px</td><td>= 512m × 512m ground footprint</td></tr>
+                <tr><td>Chips per time step</td><td>~570,000</td><td>37,500 km² ÷ (0.512 km)²</td></tr>
+                <tr><td>Revisit cadence</td><td>26/year</td><td>Every 2 weeks</td></tr>
+                <tr><td>Historical window</td><td>7.5 years</td><td>Midpoint of 5–10 year range</td></tr>
+                <tr><td><strong>Total chips</strong></td><td><strong>~111 million</strong></td><td>570,000 × 26 × 7.5</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The model itself was a mid-sized PyTorch CNN operating on multispectral 4-band imagery at 2m resolution — a pure inference workload with no training in the production loop. The problem was not model complexity. It was everything built around the model.</p>
+        </section>
+
+        <section class="cs-section" id="sec-baseline">
+          <h3><span class="num">§ 03 — Baseline architecture and cost</span>$32/hr GPU instances. Regardless of AOI size.</h3>
+          <p>The baseline system used high-end GPU compute instances — multi-A100 configurations. Cost figures use current AWS on-demand public rates as a conservative proxy; actual contract rates were negotiated. The structural cost drivers and proportional reduction are accurate regardless of the specific rate applied.</p>
+          <div class="arch-diagram"><span class="comment"># BASELINE ARCHITECTURE (per-sprint)</span>
+
+<span class="stage">[ Region A ]</span>  <span class="arrow">──▶</span>  <span class="warn">GPU Instance ($32/hr)</span>  <span class="arrow">──▶</span>  <span class="warn">Jupyter Notebook</span>  <span class="arrow">──▶</span>  Output
+<span class="stage">[ Region B ]</span>  <span class="arrow">──▶</span>  <span class="warn">GPU Instance ($32/hr)</span>  <span class="arrow">──▶</span>  <span class="warn">Jupyter Notebook</span>  <span class="arrow">──▶</span>  Output
+<span class="stage">[ Region C ]</span>  <span class="arrow">──▶</span>  <span class="warn">GPU Instance ($32/hr)</span>  <span class="arrow">──▶</span>  <span class="warn">Jupyter Notebook</span>  <span class="arrow">──▶</span>  Output
+<span class="comment">     ↑</span>
+<span class="warn">     same instance class for a 50,000 km² metro AND a 100×100m single site</span></div>
+          <p>AOI sizes varied enormously across the program — some regions covered tens of thousands of square kilometers, others covered areas as small as a single 100×100m construction site. Both triggered identical instance configurations. Small AOIs generated near-zero GPU utilization before teardown, billing GPU-hours for a handful of forward passes.</p>
+          <div class="math-block">
+<span class="comment"># Baseline monthly cost</span>
+
+~20 active regional containers per sprint
+× $32.77/hr per instance × ~20 billed hours per sprint × 2 sprints/month
+<span class="result">= ~$26,200/month</span>
+
+<span class="comment"># Effective GPU utilization during billed hours: &lt;20%</span></div>
+        </section>
+
+        <section class="cs-section" id="sec-defects">
+          <h3><span class="num">§ 04 — Root cause analysis — five defects</span>Each independently fixable. Together, multiplicative.</h3>
+          <p>Each defect below was independently fixable. Together they were multiplicative: the waste from each compounded the savings from the one before it. Addressing all five was necessary to reach the final reduction.</p>
+
+          <div class="defect-card">
+            <div class="defect-header">
+              <span class="defect-num">DEFECT 01</span>
+              <span class="defect-title">Per-Region GPU Fan-Out with No Size Scaling</span>
+              <span class="severity sev-critical">Critical</span>
+            </div>
+            <div class="defect-body">
+              <p>One GPU container per geographic region, irrespective of AOI size. Infrastructure cost was a function of region count, not workload volume. A 50,000 km² metro and a 100×100m single-site monitoring target triggered identical $32/hr instance spin-ups.</p>
+              <div class="math-block">
+<span class="comment"># Cost asymmetry example</span>
+
+100×100m AOI: ~38 chips total
+Inference time (batch=1): &lt;1 second of GPU compute
+Instance billed: <span class="warn">20+ hours at $32.77/hr = $655</span>
+<span class="comment"># $655 to run 38 forward passes</span></div>
+              <p><strong>Fix:</strong> Regional workloads consolidated into a single shared inference queue. AOI size determined chip count in the queue, not instance count.</p>
+            </div>
+          </div>
+
+          <div class="defect-card">
+            <div class="defect-header">
+              <span class="defect-num">DEFECT 02</span>
+              <span class="defect-title">Single-Sample Inference — No Batching</span>
+              <span class="severity sev-critical">Critical</span>
+            </div>
+            <div class="defect-body">
+              <p>The model ran inference on one 256×256 chip at a time. On a modern GPU, single-sample forward pass time is approximately 8–12ms — dominated by kernel launch latency and host-device memory transfer overhead, not arithmetic throughput. The GPU's parallel compute capacity was almost entirely idle between launches.</p>
+              <div class="math-block">
+<span class="comment"># Throughput comparison</span>
+
+Batch 1:   ~100 chips/sec   → 111M chips in <span class="warn">~308 hours</span>
+Batch 64:  ~3,500 chips/sec → 111M chips in <span class="result">~8.8 hours</span>
+<span class="result">Throughput gain: ~35× from batching alone</span></div>
+              <div class="callout"><strong>On GPU utilization:</strong> Single-sample inference on a multi-A100 instance is approximately equivalent to running a desktop GPU at $32/hr. The arithmetic throughput of the hardware — the entire justification for the cost — is never reached. The instance is a very expensive memory bus.</div>
+              <pre><span class="cm"># Before: single-sample loop</span>
+<span class="kw">for</span> chip_path <span class="kw">in</span> chip_list:
+    results.<span class="fn">append</span>(<span class="fn">model</span>(<span class="fn">preprocess</span>(<span class="fn">load_chip</span>(chip_path))))
+
+<span class="cm"># After: batched queue</span>
+<span class="kw">def</span> <span class="fn">batched_inference</span>(chip_queue, model, batch_size=<span class="num">64</span>):
+    <span class="kw">for</span> batch <span class="kw">in</span> <span class="fn">iter_batches</span>(chip_queue, batch_size):
+        tensors = torch.<span class="fn">stack</span>([<span class="fn">preprocess</span>(c) <span class="kw">for</span> c <span class="kw">in</span> batch])
+        <span class="kw">with</span> torch.<span class="fn">no_grad</span>():
+            <span class="kw">yield from</span> <span class="fn">zip</span>(batch, <span class="fn">model</span>(tensors))</pre>
+            </div>
+          </div>
+
+          <div class="defect-card">
+            <div class="defect-header">
+              <span class="defect-num">DEFECT 03</span>
+              <span class="defect-title">Band Duplication — Structural Model Corruption</span>
+              <span class="severity sev-critical">Critical</span>
+            </div>
+            <div class="defect-body">
+              <p>The model was originally architected for 8-band multispectral input. The actual sensor data was 4-band. Rather than fix the model, the research code duplicated the 4-band tensor along the channel dimension to produce a synthetic 8-band input.</p>
+              <pre><span class="cm"># Research workaround</span>
+band_4      = <span class="fn">load_imagery</span>(scene)           <span class="cm"># shape: (4, H, W)</span>
+band_8_fake = torch.<span class="fn">cat</span>([band_4, band_4], dim=<span class="num">0</span>)
+<span class="cm"># bands 0-3 == bands 4-7 — perfectly correlated</span></pre>
+              <p>Consequences at three levels. <strong>Representation quality:</strong> first-layer filters received perfectly correlated channel pairs across every training example, degrading spectral representations from initialization. <strong>Memory cost:</strong> doubled input tensor size on every forward pass. <strong>Batch ceiling:</strong> compressed maximum viable batch size on any fixed VRAM budget.</p>
+              <div class="math-block">
+8-band (duplicated): 64 × 8 × 256 × 256 × 4 bytes = <span class="warn">~134MB per batch</span>
+4-band (correct):    64 × 4 × 256 × 256 × 4 bytes = <span class="result">~67MB per batch</span></div>
+              <p><strong>Fix:</strong> Ground-up retrain on native 4-band input. I defined acceptance metrics and assembled the training dataset. The university team executed retraining under those constraints. The architectural decision — retrain rather than patch weights — was mine.</p>
+            </div>
+          </div>
+
+          <div class="defect-card">
+            <div class="defect-header">
+              <span class="defect-num">DEFECT 04</span>
+              <span class="defect-title">Masked Pixels Included in Tensor Operations</span>
+              <span class="severity sev-high">High</span>
+            </div>
+            <div class="defect-body">
+              <p>Valid imagery chips contained substantial no-data regions — cloud cover, cloud shadow, off-nadir edge artifacts, and acquisition gaps. The pipeline converted these to zero-filled pixels and submitted full tensors. Inference executed on every pixel, including those already flagged invalid by the mask layer.</p>
+              <div class="math-block">
+Average masked fraction per chip: ~35%
+Net compute reduction from mask exclusion: <span class="result">~25–35%</span></div>
+              <pre><span class="kw">def</span> <span class="fn">build_inference_queue</span>(chip_paths, mask_paths, threshold=<span class="num">0.5</span>):
+    <span class="kw">return</span> [
+        (chip, mask)
+        <span class="kw">for</span> c, m <span class="kw">in</span> <span class="fn">zip</span>(chip_paths, mask_paths)
+        <span class="kw">for</span> chip, mask <span class="kw">in</span> [(<span class="fn">load_chip</span>(c), <span class="fn">load_mask</span>(m))]
+        <span class="kw">if</span> <span class="num">1.0</span> - mask.<span class="fn">mean</span>() >= threshold
+    ]  <span class="cm"># ~35% smaller queue</span></pre>
+            </div>
+          </div>
+
+          <div class="defect-card">
+            <div class="defect-header">
+              <span class="defect-num">DEFECT 05</span>
+              <span class="defect-title">GPU Instance Used for CPU-Bound Raster Preprocessing</span>
+              <span class="severity sev-high">High</span>
+            </div>
+            <div class="defect-body">
+              <p>Image clipping — extracting 256×256 chips from large GeoTIFF source scenes — ran on the GPU instance. This is pure CPU I/O work: file reads, coordinate transforms, pixel extraction via rasterio and GDAL. No GPU instructions are issued. Preprocessing produced sustained near-zero GPU utilization while billing GPU rates for work a CPU-only instance costing 1/50th the price could handle equivalently.</p>
+              <div class="math-block">
+<span class="comment"># Preprocessing: ~40–60% of GPU instance wall time</span>
+
+On GPU instance:  0.5 × $32.77/hr × 20 hrs = <span class="warn">~$328/sprint</span>
+On CPU instance:  0.5 × $0.68/hr  × 20 hrs = <span class="result">~$6.80/sprint</span>
+<span class="comment"># ~48× cost premium for identical work</span></div>
+              <p><strong>Fix:</strong> Preprocessing decoupled to a CPU-only fleet. Airflow DAG enforced stage separation — preprocessing completed before inference instances were triggered. Inference was never idle waiting for chips.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="cs-section" id="sec-rebuild">
+          <h3><span class="num">§ 05 — The production rebuild</span>Built from scratch. Stage-separated. CPU-only inference.</h3>
+
+          <p>The research partner provided model architecture, training data, and Jupyter notebooks. The production system was built from scratch. Ownership breakdown:</p>
+          <ul style="font-family:var(--font-mono);font-size:.77rem;color:var(--c-text-subtle);line-height:2;margin:var(--s-4) 0 var(--s-4) var(--s-6);">
+            <li><strong style="color:var(--c-success)">Fully mine:</strong> classification pipeline end-to-end — chip extraction, mask filtering, queue management, batched inference, aggregation, all Python code, all Docker images, Airflow DAG</li>
+            <li><strong style="color:var(--c-accent)">Architecture lead:</strong> change detection stage — overall pipeline architecture and integration contracts</li>
+            <li><strong style="color:var(--c-accent)">Directed, not implemented:</strong> model retrain — I set acceptance metrics and provided training dataset; university team executed</li>
+            <li><strong style="color:var(--c-text-disabled)">Inherited:</strong> research model weights and original architecture (university partner)</li>
+          </ul>
+
+          <h4>Pipeline architecture</h4>
+          <div class="arch-diagram"><span class="ok">STAGE 1: Raster Preprocessing</span>  (CPU-only, decoupled)
+  ├── Source scene ingestion (GeoTIFF)
+  ├── Coordinate-aligned chip extraction (rasterio/GDAL)
+  ├── Mask layer generation
+  └── Chip queue → S3
+            <span class="arrow">▼</span>
+<span class="ok">STAGE 2: Chip Filtering</span>
+  ├── Mask evaluation per chip
+  ├── Below-threshold chips dropped (~35% reduction)
+  └── Valid queue → inference worker
+            <span class="arrow">▼</span>
+<span class="ok">STAGE 3: Batched Inference</span>  (CPU fleet — shared, not per-region)
+  ├── Dynamic batch assembly (batch_size=16–32)
+  ├── 4-band corrected model forward pass
+  └── Per-chip result emission
+            <span class="arrow">▼</span>
+<span class="ok">STAGE 4: Result Aggregation</span>
+  └── Region-level output → downstream scoring</div>
+
+          <h4>Airflow DAG</h4>
+          <pre><span class="kw">with</span> <span class="fn">DAG</span>(<span class="st">'inference_pipeline'</span>, schedule_interval=<span class="st">'@biweekly'</span>) <span class="kw">as</span> dag:
+    preprocess   = <span class="fn">DockerOperator</span>(task_id=<span class="st">'raster_preprocessing'</span>,
+                                   image=<span class="st">'inference/preprocess:slim'</span>)
+    filter_queue = <span class="fn">PythonOperator</span>(task_id=<span class="st">'mask_filter_chip_queue'</span>,
+                                   python_callable=<span class="fn">build_inference_queue</span>)
+    inference    = <span class="fn">DockerOperator</span>(task_id=<span class="st">'batched_inference'</span>,
+                                   image=<span class="st">'inference/model:slim'</span>)
+    aggregate    = <span class="fn">PythonOperator</span>(task_id=<span class="st">'result_aggregation'</span>,
+                                   python_callable=<span class="fn">aggregate_regional_outputs</span>)
+    preprocess >> filter_queue >> inference >> aggregate</pre>
+
+          <h4>Docker image slimming</h4>
+          <pre><span class="dec">FROM</span> pytorch/pytorch:2.x-cuda-runtime <span class="kw">AS</span> base
+<span class="cm"># runtime CUDA libs only — no cudnn-dev, no compiler</span>
+<span class="dec">COPY</span> requirements-inference.txt .
+<span class="dec">RUN</span> pip install --no-cache-dir -r requirements-inference.txt
+<span class="cm"># pinned deps: torch, rasterio, numpy, boto3</span>
+<span class="dec">COPY</span> src/inference/ /app/
+<span class="dec">CMD</span> [<span class="st">"python"</span>, <span class="st">"-m"</span>, <span class="st">"inference.worker"</span>]
+<span class="cm"># ~400–600MB vs 2–3GB baseline · ~75% reduction across 50+ pull cycles</span></pre>
+
+          <h4>Before / after</h4>
+          <div class="delta-grid">
+            <div class="delta-col before">
+              <div class="delta-col-header before">Before</div>
+              <ul>
+                <li>Per-region GPU fan-out, 20 concurrent instances</li>
+                <li>Single-sample inference (batch=1)</li>
+                <li>4-band input duplicated to fake 8-band</li>
+                <li>Masked pixels included in tensor ops</li>
+                <li>Raster preprocessing on GPU instance</li>
+                <li>Jupyter notebooks, no orchestration</li>
+                <li>2–3 GB Docker images</li>
+                <li>A100 GPU required</li>
+              </ul>
+            </div>
+            <div class="delta-col after">
+              <div class="delta-col-header after">After</div>
+              <ul>
+                <li>Single shared queue, 3-node CPU fleet</li>
+                <li>Dynamic batching (batch=16–32)</li>
+                <li>Native 4-band model, retrained from scratch</li>
+                <li>Mask-filtered queue, ~35% smaller</li>
+                <li>Preprocessing decoupled to CPU-only stage</li>
+                <li>Airflow DAG, stage-separated, reproducible</li>
+                <li>400–600 MB slim inference images</li>
+                <li>CPU-only inference, GPU eliminated</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="sec-results">
+          <h3><span class="num">§ 06 — Results</span>$26,200 → $90. No new algorithms. No changed requirements.</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dimension</th><th>Baseline</th><th>Optimized</th></tr></thead>
+              <tbody>
+                <tr><td>Compute</td><td class="td-before">~20× GPU instances (multi-A100)</td><td class="td-after">3× CPU inference nodes</td></tr>
+                <tr><td>Inference mode</td><td class="td-before">Single-sample, per-region isolated</td><td class="td-after">Unified batched queue (batch 16–32)</td></tr>
+                <tr><td>Model input</td><td class="td-before">4-band duplicated to 8 (corrupt)</td><td class="td-after">Native 4-band (retrained)</td></tr>
+                <tr><td>Masking</td><td class="td-before">Zero-filled passthrough</td><td class="td-after">Excluded pre-queue (~35% fewer chips)</td></tr>
+                <tr><td>Preprocessing</td><td class="td-before">Co-located on GPU instance</td><td class="td-after">Decoupled CPU-only stage</td></tr>
+                <tr><td>Docker image</td><td class="td-before">2–3 GB (full CUDA + dev tools)</td><td class="td-after">~400–600 MB (runtime only)</td></tr>
+                <tr><td>Orchestration</td><td class="td-before">Jupyter notebooks</td><td class="td-after">Dockerized Airflow DAGs</td></tr>
+                <tr><td>Monthly cost</td><td class="td-before">~$26,200</td><td class="td-after">~$90</td></tr>
+                <tr><td><strong>Cost reduction</strong></td><td>—</td><td class="td-after"><strong>99.6%</strong></td></tr>
+                <tr><td>Model accuracy</td><td>Baseline (program eval)</td><td class="td-after">Within program threshold</td></tr>
+                <tr><td>External validation</td><td>—</td><td class="td-after">50+ independent government evaluations</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="math-block">
+<span class="comment"># Cost verification</span>
+
+Baseline:   ~$26,200/month
+Optimized:  3 × CPU nodes × $0.68/hr × ~45 active hrs/month = $91.80/month
+Reduction:  ($26,200 − $90) / $26,200 = <span class="result">99.66%</span>
+
+<span class="comment"># The "99%" claim is not rounded up. It's rounded down.</span></div>
+          <p>The pipeline processed the full program workload within the government client's cost and accuracy constraints across 50+ independently evaluated release cycles. Cost efficiency held through the full evaluation period without architectural rework.</p>
+        </section>
+
+        <section class="cs-section" id="sec-lessons">
+          <h3><span class="num">§ 07 — Lessons</span>Five things that apply to the next one.</h3>
+
+          <p class="pull">"The first question when inheriting research code should not be 'does it produce correct outputs' but 'what will this cost at the volume we actually need.'"</p>
+
+          <h4>Research code is not a cost baseline</h4>
+          <p>Jupyter notebooks are validation artifacts, not infrastructure. The cost structure of research code — single-sample loops, monolithic compute, no stage separation — is appropriate for a lab environment and catastrophic at production scale.</p>
+
+          <h4>Workarounds compound silently</h4>
+          <p>The band duplication hack was a single line of code that simultaneously degraded model quality, doubled memory bandwidth consumption, and compressed batch size headroom. Each consequence was invisible until you looked. Research workarounds tend to solve the immediate problem (the notebook runs) while embedding structural costs that multiply at scale.</p>
+
+          <h4>Right-sizing compute is not a tradeoff</h4>
+          <p>Running CPU-bound preprocessing on a multi-A100 instance is not a "good enough for now" decision — it is a billing error. Compute class mismatches between task type and instance type produce no benefit in exchange for the excess cost. The fix is always separation.</p>
+
+          <h4>Fan-out patterns require size awareness</h4>
+          <p>Uniform infrastructure per logical unit only makes sense when logical units are uniform in size. When AOIs range from 50,000 km² to 100m×100m, the appropriate abstraction is a shared queue where cost is proportional to actual chip volume — not a per-region instance where cost is proportional to region count regardless of size.</p>
+
+          <h4>Batch size is free throughput at scale</h4>
+          <p>The transition from batch=1 to batch=64 required approximately 20 lines of code and delivered a 35× throughput improvement. Against 111 million chips, that 35× translated directly into compute hours billed.</p>
+        </section>
+
+      </article>
+
+      <aside class="cs-margin">
+        <strong>TL;DR</strong>
+        <p>A university research codebase generating $26,200/month in avoidable GPU spend. Five compounding engineering defects, all independently fixable. Final cost after production rebuild: $90/month. No new algorithms. No changed requirements.</p>
+        <hr>
+        <strong>Validated</strong>
+        <p>50+ independent government evaluation cycles. Cost efficiency was a first-class scored deliverable, not a side note.</p>
+        <hr>
+        <strong>Ownership</strong>
+        <p>Classification pipeline end-to-end (mine). Change detection architecture (lead). Model retrain (directed; university team executed under my acceptance criteria).</p>
+        <hr>
+        <strong>Cost figures</strong>
+        <p>Baseline uses AWS on-demand public rates as conservative proxy. Actual contract rates were negotiated. Structural drivers and proportional reduction are accurate regardless.</p>
+      </aside>
+
+    </div><!-- /cs-body -->
+
+    <div class="foot">
+      <div>
+        <p><a href="index.html">← Back to CV</a> · <a href="print.html">Print CV</a></p>
+        <p style="margin-top:var(--s-2);color:var(--c-text-subtle);">Production Engineering · Geospatial ML · MLOps · C·C ◆ 2025</p>
+      </div>
+      <div class="foot__crest"></div>
+    </div>
+
+  </div><!-- /real -->
+
+</div><!-- /page -->
+
+<script>
+  document.querySelectorAll('.fid button[data-fid]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fid button[data-fid]').forEach(b => b.classList.remove('is-on'));
+      btn.classList.add('is-on');
+      document.body.dataset.fid = btn.dataset.fid;
+    });
+  });
+</script>
+
+<script>
+  /* theme-toggle.js — github.com/codychampion/design-system */
+  (function(){
+    const html = document.documentElement;
+    const mode = html.dataset.mode || 'signal';
+    const naturalTheme = mode === 'signal' ? 'light' : 'dark';
+    const altTheme = naturalTheme === 'light' ? 'dark' : 'light';
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlTheme = params.get('theme');
+      if (urlTheme === 'light' || urlTheme === 'dark') {
+        if (urlTheme === naturalTheme) { delete html.dataset.theme; }
+        else { html.dataset.theme = altTheme; }
+      }
+    } catch(e){}
+    const btn = document.querySelector('[data-theme-toggle]');
+    if (!btn) return;
+    function currentTheme(){ return html.dataset.theme || naturalTheme; }
+    function setIcon(){
+      const c = currentTheme();
+      btn.textContent = c === 'light' ? '☾' : '☀';
+      const title = c === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+      btn.setAttribute('title', title);
+      btn.setAttribute('aria-label', title);
+    }
+    setIcon();
+    btn.addEventListener('click', () => {
+      const next = currentTheme() === 'light' ? 'dark' : 'light';
+      if (next === naturalTheme) { delete html.dataset.theme; }
+      else { html.dataset.theme = altTheme; }
+      setIcon();
+    });
+  })();
+</script>
+
+<script>
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / h * 100) + '%';
+  });
+
+  const sections = document.querySelectorAll('.cs-section');
+  const railItems = document.querySelectorAll('.cs-rail__item');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        railItems.forEach(i => i.classList.remove('is-on'));
+        const a = document.querySelector(`.cs-rail__item[href="#${e.target.id}"]`);
+        if (a) a.classList.add('is-on');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

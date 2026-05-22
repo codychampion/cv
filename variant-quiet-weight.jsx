@@ -52,15 +52,22 @@ const QuietWeightCV = () => {
 
   return (
     <div style={S.root}>
+      {/* TOP UTILITY BAR — Print CV + Case Study */}
+      <div id="cv-utility-bar" style={{ background: 'rgba(104,184,173,0.07)', borderBottom: '1px solid rgba(104,184,173,0.18)', padding: '10px 72px', display: 'flex', justifyContent: 'flex-end', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
+        <a href="case-study-ml-cost.html" style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 13 }}>◈</span> Case Study — ML Cost Reduction
+        </a>
+        <a href="print.html" style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 13 }}>⎙</span> Print CV
+        </a>
+      </div>
+
       {/* HERO with headshot */}
       <section style={{ padding: '50px 72px 44px', borderBottom: `1px solid rgba(104,184,173,0.22)`, position: 'relative' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 36 }}>
           <div>
             <div style={S.eyebrow}>CV · 2026</div>
             <div style={{ ...S.mono, fontSize: 11, color: '#82928d', marginTop: 8 }}>DUBLIN, IRELAND</div>
-            <a href={`https://${d.site}`} style={{ ...S.mono, fontSize: 11, color: amber, marginTop: 4, display: 'inline-block', textDecoration: 'none', letterSpacing: '0.04em' }}>
-              {d.site.toUpperCase()} ↗
-            </a>
           </div>
           <div style={{ textAlign: 'right' }}>
             <a href={`mailto:${d.email}`} style={{ ...S.mono, fontSize: 12, color: amber, textDecoration: 'none', display: 'block' }}>
@@ -137,6 +144,11 @@ const QuietWeightCV = () => {
               <div style={{ fontSize: 14, color: '#dde9e5', lineHeight: 1.42, marginTop: 10, textWrap: 'pretty' }}>
                 {p.value}
               </div>
+              {p.link && (
+                <a href={p.link} style={{ ...S.mono, fontSize: 10, color: amber, display: 'inline-block', marginTop: 10, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: `1px solid ${amber}`, paddingBottom: 1 }}>
+                  Case study →
+                </a>
+              )}
             </div>
           ))}
         </div>

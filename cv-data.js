@@ -50,7 +50,7 @@ window.CV_DATA = {
 
   proof: [
     { label: 'Shipped Systems', value: 'State Department GenAI, secured Army automation, IARPA geospatial CV, and enterprise GenAI delivery' },
-    { label: 'Cost Impact', value: '99% ML infrastructure cost reduction on a global geospatial platform' },
+    { label: 'Cost Impact', value: '99% ML infrastructure cost reduction on a global geospatial platform', link: 'case-study-ml-cost.html' },
     { label: 'Governance', value: 'Advisor to NSF Chief AI Officer; co-chaired 100+ member AI Community of Practice' },
     { label: 'Research', value: 'First-author 2026 Zenodo DOI, 6 peer-reviewed papers, and 2 granted patents' },
     { label: 'Third-party Proof', value: 'Recommended by NSF CAIO Dorothy Aronson and Accenture Managing Director Marc Bosch Ruiz' },
