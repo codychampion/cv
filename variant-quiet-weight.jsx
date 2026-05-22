@@ -55,33 +55,23 @@ const QuietWeightCV = () => {
 
   return (
     <div style={S.root}>
-      {/* TOP UTILITY BAR — Print CV + Case Study */}
-      <div id="cv-utility-bar" style={{ background: 'rgba(104,184,173,0.07)', borderBottom: '1px solid rgba(104,184,173,0.18)', padding: '10px 72px', display: 'flex', justifyContent: 'flex-end', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-        <a href="case-study-ml-cost.html" style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: 13 }}>◈</span> Case Study — ML Cost Reduction
+      {/* BRAND STRIP */}
+      <header className="brand-strip">
+        <a className="brand" href="#">
+          <span className="crest"></span>cody.champion
         </a>
-        <a href="print.html" style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: 13 }}>⎙</span> Print CV
-        </a>
-      </div>
+        <nav className="brand-nav" aria-label="Sections">
+          <a href="#sec-work">Work</a>
+          <a href="#sec-publications">Research</a>
+          <a href="#sec-contact">Contact</a>
+          <span className="sep">·</span>
+          <a href="case-study-ml-cost.html">Case Study ↗</a>
+          <a href="print.html">Print CV</a>
+        </nav>
+      </header>
 
       {/* HERO with headshot */}
-      <section style={{ padding: '50px 72px 44px', borderBottom: `1px solid rgba(104,184,173,0.22)`, position: 'relative' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 36 }}>
-          <div>
-            <div style={S.eyebrow}>CV · 2026</div>
-            <div style={{ ...S.mono, fontSize: 11, color: 'var(--c-text-subtle)', marginTop: 8 }}>DUBLIN, IRELAND</div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <a href={`mailto:${d.email}`} style={{ ...S.mono, fontSize: 12, color: amber, textDecoration: 'none', display: 'block' }}>
-              {d.email}
-            </a>
-            <a href={`https://${d.github}`} style={{ ...S.mono, fontSize: 12, color: amber, textDecoration: 'none', display: 'block', marginTop: 2 }}>
-              {d.github}
-            </a>
-          </div>
-        </div>
-
+      <section style={{ padding: '56px 72px 44px', borderBottom: `1px solid rgba(104,184,173,0.22)`, position: 'relative' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 48, alignItems: 'end' }}>
           <h1 style={{
             ...S.serif,
@@ -546,10 +536,39 @@ const QuietWeightCV = () => {
             LINKEDIN ↗
           </a>
         </div>
-        <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-disabled)', marginTop: 56, letterSpacing: '0.15em' }}>
-          SET IN IBM PLEX · DUBLIN · MMXXVI
-        </div>
       </section>
+
+      {/* POSTSCRIPT — design system footer */}
+      <aside className="postscript">
+        <div className="postscript__head">
+          <span><strong>— Postscript</strong> · CV, 2026</span>
+          <span className="live">live</span>
+        </div>
+        <div className="postscript__grid">
+          <div className="postscript__cell">
+            <span className="lbl">current role</span>
+            <span className="val">{current.title} · <span className="em">{current.company}</span></span>
+          </div>
+          <div className="postscript__cell">
+            <span className="lbl">base</span>
+            <span className="val">Dublin, Ireland · PhD · {current.since}—</span>
+          </div>
+          <div className="postscript__cell">
+            <span className="lbl">contact</span>
+            <span className="val"><a href={`mailto:${d.email}`}>{d.email}</a></span>
+          </div>
+        </div>
+        <div className="postscript__foot">
+          <span>C·C · Dublin · MMXXVI · ◆</span>
+          <span>
+            <a href="print.html">Print CV</a>
+            {' · '}
+            <a href="case-study-ml-cost.html">Case Study</a>
+            {' · '}
+            <a href={`https://${d.github}`} target="_blank" rel="noopener">GitHub</a>
+          </span>
+        </div>
+      </aside>
     </div>
   );
 };

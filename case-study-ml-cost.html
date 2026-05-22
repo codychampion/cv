@@ -60,22 +60,7 @@ code,kbd,samp{font-family:var(--font-mono);font-size:.92em;}
 ::selection{background:var(--c-accent);color:var(--c-accent-text);}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
-/* ── FIDELITY TOGGLE ── */
 body{padding:0;min-height:100vh;}
-.fid{position:fixed;top:16px;right:16px;z-index:50;background:var(--c-bg-raised);border:1px solid var(--c-border-strong);border-radius:var(--r-sm);padding:var(--s-1);display:flex;font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;box-shadow:var(--shadow-1);}
-.fid button{background:transparent;color:var(--c-text-subtle);border:0;padding:6px 12px;cursor:pointer;border-radius:2px;font-family:var(--font-mono);}
-.fid button.is-on{background:var(--c-accent);color:var(--c-accent-text);}
-.fid__label{padding:6px 10px 6px 12px;color:var(--c-text-subtle);border-right:1px solid var(--c-border);margin-right:4px;}
-.fid__theme{background:transparent;border:0;padding:6px 10px;cursor:pointer;color:var(--c-text-subtle);font-size:14px;line-height:1;border-right:1px solid var(--c-border);margin-right:4px;}
-.fid__theme:hover{color:var(--c-accent);}
-.wire,.lo,.real{display:none;}
-body[data-fid="wire"] .wire{display:block;}
-body[data-fid="lo"]   .lo{display:block;}
-body[data-fid="hi"]   .real{display:block;}
-
-/* ── PROGRESS BAR ── */
-.progress-wrap{position:fixed;top:0;left:0;right:0;height:2px;background:var(--c-border);z-index:200;}
-.progress-bar{height:100%;background:linear-gradient(90deg,var(--c-accent),var(--c-warning));width:0%;transition:width .1s;}
 
 /* ── PAGE ── */
 .page{max-width:1080px;margin:0 auto;padding:var(--s-12) var(--s-12) var(--s-24);}
@@ -222,8 +207,6 @@ tbody td:first-child{color:var(--c-text-subtle);}
   .results{grid-template-columns:repeat(2,1fr);gap:var(--s-4);margin:var(--s-8) 0 var(--s-12);padding:var(--s-6) 0;}
   .result__num{font-size:32px;}
   .result__label{font-size:10px;}
-  .fid{top:6px;right:6px;font-size:8.5px;padding:2px;}
-  .fid button,.fid__label{padding:3px 6px;}
   .delta-grid{grid-template-columns:1fr;}
 }
 @media(max-width:480px){
@@ -232,52 +215,11 @@ tbody td:first-child{color:var(--c-text-subtle);}
 }
 </style>
 </head>
-<body data-fid="hi">
-
-<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
-
-<div class="fid">
-  <button class="fid__theme" data-theme-toggle>☾</button>
-  <span class="fid__label">Fidelity</span>
-  <button data-fid="wire">Wire</button>
-  <button data-fid="lo">Lo-fi</button>
-  <button data-fid="hi" class="is-on">Hi-fi</button>
-</div>
+<body>
 
 <div class="page">
 
-  <!-- WIRE -->
-  <div class="wire">
-    <div class="skel" style="height:14px;width:25%;"></div>
-    <div class="skel" style="height:80px;margin-top:var(--s-6);"></div>
-    <div class="skel" style="height:16px;width:70%;margin-top:var(--s-4);"></div>
-    <div class="skel" style="height:16px;width:55%;margin-top:8px;"></div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-4);margin-top:var(--s-12);">
-      <div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div><div class="skel" style="height:80px;"></div>
-    </div>
-    <div class="skel" style="height:320px;margin-top:var(--s-12);"></div>
-  </div>
-
-  <!-- LO-FI -->
-  <div class="lo" style="font-family:var(--font-mono);font-size:var(--t-sm);line-height:1.6;">
-    <div style="color:var(--c-text-subtle);margin-bottom:var(--s-4);">case-study · hero / 5 stats / 7-section body / margin notes</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">[hero] 99.6% ML Inference Cost Reduction · Federal · MLOps · Geospatial ML</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-4);">
-      <div>99.6%<br>cost reduction</div><div>111M<br>chips</div><div>35×<br>throughput</div><div>50+<br>validations</div><div>100%<br>GPU eliminated</div>
-    </div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 01 — Context · federally-funded geospatial program, research notebooks inherited</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 02 — Workload · 111M chips, every per-chip defect multiplied</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 03 — Baseline · per-region GPU fan-out, $26,200/mo</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 04 — Five defects · fan-out, no batching, band duplication, masked pixels, preprocessing on GPU</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 05 — Rebuild · stage-separated pipeline, Airflow DAG, slim Docker</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);margin-bottom:var(--s-3);">§ 06 — Results · $90/month, 50+ gov't eval cycles, accuracy held</div>
-    <div style="border:1px dashed var(--c-border-strong);padding:var(--s-6);">§ 07 — Lessons · five principles applied to the next one</div>
-  </div>
-
-  <!-- HI-FI -->
-  <div class="real">
-
-    <div class="nav-bar">
+  <div class="nav-bar">
       <div class="brand"><span class="crest"></span>cody.champion</div>
       <div><a href="index.html">← CV</a></div>
     </div>
@@ -664,19 +606,8 @@ Reduction:  ($26,200 − $90) / $26,200 = <span class="result">99.66%</span>
       <div class="foot__crest"></div>
     </div>
 
-  </div><!-- /real -->
 
 </div><!-- /page -->
-
-<script>
-  document.querySelectorAll('.fid button[data-fid]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.fid button[data-fid]').forEach(b => b.classList.remove('is-on'));
-      btn.classList.add('is-on');
-      document.body.dataset.fid = btn.dataset.fid;
-    });
-  });
-</script>
 
 <script>
   /* theme-toggle.js — github.com/codychampion/design-system */
@@ -714,12 +645,6 @@ Reduction:  ($26,200 − $90) / $26,200 = <span class="result">99.66%</span>
 </script>
 
 <script>
-  const bar = document.getElementById('progress');
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (window.scrollY / h * 100) + '%';
-  });
-
   const sections = document.querySelectorAll('.cs-section');
   const railItems = document.querySelectorAll('.cs-rail__item');
   const obs = new IntersectionObserver(entries => {
