@@ -26,11 +26,12 @@ window.CV_DATA = {
   summary: `Dublin-based Applied AI and GenAI systems leader. I build production GenAI for regulated environments — RAG, agents, LLM evaluation, observability, security controls, and AI governance. Currently leading GenAI architecture and delivery at Accenture Ireland. Prior: Advisor to NSF’s Chief AI Officer, federal AI delivery across DoD, DoS, and IARPA.`,
 
   hero: {
-    lead: 'I build production GenAI systems for regulated environments: RAG, agents, LLM evaluation, observability, security controls, and AI governance.',
-    proofA: '99% infrastructure cost reduction',
-    proofB: 'advisor to NSF\u2019s Chief AI Officer',
-    scope: `leading GenAI architecture and delivery at Accenture Ireland, Dublin.`,
+    lead: 'I build production GenAI systems for regulated environments: RAG, agents, LLM evaluation, observability, security controls, data architecture, and AI governance.',
+    proofA: '',
+    proofB: '',
+    scope: 'Experience across Accenture, NSF\u2019s Chief AI Officer function, federal AI delivery, enterprise GenAI, and applied ML systems.',
     close: '',
+    bestFit: 'Best fit: Staff Applied AI Architect · GenAI Deployment Lead · LLM Evaluation Lead · AI Governance Engineering Lead · Regulated AI Solutions Architect · Public Sector AI Lead',
   },
 
   heroStats: [
@@ -51,9 +52,29 @@ window.CV_DATA = {
   proof: [
     { label: 'Shipped Systems', value: 'State Department GenAI, secured Army automation, IARPA geospatial CV, and enterprise GenAI delivery' },
     { label: 'Cost Impact', value: '99% ML infrastructure cost reduction on a global geospatial platform', link: 'case-study-ml-cost.html' },
-    { label: 'Governance', value: 'Advisor to NSF Chief AI Officer; co-chaired 100+ member AI Community of Practice' },
+    { label: 'NSF Governance', value: 'Greenfield AI governance, technical review, community, and vector/graph architecture inside NSF’s CAIO function', link: 'case-study-nsf-ai-governance.html' },
     { label: 'Research', value: 'First-author 2026 Zenodo DOI, 6 peer-reviewed papers, and 2 granted patents' },
     { label: 'Third-party Proof', value: 'Recommended by NSF CAIO Dorothy Aronson and Accenture Managing Director Marc Bosch Ruiz' },
+  ],
+
+
+  caseStudies: [
+    {
+      id: 'nsf-ai-governance',
+      title: 'NSF AI Governance Foundations',
+      subtitle: 'Greenfield AI governance inside a newly formed CAIO function',
+      body: 'Built pre-strategy AI governance, technical-review, community, security, and data-architecture foundations for responsible AI adoption at NSF. Owned AI use-case intake, created risk-classification and technical-review patterns, co-chaired a 100+ member AI Community of Practice, served as voting engineering review board member for AI systems, ran AI security table-tops, supported Microsoft Copilot rollout, architected a production vector/graph capability for research-impact intelligence, and liaised with NASA, DOE, NAIRR, and other federal partners.',
+      tags: ['AI Governance', 'Responsible AI', 'Public Sector AI', 'Technical Review', 'Vector + Graph Architecture', 'AI Security Table-Tops', 'Interagency Coordination'],
+      link: 'case-study-nsf-ai-governance.html',
+    },
+    {
+      id: 'ml-cost',
+      title: '99% ML Infrastructure Cost Reduction',
+      subtitle: 'Research-origin pipeline to production-grade system',
+      body: 'Five compounding engineering defects generating $26,200/month in avoidable cloud spend. Rebuilt codebase and cloud architecture from scratch to $90/month. No new algorithms — production engineering discipline applied to research-origin code.',
+      tags: ['ML Engineering', 'Cloud Architecture', 'Cost Optimization', 'Production ML', 'Geospatial CV'],
+      link: 'case-study-ml-cost.html',
+    },
   ],
 
   projects: [

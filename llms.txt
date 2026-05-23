@@ -73,6 +73,13 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
 - claude-burn-check: Claude Code context-window diagnostic skill (GitHub: codychampion/claude-burn-check)
 - Zenodo preprint: https://doi.org/10.5281/zenodo.19848867
 
+## Case studies
+
+- NSF AI Governance Foundations: https://codychampion.bitsandbeakers.com/case-study-nsf-ai-governance.html
+  Greenfield AI governance, technical review, community, security, and vector/graph architecture inside NSF's Chief AI Officer function. Pre-strategy operating layer for responsible AI adoption across a major U.S. science agency.
+- 99% ML Infrastructure Cost Reduction: https://codychampion.bitsandbeakers.com/case-study-ml-cost.html
+  Five compounding engineering defects generating $26,200/month rebuilt to $90/month. Personally owned codebase and cloud architecture.
+
 ## Education
 
 PhD Biology — New Mexico State University (2014–2018). NSF Graduate Research Fellow.

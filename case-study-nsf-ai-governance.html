@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en" data-mode="signal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NSF AI Governance Foundations | Cody Champion</title>
+<meta name="description" content="Case study on building greenfield AI governance, technical review, data architecture, and community foundations inside NSF's Chief AI Officer function during a formative period for federal AI adoption." />
+<meta property="og:title" content="NSF AI Governance Foundations — Cody Champion" />
+<meta property="og:description" content="Greenfield AI governance inside a newly formed Chief AI Officer function — intake, risk classification, technical review, community, security, and vector/graph architecture for research-impact intelligence." />
+<meta property="og:type" content="article" />
+<link rel="canonical" href="https://codychampion.bitsandbeakers.com/case-study-nsf-ai-governance.html" />
+<link rel="icon" href="assets/crest_dark.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:wght@400;500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Champion Design System — tokens.css (full)
+   github.com/codychampion/design-system
+   ============================================================ */
+:root {
+  --t-xs:10px; --t-sm:12px; --t-base:16px; --t-md:20px;
+  --t-lg:25px; --t-xl:31px; --t-2xl:39px; --t-3xl:49px; --t-4xl:64px;
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px;
+  --s-8:32px; --s-12:48px; --s-16:64px; --s-24:96px;
+  --r-sm:3px; --r-md:6px; --r-lg:12px; --r-full:9999px;
+  --easing:cubic-bezier(.16,1,.3,1); --dur-micro:200ms; --dur-comp:350ms;
+  --shadow-1:0 1px 3px rgba(0,0,0,.12); --shadow-2:0 4px 12px rgba(0,0,0,.16); --shadow-3:0 16px 48px rgba(0,0,0,.24);
+  --container:1280px; --readable:68ch;
+}
+
+:root, [data-mode="signal"] {
+  --c-bg:#f8f7f4; --c-bg-subtle:#eeecea; --c-bg-raised:#ffffff;
+  --c-border:#d8d5cf; --c-border-strong:#9c9890;
+  --c-text:#1a1916; --c-text-subtle:#6b6760; --c-text-disabled:#b8b4ae;
+  --c-accent:#1a4fd6; --c-accent-subtle:#eef2fc; --c-accent-text:#ffffff;
+  --c-success:#1a7f4b; --c-warning:#a15f00; --c-danger:#c8342e;
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Lora",Georgia,serif;
+  --font-ui:"DM Sans",system-ui,-apple-system,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,"SF Mono",monospace;
+  --lh-body:1.55; --lh-display:1.05; --symbol:"◆";
+}
+[data-mode="signal"][data-theme="dark"] {
+  --c-bg:#1a1916; --c-bg-subtle:#232220; --c-bg-raised:#2a2825;
+  --c-border:#3a3835; --c-border-strong:#5a5754;
+  --c-text:#f0eee9; --c-text-subtle:#a89e8e; --c-text-disabled:#5a5754;
+  --c-accent:#5d8fff; --c-accent-subtle:#1f2845; --c-accent-text:#1a1916;
+  --c-success:#5dc287; --c-warning:#d59f4a; --c-danger:#e85f5f;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--c-bg);color:var(--c-text);font-family:var(--font-body);font-size:var(--t-base);line-height:var(--lh-body);font-feature-settings:"kern","liga","calt";-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);line-height:var(--lh-display);font-weight:500;margin:0;letter-spacing:-.01em;}
+p{margin:0;max-width:var(--readable);}
+a{color:var(--c-accent);text-decoration:none;}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em;}
+::selection{background:var(--c-accent);color:var(--c-accent-text);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+body{padding:0;min-height:100vh;}
+
+/* ── PAGE ── */
+.page{max-width:1080px;margin:0 auto;padding:var(--s-12) var(--s-12) var(--s-24);}
+
+/* ── NAV ── */
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:var(--s-8);font-family:var(--font-ui);font-size:var(--t-sm);color:var(--c-text-subtle);}
+.nav-bar a{color:var(--c-text-subtle);}
+.nav-bar a:hover{color:var(--c-text);text-decoration:none;}
+.brand{display:flex;align-items:baseline;gap:var(--s-2);font-family:var(--font-display);font-weight:600;font-size:var(--t-md);color:var(--c-text);letter-spacing:.04em;}
+.brand .crest{display:inline-block;width:14px;height:16px;background-color:var(--c-text);-webkit-mask:url('assets/crest_white.png') center/contain no-repeat;mask:url('assets/crest_white.png') center/contain no-repeat;vertical-align:-2px;margin-right:4px;}
+
+/* ── HERO ── */
+.hero{border-top:1px solid var(--c-border-strong);padding-top:var(--s-12);margin-top:var(--s-4);}
+.hero__eye{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.16em;text-transform:uppercase;color:rgba(104,184,173,0.85);display:flex;gap:var(--s-4);flex-wrap:wrap;}
+.hero__title{font-family:var(--font-display);font-size:clamp(40px,5.5vw,72px);font-weight:500;letter-spacing:-.025em;line-height:1.0;margin-top:var(--s-6);max-width:22ch;}
+.hero__title em{font-style:italic;color:var(--c-text-subtle);font-weight:400;}
+.hero__deck{font-family:var(--font-body);font-size:var(--t-md);color:var(--c-text-subtle);margin-top:var(--s-6);max-width:60ch;line-height:1.5;}
+.hero__body{margin-top:var(--s-6);font-family:var(--font-body);font-size:var(--t-base);line-height:1.65;color:var(--c-text);max-width:64ch;}
+.hero__body p{margin-bottom:var(--s-4);}
+.hero__body p:last-child{margin-bottom:0;}
+.hero__byline{margin-top:var(--s-8);padding-top:var(--s-4);border-top:1px solid var(--c-border);display:grid;grid-template-columns:repeat(3,auto);gap:var(--s-8);font-family:var(--font-ui);font-size:var(--t-sm);}
+.hero__byline dt{font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+.hero__byline dd{margin:0;}
+
+/* ── STAT BOXES ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-6);margin:var(--s-12) 0 var(--s-16);padding:var(--s-8) 0;border-top:1px solid var(--c-border-strong);border-bottom:1px solid var(--c-border-strong);}
+.stat__num{font-family:var(--font-display);font-size:var(--t-3xl);font-weight:500;letter-spacing:-.04em;line-height:.9;color:var(--c-accent);}
+.stat__label{font-family:var(--font-ui);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--c-text-subtle);margin-top:var(--s-3);}
+
+/* ── BODY 3-COL ── */
+.cs-body{display:grid;grid-template-columns:180px 1fr 180px;gap:var(--s-12);align-items:start;}
+
+/* ── RAIL ── */
+.cs-rail{position:sticky;top:var(--s-6);align-self:start;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.06em;border-top:1px solid var(--c-border-strong);padding-top:var(--s-3);}
+.cs-rail__num{color:var(--c-accent);}
+.cs-rail__item{padding:3px 0;display:grid;grid-template-columns:22px 1fr;gap:var(--s-2);cursor:pointer;color:var(--c-text-subtle);text-decoration:none;}
+.cs-rail__item:hover{color:var(--c-text);text-decoration:none;}
+.cs-rail__item.is-on{color:var(--c-text);}
+.cs-rail__item.is-on .cs-rail__num::before{content:"■ ";font-size:6px;vertical-align:2px;}
+
+/* ── MAIN CONTENT ── */
+.cs-main{font-family:var(--font-body);font-size:var(--t-base);line-height:1.6;color:var(--c-text);}
+.cs-main p{margin:0 0 var(--s-4);}
+.cs-main p:last-child{margin-bottom:0;}
+.cs-main p strong{font-weight:600;}
+.cs-section{margin-bottom:var(--s-16);}
+.cs-main h3{font-family:var(--font-display);font-size:var(--t-lg);font-weight:500;letter-spacing:-.015em;margin-top:var(--s-12);margin-bottom:var(--s-3);}
+.cs-main h3 .num{font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-subtle);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:var(--s-2);}
+.cs-main h4{font-family:var(--font-display);font-size:var(--t-md);font-weight:500;letter-spacing:-.01em;margin:var(--s-8) 0 var(--s-3);}
+
+/* ── PULL QUOTE ── */
+.cs-main .pull{font-family:var(--font-display);font-size:var(--t-lg);font-style:italic;font-weight:400;color:var(--c-accent);line-height:1.3;border-left:3px solid var(--c-accent);padding:var(--s-2) 0 var(--s-2) var(--s-4);margin:var(--s-6) 0;max-width:40ch;}
+
+/* ── CALLOUT ── */
+.callout{border-left:3px solid var(--c-warning);background:rgba(161,95,0,.06);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:var(--s-3) var(--s-4);margin:var(--s-4) 0;font-size:.93rem;}
+.callout strong{color:var(--c-warning);}
+
+/* ── WORKSTREAM CARDS ── */
+.ws-card{border:1px solid var(--c-border);border-radius:var(--r-sm);overflow:hidden;margin-bottom:var(--s-8);}
+.ws-header{display:flex;align-items:center;gap:var(--s-4);padding:var(--s-3) var(--s-6);background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border);}
+.ws-num{font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-text-disabled);flex-shrink:0;letter-spacing:.08em;}
+.ws-title{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--c-text);flex:1;}
+.ws-tag{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:var(--r-sm);flex-shrink:0;background:rgba(104,184,173,0.12);color:rgba(50,140,130,1);border:1px solid rgba(104,184,173,0.30);}
+.ws-body{padding:var(--s-6);background:var(--c-bg-raised);}
+.ws-body p{font-size:.93rem;margin-bottom:var(--s-3);}
+.ws-body p:last-child{margin-bottom:0;}
+
+/* ── TIMING NOTE ── */
+.timing-note{border:1px solid var(--c-border);border-left:3px solid rgba(104,184,173,0.7);border-radius:0 var(--r-sm) var(--r-sm) 0;background:rgba(104,184,173,0.05);padding:var(--s-6);margin:var(--s-8) 0;}
+.timing-note__heading{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:rgba(50,140,130,0.9);margin-bottom:var(--s-3);}
+.timing-note p{font-family:var(--font-body);font-size:.93rem;color:var(--c-text-subtle);line-height:1.6;margin-bottom:var(--s-3);}
+.timing-note p:last-child{margin-bottom:0;}
+
+/* ── OUTCOME LIST ── */
+.outcome-list{list-style:none;padding:0;margin:var(--s-6) 0;}
+.outcome-list li{font-family:var(--font-body);font-size:.95rem;color:var(--c-text);padding:var(--s-3) 0;border-bottom:1px solid var(--c-border);display:flex;align-items:flex-start;gap:var(--s-3);line-height:1.55;}
+.outcome-list li:last-child{border-bottom:none;}
+.outcome-list li::before{content:"◆";color:rgba(104,184,173,0.8);font-size:.55rem;flex-shrink:0;margin-top:5px;}
+
+/* ── CODE / MATH BLOCKS ── */
+.math-block,pre{background:var(--c-bg-subtle);border:1px solid var(--c-border);border-radius:var(--r-sm);padding:var(--s-4) var(--s-6);margin:var(--s-4) 0;font-family:var(--font-mono);font-size:.77rem;line-height:1.8;color:var(--c-text-subtle);overflow-x:auto;max-width:none;}
+.math-block .result{color:var(--c-success);font-weight:500;}
+.math-block .warn{color:var(--c-danger);}
+.math-block .comment,.cm{color:var(--c-text-disabled);font-style:italic;}
+pre .kw{color:var(--c-accent);}
+pre .fn{color:var(--c-success);}
+pre .st{color:var(--c-warning);}
+pre .cm{color:var(--c-text-disabled);font-style:italic;}
+pre .num{color:#7a22a0;}
+pre .dec{color:var(--c-danger);}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:var(--s-6) 0;border:1px solid var(--c-border);border-radius:var(--r-sm);max-width:none;}
+table{width:100%;border-collapse:collapse;font-size:.84rem;font-family:var(--font-mono);}
+thead tr{background:var(--c-bg-subtle);border-bottom:1px solid var(--c-border-strong);}
+thead th{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--c-text-disabled);padding:.85rem var(--s-6);text-align:left;font-weight:500;}
+tbody tr{border-bottom:1px solid var(--c-border);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--c-accent-subtle);}
+tbody td{padding:.7rem var(--s-6);color:var(--c-text);}
+tbody td:first-child{color:var(--c-text-subtle);}
+
+/* ── ARCH DIAGRAM ── */
+.arch-diagram{background:var(--c-bg-subtle);border:1px solid var(--c-border);border-radius:var(--r-sm);padding:var(--s-8);margin:var(--s-6) 0;font-family:var(--font-mono);font-size:.72rem;line-height:2;color:var(--c-text-subtle);overflow-x:auto;max-width:none;white-space:pre;}
+.arch-diagram .stage{color:var(--c-accent);font-weight:500;}
+.arch-diagram .arrow{color:var(--c-text-disabled);}
+.arch-diagram .comment{color:var(--c-text-disabled);font-style:italic;}
+.arch-diagram .warn{color:var(--c-danger);}
+.arch-diagram .ok{color:var(--c-success);}
+
+/* ── MARGIN NOTES ── */
+.cs-margin{font-family:var(--font-mono);font-size:var(--t-xs);line-height:1.6;color:var(--c-text-subtle);border-top:1px solid var(--c-border-strong);padding-top:var(--s-3);}
+.cs-margin strong{color:var(--c-text);font-weight:500;}
+.cs-margin p{margin-bottom:var(--s-6);}
+.cs-margin hr{border:0;border-top:1px solid var(--c-border);margin:var(--s-4) 0;}
+
+/* ── SKELETON ── */
+.skel{background:var(--c-border);border-radius:2px;}
+
+/* ── FOOTER ── */
+.foot{margin-top:var(--s-24);padding-top:var(--s-6);border-top:1px solid var(--c-border-strong);display:flex;justify-content:space-between;align-items:end;font-family:var(--font-ui);font-size:var(--t-sm);color:var(--c-text-subtle);}
+.foot a{color:var(--c-text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--c-accent);}
+.foot__crest{width:40px;height:46px;background-color:var(--c-text);-webkit-mask:url('assets/crest_white.png') center/contain no-repeat;mask:url('assets/crest_white.png') center/contain no-repeat;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .cs-body{grid-template-columns:1fr;}
+  .cs-rail{position:static;}
+  .cs-margin{border-top:1px dashed var(--c-border);margin-top:var(--s-12);position:static;}
+  .stats{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:720px){
+  .page{padding:var(--s-6) var(--s-4) var(--s-12);}
+  .hero__title{font-size:clamp(28px,7.4vw,40px);line-height:1.05;max-width:none;margin-top:var(--s-4);}
+  .hero__deck{font-size:15px;line-height:1.45;margin-top:var(--s-4);}
+  .hero__byline{grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-6);}
+  .stats{grid-template-columns:repeat(3,1fr);gap:var(--s-4);margin:var(--s-8) 0 var(--s-12);padding:var(--s-6) 0;}
+  .stat__num{font-size:32px;}
+  .stat__label{font-size:10px;}
+}
+@media(max-width:480px){
+  .hero__byline{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="nav-bar">
+    <div class="brand"><span class="crest"></span>cody.champion</div>
+    <div style="display:flex;gap:var(--s-6);align-items:center;">
+      <a href="index.html">← Back</a>
+      <a href="recruiters.html">For Recruiters</a>
+      <a href="case-study-ml-cost.html">99% Cost Reduction ↗</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__eye">
+      <span>CASE STUDY — NSF · 2024–2025</span>
+    </div>
+    <h1 class="hero__title">NSF AI Governance Foundations</h1>
+    <p class="hero__deck">Building the operating layer for responsible AI adoption inside a newly formed Chief AI Officer function</p>
+    <div class="hero__body">
+      <p>As GS-15 Lead Data Scientist / AI Oversight advisor reporting directly to NSF's Chief AI Officer, I helped build greenfield AI governance, technical-review, community, security, and data-architecture foundations for responsible AI adoption across a major U.S. science agency.</p>
+      <p>This work occurred before NSF's later public AI Strategy was drafted and published. I did not author that strategy. My contribution was earlier-stage: building the operating structures, review patterns, community forums, technical architecture, and interagency coordination that helped make responsible AI adoption actionable.</p>
+    </div>
+    <dl class="hero__byline">
+      <div><dt>Grade</dt><dd>GS-15</dd></div>
+      <div><dt>Role</dt><dd>Lead Data Scientist / AI Oversight</dd></div>
+      <div><dt>Community</dt><dd>100+ AI CoP members co-chaired</dd></div>
+    </dl>
+  </section>
+
+  <div class="stats">
+    <div>
+      <div class="stat__num">GS-15</div>
+      <div class="stat__label">Lead Data Scientist / AI Oversight</div>
+    </div>
+    <div>
+      <div class="stat__num">100<span style="font-size:.65em;font-style:italic;color:var(--c-text-subtle);">+</span></div>
+      <div class="stat__label">AI CoP members co-chaired</div>
+    </div>
+    <div>
+      <div class="stat__num">7</div>
+      <div class="stat__label">Governance &amp; architecture workstreams</div>
+    </div>
+  </div>
+
+  <div class="cs-body">
+
+    <aside class="cs-rail">
+      <div style="margin-bottom:var(--s-2);font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--c-text-disabled);">Contents</div>
+      <a href="#sec-context"    class="cs-rail__item is-on"><span class="cs-rail__num">01</span><span>Context</span></a>
+      <a href="#sec-mandate"    class="cs-rail__item"><span class="cs-rail__num">02</span><span>Mandate</span></a>
+      <a href="#sec-built"      class="cs-rail__item"><span class="cs-rail__num">03</span><span>What I built</span></a>
+      <a href="#sec-outcomes"   class="cs-rail__item"><span class="cs-rail__num">04</span><span>Outcomes</span></a>
+      <a href="#sec-why"        class="cs-rail__item"><span class="cs-rail__num">05</span><span>Why it matters</span></a>
+    </aside>
+
+    <article class="cs-main">
+
+      <section class="cs-section" id="sec-context">
+        <h3><span class="num">§ 01 — Program context</span>Context</h3>
+        <p>NSF's Chief AI Officer function was newly forming during a period of rapid change in federal AI policy. The agency had deep AI expertise across its research mission, but internal AI adoption needed an operating model: intake, risk classification, technical review, approval paths, security exercises, data architecture, and community coordination.</p>
+        <p>The challenge was greenfield: there was no mature AI evaluation process, no established AI governance workflow, and no unified technical-review pattern for internal AI systems.</p>
+      </section>
+
+      <section class="cs-section" id="sec-mandate">
+        <h3><span class="num">§ 02 — My role and responsibilities</span>My mandate</h3>
+        <p>I reported directly to the CAIO and worked across technical architecture, governance implementation, interagency liaison, and community enablement.</p>
+        <p>My responsibilities included AI use-case intake, risk classification, technical-review design, AI deployment guidance, AI Community of Practice leadership, engineering review board participation, security table-top exercises, Microsoft Copilot rollout support, and architecture for a production vector/graph capability.</p>
+      </section>
+
+      <section class="cs-section" id="sec-built">
+        <h3><span class="num">§ 03 — Workstreams and deliverables</span>What I built and led</h3>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">01</span>
+            <span class="ws-title">AI Use-Case Intake and Risk Classification</span>
+            <span class="ws-tag">Governance</span>
+          </div>
+          <div class="ws-body">
+            <p>Owned and improved NSF's AI use-case intake process. Created a risk-classification approach to help distinguish low-risk experimentation from use cases requiring deeper review, documentation, security analysis, access-control review, or governance oversight.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">02</span>
+            <span class="ws-title">Technical Review and Approval Pathways</span>
+            <span class="ws-tag">Engineering</span>
+          </div>
+          <div class="ws-body">
+            <p>Created AI technical-review patterns and served as a voting engineering review board member for AI-related systems. Reviewed AI aspects of proposed systems, including architecture, data flows, access controls, security implications, tooling choices, and production readiness.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">03</span>
+            <span class="ws-title">AI Deployment Playbook</span>
+            <span class="ws-tag">Guidance</span>
+          </div>
+          <div class="ws-body">
+            <p>Created an AI deployment playbook to help teams move from experimentation toward governed implementation. The playbook translated AI governance into practical delivery questions: data sensitivity, human review, transparency, audit readiness, security controls, model behavior, and operational ownership.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">04</span>
+            <span class="ws-title">AI Community of Practice</span>
+            <span class="ws-tag">Community</span>
+          </div>
+          <div class="ws-body">
+            <p>Co-chaired a 100+ member AI Community of Practice spanning technical, policy, security, mission, and leadership functions. The community served as a discussion forum, coordination layer, and announcement channel for AI rollouts, including Microsoft Copilot-related enablement.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">05</span>
+            <span class="ws-title">AI Security Table-Top Exercises</span>
+            <span class="ws-tag">Security</span>
+          </div>
+          <div class="ws-body">
+            <p>Ran AI security table-top exercises to help stakeholders reason through AI-specific risks before deployment, including data exposure, prompt injection, tool access, misuse scenarios, and governance gaps.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">06</span>
+            <span class="ws-title">Vector and Graph Architecture for Research-Impact Intelligence</span>
+            <span class="ws-tag">Architecture</span>
+          </div>
+          <div class="ws-body">
+            <p>Served as technical architect for a production vector/graph capability designed to help NSF understand the network effects and downstream impact of funded research. The system used Amazon Neptune for graph relationships, embeddings generated through AWS Lambda, and a user interface designed to mimic existing workflows so staff could adopt it without changing how they worked.</p>
+          </div>
+        </div>
+
+        <div class="ws-card">
+          <div class="ws-header">
+            <span class="ws-num">07</span>
+            <span class="ws-title">Interagency Liaison</span>
+            <span class="ws-tag">Coordination</span>
+          </div>
+          <div class="ws-body">
+            <p>Liaised with NASA, DOE, NAIRR stakeholders, and other federal partners on emerging AI governance and adoption patterns. Work included comparing Microsoft Copilot rollout approaches with NASA and discussing standardized data-tagging practices with DOE.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="cs-section" id="sec-outcomes">
+        <h3><span class="num">§ 04 — Practical results</span>Outcomes</h3>
+        <ul class="outcome-list">
+          <li>Created repeatable AI use-case intake and risk-classification patterns.</li>
+          <li>Connected AI governance to engineering review and production approval.</li>
+          <li>Built AI deployment guidance for internal teams.</li>
+          <li>Co-chaired a 100+ member AI Community of Practice.</li>
+          <li>Supported Microsoft Copilot rollout governance and enablement.</li>
+          <li>Ran AI security table-top exercises.</li>
+          <li>Architected a production vector/graph capability for research-impact intelligence.</li>
+          <li>Brought lessons from NASA, DOE, NAIRR, and other federal partners into NSF's internal AI adoption work.</li>
+        </ul>
+      </section>
+
+      <section class="cs-section" id="sec-why">
+        <h3><span class="num">§ 05 — Transferability</span>Why it matters</h3>
+        <p>Many organizations do not fail at AI because they lack prototypes. They fail because they lack the operating layer around prototypes: governance, intake, technical review, data architecture, evaluation, security, funding pathways, user adoption, and executive alignment.</p>
+        <p>This work built that operating layer in a high-scrutiny federal environment. The experience transfers directly to regulated enterprise GenAI, AI assurance, model governance, public-sector AI, financial-services AI risk, and responsible deployment of LLM systems.</p>
+
+        <div class="timing-note">
+          <div class="timing-note__heading">Timing note</div>
+          <p>This work occurred during the early build-out of NSF's Chief AI Officer function and before NSF's later public AI Strategy was drafted and published. I did not author the published strategy. My contribution was earlier-stage: building governance, review, community, security, interagency, and data-architecture foundations that preceded later agency-wide strategy work.</p>
+        </div>
+      </section>
+
+    </article>
+
+    <aside class="cs-margin">
+      <strong>TL;DR</strong>
+      <p>Greenfield AI governance at a major federal science agency. Intake, risk classification, technical review, deployment playbook, 100+ member AI CoP, security table-tops, vector/graph architecture, and interagency coordination — all before NSF's public AI Strategy existed.</p>
+      <hr>
+      <strong>Grade &amp; role</strong>
+      <p>GS-15 Lead Data Scientist / AI Oversight, reporting directly to NSF's Chief AI Officer.</p>
+      <hr>
+      <strong>Timing</strong>
+      <p>2024–2025. Formative period for federal AI adoption. NSF's CAIO function was newly forming. No mature evaluation or approval process existed.</p>
+      <hr>
+      <strong>Architecture</strong>
+      <p>Amazon Neptune (graph), AWS Lambda (embeddings), workflow-matched UI for staff adoption without retraining.</p>
+      <hr>
+      <strong>Interagency</strong>
+      <p>NASA, DOE, NAIRR. Copilot rollout comparison with NASA. Data-tagging standards with DOE.</p>
+    </aside>
+
+  </div><!-- /cs-body -->
+
+  <div class="foot">
+    <div>
+      <p><a href="index.html">← Back to profile</a></p>
+      <p style="margin-top:var(--s-2);color:var(--c-text-subtle);">AI Governance · Federal AI · GS-15 · C·C ◆ Last updated May 2026</p>
+    </div>
+    <div class="foot__crest"></div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  /* theme-toggle.js — github.com/codychampion/design-system */
+  (function(){
+    const html = document.documentElement;
+    const mode = html.dataset.mode || 'signal';
+    const naturalTheme = mode === 'signal' ? 'light' : 'dark';
+    const altTheme = naturalTheme === 'light' ? 'dark' : 'light';
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlTheme = params.get('theme');
+      if (urlTheme === 'light' || urlTheme === 'dark') {
+        if (urlTheme === naturalTheme) { delete html.dataset.theme; }
+        else { html.dataset.theme = altTheme; }
+      }
+    } catch(e){}
+    const btn = document.querySelector('[data-theme-toggle]');
+    if (!btn) return;
+    function currentTheme(){ return html.dataset.theme || naturalTheme; }
+    function setIcon(){
+      const c = currentTheme();
+      btn.textContent = c === 'light' ? '☾' : '☀';
+      const title = c === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+      btn.setAttribute('title', title);
+      btn.setAttribute('aria-label', title);
+    }
+    setIcon();
+    btn.addEventListener('click', () => {
+      const next = currentTheme() === 'light' ? 'dark' : 'light';
+      if (next === naturalTheme) { delete html.dataset.theme; }
+      else { html.dataset.theme = altTheme; }
+      setIcon();
+    });
+  })();
+</script>
+
+<script>
+  const sections = document.querySelectorAll('.cs-section');
+  const railItems = document.querySelectorAll('.cs-rail__item');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        railItems.forEach(i => i.classList.remove('is-on'));
+        const a = document.querySelector(`.cs-rail__item[href="#${e.target.id}"]`);
+        if (a) a.classList.add('is-on');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

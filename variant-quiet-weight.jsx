@@ -66,7 +66,8 @@ const QuietWeightCV = () => {
           <a href="#sec-contact">Contact</a>
           <span className="sep">·</span>
           <a href="recruiters.html">For Recruiters</a>
-          <a href="case-study-ml-cost.html">Case Study ↗</a>
+          <a href="case-study-nsf-ai-governance.html">NSF Case Study ↗</a>
+          <a href="case-study-ml-cost.html">Cost Case Study ↗</a>
           <a href="print.html">Print CV</a>
         </nav>
       </header>
@@ -99,12 +100,19 @@ const QuietWeightCV = () => {
               PhD · DUBLIN · {current.since}—
             </div>
           </div>
-          <p style={{ fontSize: 19, color: 'var(--c-text)', lineHeight: 1.4, margin: 0, maxWidth: 700, textWrap: 'pretty' }}>
-            {d.hero.lead}
-            {' '}Proof: <em style={{ ...S.serif, color: amber }}>{d.hero.proofA}</em>; <em style={{ ...S.serif, color: amber }}>{d.hero.proofB}</em>;
-            {' '}{d.hero.scope}
-            {d.hero.close ? ` ${d.hero.close}` : ''}
-          </p>
+          <div>
+            <p style={{ fontSize: 19, color: 'var(--c-text)', lineHeight: 1.4, margin: '0 0 10px', maxWidth: 700, textWrap: 'pretty' }}>
+              {d.hero.lead}
+              {d.hero.proofA ? <>{' '}Proof: <em style={{ ...S.serif, color: amber }}>{d.hero.proofA}</em>{d.hero.proofB ? <>; <em style={{ ...S.serif, color: amber }}>{d.hero.proofB}</em></> : ''};</> : ''}
+              {d.hero.scope ? <>{' '}{d.hero.scope}</> : ''}
+              {d.hero.close ? ` ${d.hero.close}` : ''}
+            </p>
+            {d.hero.bestFit && (
+              <div style={{ ...S.mono, fontSize: 11, color: 'var(--c-text-subtle)', letterSpacing: '0.04em', maxWidth: 700 }}>
+                {d.hero.bestFit}
+              </div>
+            )}
+          </div>
         </div>
         <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 18, maxWidth: 760 }}>
           {d.heroStats.map((s, i) => (
@@ -198,6 +206,34 @@ const QuietWeightCV = () => {
           ))}
         </div>
       </section>
+
+      {/* FEATURED CASE STUDIES */}
+      {d.caseStudies && d.caseStudies.length > 0 && (
+        <section style={{ padding: '64px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)', background: 'rgba(104,184,173,0.02)' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, marginBottom: 32 }}>
+            <div style={S.eyebrow}>Featured Case Studies</div>
+            <div style={{ ...S.mono, fontSize: 11, color: 'var(--c-text-subtle)', letterSpacing: '0.08em' }}>PROOF OF WORK</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
+            {d.caseStudies.map((cs, i) => (
+              <div key={i} style={{ border: '1px solid rgba(104,184,173,0.3)', padding: '28px 28px 24px', background: 'var(--c-bg-raised)' }}>
+                <div style={{ ...S.mono, fontSize: 10, color: amber, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Case Study</div>
+                <div style={{ ...S.serif, fontSize: 22, color: 'var(--c-text)', lineHeight: 1.15, marginBottom: 6 }}>{cs.title}</div>
+                <div style={{ fontSize: 13, color: amber, fontStyle: 'italic', marginBottom: 14 }}>{cs.subtitle}</div>
+                <p style={{ fontSize: 14, color: 'var(--c-text-subtle)', lineHeight: 1.55, margin: '0 0 18px', textWrap: 'pretty' }}>{cs.body}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                  {cs.tags.map((tag, j) => (
+                    <span key={j} style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', border: '1px solid var(--c-border)', padding: '2px 8px', letterSpacing: '0.04em' }}>{tag}</span>
+                  ))}
+                </div>
+                <a href={cs.link} style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', borderBottom: `1px solid ${amber}`, paddingBottom: 1, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                  Read case study →
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ABOUT */}
       <section id="sec-about" style={{ padding: '80px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)' }}>
