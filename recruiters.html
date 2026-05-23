@@ -41,6 +41,11 @@
   .card-sub { font-size: 13px; color: var(--c-subtle); }
   .proof { background: #f0f4ff; border-left: 3px solid var(--c-accent); padding: 14px 18px; margin: 24px 0; font-size: 14px; }
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--c-border); font-size: 13px; color: var(--c-subtle); }
+  .audience-block { border: 1px solid var(--c-border); border-radius: 6px; padding: 24px; margin-bottom: 24px; background: var(--c-raised); }
+  .audience-block h3 { font-size: 16px; font-weight: 600; margin: 0 0 12px; }
+  .audience-block p { font-size: 15px; margin: 0 0 12px; }
+  .audience-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-subtle); margin-bottom: 16px; }
+  .keyword-cluster { font-size: 13px; color: var(--c-subtle); background: #f8f7f4; border-radius: 4px; padding: 10px 14px; margin-top: 4px; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -128,6 +133,53 @@
   <div class="card">
     <div class="card-title">Technical Evaluation and Cost Impact</div>
     <div class="card-sub">LLM eval workbench (reliability/safety harness) · arXiv embedding benchmark · 99% ML infrastructure cost reduction (personally owned) · $30M+ program funds advised</div>
+  </div>
+
+  <h2>By target audience</h2>
+
+  <div class="audience-block" id="consulting-banks">
+    <div class="audience-label">Consulting firms &amp; regulated-sector clients — Deloitte, BCG, PwC, banks, insurance, pharma</div>
+    <h3>AI Governance, Assurance &amp; Regulated GenAI</h3>
+    <p>
+      I have built and documented governance structures from scratch inside a federal agency — not advised on them from the outside. At NSF I designed the AI Development Playbook, co-chaired the 100+ member AI Community of Practice, engineered the agency's first vector and graph database capabilities, and sat as a voting member on the engineering review board. The outputs were approval processes, risk classification frameworks, audit trails, AI literacy programs, and a governance stack that let the agency move fast without exposing itself to unacceptable risk.
+    </p>
+    <p>
+      At Accenture I translate that governance experience directly into delivery: clients in regulated sectors get systems with access control, prompt injection defense, human-in-the-loop checkpoints, cost/latency monitoring, and evidence artifacts ready for internal audit or regulatory review. I can map technical controls to governance requirements — not just describe the controls.
+    </p>
+    <p class="keyword-cluster">
+      <strong>Keywords:</strong> AI assurance · model risk management · auditability · risk classification · governance-to-engineering · human review checkpoints · control mapping · EU AI Act readiness · AI Development Playbook · evidence artifacts · model monitoring · responsible AI · regulated GenAI deployment · AI transparency · access control · prompt injection defense
+    </p>
+  </div>
+
+  <div class="audience-block" id="cloud-product">
+    <div class="audience-label">Cloud platforms &amp; product companies — Azure, GCP, AWS, SaaS AI, AI infrastructure</div>
+    <h3>Enterprise GenAI Architecture</h3>
+    <p>
+      I design and build end-to-end GenAI systems that run in production, not just demos that impress in a sandbox. The architecture decisions I own most often: retrieval stack design (hybrid vector, keyword, and graph with source attribution), agent and tool orchestration (MCP-based, least-privilege, auditable), evaluation loops (ground truth plus LLM-as-judge sampling), and observability (Langfuse where it fits, conventional telemetry where it does not).
+    </p>
+    <p>
+      I work primarily across Azure AI Foundry and GCP, with practical LLMOps around quality, safety, latency, and token spend. The 99% ML infrastructure cost reduction I achieved at Accenture Federal was not a procurement decision — I personally rewrote the ML codebase and cloud architecture. I can design for scale, explain the cost model, and own the implementation.
+    </p>
+    <p class="keyword-cluster">
+      <strong>Keywords:</strong> Applied AI Architect · GenAI Architect · Enterprise GenAI · RAG · agents · tool orchestration · LLMOps · Azure AI Foundry · GCP · cloud-native AI deployment · observability · Langfuse · MLflow · FastAPI · Docker · Kubernetes · token cost · latency optimization · AI evaluation harnesses · production GenAI · agentic workflows · embedding pipelines
+    </p>
+  </div>
+
+  <div class="audience-block" id="ai-labs">
+    <div class="audience-label">AI labs &amp; safety teams — model evaluation, red-teaming, safety evals, AI reliability</div>
+    <h3>LLM Evaluation &amp; AI Safety</h3>
+    <p>
+      My public LLM evaluation work (llm-eval-workbench, PAEF Zenodo preprint) is production-minded, not academic. The evaluation harness I built covers refusal behavior, over-refusal, unsafe compliance, groundedness, instruction drift, cost and latency tracking per probe, and structured failure taxonomy. Red-team probes are first-class test cases, not afterthoughts. Every evaluation run produces structured artifacts — not just a pass/fail score.
+    </p>
+    <p>
+      The PAEF preprint (Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.19848867" rel="noopener">10.5281/zenodo.19848867</a>) formalizes a parallelized atomic evaluation framework for contract compliance across multiple models, with token-level margin analysis. The embedding benchmark evaluated 33 models across 1,700 arXiv papers — cross-domain, reproducible, MLOps-rigorous. I think about evaluation the way an engineer thinks about CI: it runs continuously, it catches regressions, and it produces evidence you can show to a skeptic.
+    </p>
+    <p>
+      On the operational side I have built prompt injection defenses, sandboxed tool execution, and access control inside live enterprise GenAI systems. I also have experience explaining AI safety tradeoffs to non-technical stakeholders — governance boards, federal oversight bodies, and clients who need to sign off on deployment risk.
+    </p>
+    <p class="keyword-cluster">
+      <strong>Keywords:</strong> LLM evaluation · model evaluation · safety evals · red teaming · refusal behavior · over-refusal · unsafe compliance · groundedness · instruction drift · failure taxonomy · cost/latency tracking · eval-as-judge · AI observability · sandboxed tool use · prompt injection defense · model comparison · evaluation harness · AI reliability · LLM benchmarking · PAEF · atomic evaluation
+    </p>
   </div>
 
   <h2>Less aligned with</h2>
