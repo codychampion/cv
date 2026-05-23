@@ -1,10 +1,10 @@
 // cv-data.js — shared CV content
 window.CV_DATA = {
   name: 'Cody Champion',
-  tagline: 'AI systems that make it from prototype to production',
-  role: 'AI Decision Science Manager @ Accenture · PhD',
+  tagline: 'I build production GenAI systems for regulated environments: RAG, agents, LLM evaluation, observability, security controls, and AI governance.',
+  role: 'Applied AI Architect & GenAI Systems Lead · PhD · Dublin',
   current: {
-    title: 'AI Decision Science Manager',
+    title: 'Applied AI Architect & GenAI Systems Lead',
     company: 'Accenture',
     location: 'Dublin, Ireland',
     since: '2025',
@@ -23,13 +23,13 @@ window.CV_DATA = {
     badge: 'ANTHROPIC · CCA-F',
   },
 
-  summary: `AI/ML leader with a background that spans scientific research, geospatial computer vision, federal AI governance, and production GenAI delivery. I am strongest where architecture, implementation, evaluation, and organizational trust all have to meet.`,
+  summary: `Dublin-based Applied AI and GenAI systems leader. I build production GenAI for regulated environments — RAG, agents, LLM evaluation, observability, security controls, and AI governance. Currently leading GenAI architecture and delivery at Accenture Ireland. Prior: Advisor to NSF’s Chief AI Officer, federal AI delivery across DoD, DoS, and IARPA.`,
 
   hero: {
-    lead: 'I turn AI prototypes into systems that survive security reviews, budgets, users, and production.',
+    lead: 'I build production GenAI systems for regulated environments: RAG, agents, LLM evaluation, observability, security controls, and AI governance.',
     proofA: '99% infrastructure cost reduction',
     proofB: 'advisor to NSF\u2019s Chief AI Officer',
-    scope: `now leading GenAI architecture and delivery at Accenture.`,
+    scope: `leading GenAI architecture and delivery at Accenture Ireland, Dublin.`,
     close: '',
   },
 
@@ -166,10 +166,10 @@ window.CV_DATA = {
     },
   ],
   focus: [
-    'Production GenAI and agent workflows that can be measured and operated',
-    'Retrieval, evaluation, and observability for LLM systems',
-    'AI governance that helps delivery instead of freezing it',
-    'Technical leadership that stays close to the implementation details',
+    'Enterprise GenAI architecture — RAG, agents, tool orchestration, LLMOps, Azure, GCP, observability',
+    'LLM evaluation and AI safety — refusal behavior, groundedness, red-team probes, failure taxonomy, cost/latency tracking',
+    'AI governance for regulated deployment — EU AI Act readiness, risk classification, auditability, access control, prompt injection defense',
+    'Available for senior AI roles in Dublin / Ireland / EMEA — regulated enterprise, public sector, financial services, cloud/SaaS AI',
   ],
 
   expertise: {

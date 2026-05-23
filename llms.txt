@@ -1,0 +1,79 @@
+# Cody Champion — AI-readable profile summary
+
+## Identity
+
+Name: Cody Champion
+Location: Dublin, Ireland
+Available for: Senior AI roles in Dublin / Ireland / EMEA
+Website: https://codychampion.bitsandbeakers.com/
+Email: cody@bitsandbeakers.com
+LinkedIn: https://www.linkedin.com/in/cody-champion
+GitHub: https://github.com/codychampion
+
+## Current role
+
+Applied AI Architect & GenAI Systems Lead at Accenture Ireland, Dublin (Aug 2025 – present).
+Leading design and delivery of production GenAI systems for regulated enterprise clients.
+
+## What I build
+
+I build production GenAI systems for regulated environments:
+- Retrieval-Augmented Generation (RAG) with hybrid vector/keyword/graph stacks
+- Agentic workflows with human-in-the-loop checkpoints and audit trails
+- LLM evaluation — refusal behavior, groundedness, instruction drift, cost/latency, failure taxonomy
+- Observability and LLMOps — Langfuse, MLflow, quality/safety/cost/latency monitoring
+- Security controls — prompt injection defense, sandboxed execution, role-based access control
+- AI governance — risk classification, auditability, EU AI Act readiness, policy-to-implementation
+
+## Prior experience
+
+National Science Foundation — Lead Data Scientist / Advisor to Chief AI Officer (GS-15), Sep 2024 – Aug 2025.
+Built NSF's first vector and graph database capabilities. Led AI Development Playbook. Co-chaired 100+ member AI Community of Practice.
+
+Accenture Federal Services — Machine Learning Engineer Manager, Jun 2021 – Sep 2024.
+Shipped State Department GenAI, Army secured automation, IARPA global geospatial CV. Personally achieved 99% ML infrastructure cost reduction on global geospatial platform.
+
+Booz Allen Hamilton — Lead Scientist, DARPA program management. $30M+ in program funds advised.
+
+ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
+
+## Key proof points
+
+- 99% ML infrastructure cost reduction (personally owned codebase + cloud architecture)
+- $30M+ in AI/ML program funding advised (Booz Allen / DARPA)
+- Advisor to NSF Chief AI Officer Dorothy Aronson
+- 6 peer-reviewed publications + 2 granted patents + Zenodo preprint (DOI: 10.5281/zenodo.19848867)
+- Claude Certified Architect, Foundations (Anthropic, March 2026, Early Adopter)
+- AWS Wildfire CV — Third Place, AWS Disaster Response Hackathon
+
+## Best-fit roles
+
+- Staff / Principal Applied AI Architect
+- Senior GenAI Solutions Architect
+- LLM Evaluation Lead
+- AI Governance Engineering Lead
+- Regulated AI Deployment Lead
+- Senior Manager, GenAI Deployment Engineering
+- AI Safety / Evals Lead
+
+## Skills
+
+GenAI: LLMs, RAG, Agents, Agentic workflows, Embeddings, Prompt engineering, Evaluation harnesses
+AI Safety: LLM evaluation, red-team probes, failure taxonomy, refusal behavior, groundedness
+AI Governance: Responsible AI, risk classification, audit readiness, EU AI Act, access control
+MLOps/LLMOps: Langfuse, MLflow, CI/CD, observability, cost/latency monitoring
+Cloud: Azure AI Foundry, GCP, AWS, Docker, Kubernetes
+Languages: Python, R, SQL, Bash
+Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
+
+## Public artifacts
+
+- llm-eval-workbench: LLM reliability/safety evaluation harness (GitHub: codychampion/llm-eval-workbench)
+- arxiv-embedding-benchmark: Scientific retrieval and embedding evaluation (PyPI + GitHub)
+- claude-burn-check: Claude Code context-window diagnostic skill (GitHub: codychampion/claude-burn-check)
+- Zenodo preprint: https://doi.org/10.5281/zenodo.19848867
+
+## Education
+
+PhD Biology — New Mexico State University (2014–2018). NSF Graduate Research Fellow.
+BS/MS Biology — New Mexico Institute of Mining and Technology (2009–2014).
