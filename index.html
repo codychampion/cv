@@ -309,7 +309,66 @@ img { max-width: 100%; height: auto; }
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+  <!-- Static SEO/ATS fallback. The site's full UI is rendered by React/Babel
+       below, which replaces the contents of #root on mount. Crawlers, AI
+       agents, ATS parsers, and no-JS clients (the audience this fallback
+       exists for) see this static text. Keep it text-first and link-rich;
+       visual fidelity isn't the goal here. -->
+  <noscript><style>#root .seo-fallback{display:block !important}</style></noscript>
+  <div class="seo-fallback" style="max-width:760px;margin:0 auto;padding:48px 24px;font-family:Georgia,serif;line-height:1.55;color:#1a1916;">
+    <header style="margin-bottom:32px;font-family:system-ui,sans-serif;font-size:14px;color:#6b6760;">
+      <a href="/" style="color:#1a1916;text-decoration:none;font-weight:600;">Cody Champion</a>
+      &nbsp;·&nbsp;
+      <a href="/recruiters" style="color:#6b6760;">Recruiters</a>
+      &nbsp;·&nbsp;
+      <a href="/case-study-nsf-ai-governance" style="color:#6b6760;">NSF AI Governance case study</a>
+      &nbsp;·&nbsp;
+      <a href="/case-study-ml-cost" style="color:#6b6760;">ML cost case study</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/codychampion" style="color:#6b6760;">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/cody-champion" style="color:#6b6760;">LinkedIn</a>
+    </header>
+    <h1 style="font-family:Georgia,serif;font-size:40px;line-height:1.1;margin:0 0 16px;">Enterprise GenAI, LLM Evaluation &amp; AI Governance — Dublin</h1>
+    <p style="font-size:20px;color:#1a1916;margin:0 0 24px;">I build production GenAI systems for regulated environments: RAG, agents, evaluation, observability, security controls, data architecture, and AI governance.</p>
+    <p style="font-size:15px;color:#1a1916;margin:0 0 32px;"><strong>Best fit roles:</strong> Applied AI Architect · GenAI Solutions Architect · LLM Evaluation Lead · AI Governance Engineering Lead · Regulated AI Deployment Lead · Public Sector AI Lead</p>
+    <p style="font-size:15px;color:#6b6760;margin:0 0 32px;">Dublin-based Applied AI and GenAI systems leader. Experience across Accenture, NSF, federal AI delivery, and production GenAI systems. Available for senior IC and lead roles across regulated GenAI, LLM evaluation, RAG/agents, AI governance, and applied AI architecture.</p>
+
+    <section style="margin:48px 0 32px;">
+      <h2 style="font-family:Georgia,serif;font-size:24px;margin:0 0 24px;border-top:1px solid #d8d5cf;padding-top:24px;">Case studies</h2>
+
+      <article style="margin-bottom:32px;">
+        <h3 style="font-family:Georgia,serif;font-size:20px;margin:0 0 8px;">
+          <a href="/case-study-nsf-ai-governance" style="color:#1a4fd6;text-decoration:none;">NSF AI Governance Foundations</a>
+        </h3>
+        <p style="margin:0 0 8px;">Built greenfield AI governance, technical-review, security, community, and data-architecture foundations inside NSF's newly formed Chief AI Officer function. Owned AI use-case intake improvements, created risk-classification and technical-review patterns, created an AI deployment playbook, co-chaired a 100+ member AI Community of Practice, served as a voting engineering review board member for AI systems, ran AI security tabletop exercises, supported Microsoft Copilot rollout, architected a production vector/graph capability for research-impact intelligence, and liaised with NASA, DOE, NAIRR stakeholders, and other federal partners.</p>
+        <p style="font-size:13px;color:#6b6760;margin:0;">AI Governance · Responsible AI · Public Sector AI · Technical Review · Vector + Graph Architecture · AI Security Table-Tops · Interagency Coordination</p>
+      </article>
+
+      <article style="margin-bottom:32px;">
+        <h3 style="font-family:Georgia,serif;font-size:20px;margin:0 0 8px;">
+          <a href="/case-study-ml-cost" style="color:#1a4fd6;text-decoration:none;">ML Cost Optimization at Production Scale</a>
+        </h3>
+        <p style="margin:0 0 8px;">Production-grade ML cost optimization: model selection, batching, caching, cold-start mitigation, inference routing, and observability — applied to live LLM-backed workloads under regulated SLAs.</p>
+        <p style="font-size:13px;color:#6b6760;margin:0;">LLMOps · Cost Optimization · Inference Routing · Observability · Production AI</p>
+      </article>
+    </section>
+
+    <section style="margin:48px 0 32px;border-top:1px solid #d8d5cf;padding-top:24px;">
+      <h2 style="font-family:Georgia,serif;font-size:24px;margin:0 0 16px;">About</h2>
+      <p>Applied AI architect with delivery experience across Accenture (commercial), NSF (federal AI oversight, GS-15 Lead Data Scientist), and independent production GenAI systems. Focus areas: regulated enterprise AI deployment, RAG and agentic systems, LLM evaluation pipelines, AI observability, prompt-injection and tool-use security, and AI governance operating models. Currently based in Dublin, Ireland, available for senior IC and lead roles across EMEA.</p>
+    </section>
+
+    <footer style="margin-top:48px;border-top:1px solid #d8d5cf;padding-top:16px;font-size:13px;color:#6b6760;">
+      <a href="mailto:cody@bitsandbeakers.com" style="color:#1a4fd6;">cody@bitsandbeakers.com</a>
+      &nbsp;·&nbsp;
+      <a href="/llms.txt" style="color:#6b6760;">llms.txt</a>
+      &nbsp;·&nbsp;
+      <a href="/sitemap.xml" style="color:#6b6760;">sitemap</a>
+    </footer>
+  </div>
+</div>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
