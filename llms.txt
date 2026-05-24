@@ -27,8 +27,9 @@ I build production GenAI systems for regulated environments:
 
 ## Prior experience
 
-National Science Foundation — Lead Data Scientist / Advisor to Chief AI Officer (GS-15), Sep 2024 – Aug 2025.
-Built NSF's first vector and graph database capabilities. Led AI Development Playbook. Co-chaired 100+ member AI Community of Practice.
+National Science Foundation — Lead Data Scientist / AI Oversight (GS-15), reporting directly to NSF's Chief AI Officer, Sep 2024 – Aug 2025.
+Built NSF's first vector and graph database capabilities. Created an initial AI deployment playbook. Co-chaired 100+ member AI Community of Practice.
+Note: This work occurred during the early build-out of NSF's Chief AI Officer function and before NSF's later public AI Strategy was drafted and published. I did not author the published strategy.
 
 Accenture Federal Services — Machine Learning Engineer Manager, Jun 2021 – Sep 2024.
 Shipped State Department GenAI, Army secured automation, IARPA global geospatial CV. Personally achieved 99% ML infrastructure cost reduction on global geospatial platform.
@@ -41,7 +42,7 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 
 - 99% ML infrastructure cost reduction (personally owned codebase + cloud architecture)
 - $30M+ in AI/ML program funding advised (Booz Allen / DARPA)
-- Advisor to NSF Chief AI Officer Dorothy Aronson
+- Reported directly to NSF Chief AI Officer Dorothy Aronson
 - 6 peer-reviewed publications + 2 granted patents + Zenodo preprint (DOI: 10.5281/zenodo.19848867)
 - Claude Certified Architect, Foundations (Anthropic, March 2026, Early Adopter)
 - AWS Wildfire CV — Third Place, AWS Disaster Response Hackathon
@@ -75,9 +76,9 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
 
 ## Case studies
 
-- NSF AI Governance Foundations: https://codychampion.bitsandbeakers.com/case-study-nsf-ai-governance.html
+- NSF AI Governance Foundations: https://codychampion.bitsandbeakers.com/case-study-nsf-ai-governance
   Greenfield AI governance, technical review, community, security, and vector/graph architecture inside NSF's Chief AI Officer function. Pre-strategy operating layer for responsible AI adoption across a major U.S. science agency.
-- 99% ML Infrastructure Cost Reduction: https://codychampion.bitsandbeakers.com/case-study-ml-cost.html
+- 99.6% ML Inference Cost Reduction for Global Geospatial Workloads: https://codychampion.bitsandbeakers.com/case-study-ml-cost
   Five compounding engineering defects generating $26,200/month rebuilt to $90/month. Personally owned codebase and cloud architecture.
 
 ## Education
