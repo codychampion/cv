@@ -55,7 +55,7 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 - AI Governance Engineering Lead
 - Regulated AI Deployment Lead
 - Senior Manager, GenAI Deployment Engineering
-- AI Safety / Evals Lead
+- Applied AI Safety / Evals Lead
 
 ## Skills
 
