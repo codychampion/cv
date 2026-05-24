@@ -42,7 +42,7 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 
 - 99% ML infrastructure cost reduction (personally owned codebase + cloud architecture)
 - $30M+ in AI/ML program funding advised (Booz Allen / DARPA)
-- Reported directly to NSF Chief AI Officer Dorothy Aronson
+- Reported directly to NSF Chief AI Officer Dorothy Aronson in a GS-15 AI oversight role
 - 6 peer-reviewed publications + 2 granted patents + Zenodo preprint (DOI: 10.5281/zenodo.19848867)
 - Claude Certified Architect, Foundations (Anthropic, March 2026, Early Adopter)
 - AWS Wildfire CV — Third Place, AWS Disaster Response Hackathon
