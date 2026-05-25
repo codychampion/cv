@@ -35,7 +35,7 @@ window.CV_DATA = {
   },
 
   heroStats: [
-    { value: '99%', label: 'ML infra cost reduction' },
+    { value: '99.6%', label: 'ML infra cost reduction' },
     { value: '$30M+', label: 'AI/ML program funding advised' },
     { value: '100+', label: 'AI governance community co-chaired' },
   ],
@@ -43,18 +43,18 @@ window.CV_DATA = {
   narrative: `I started in scientific machine learning: drones, remote sensing, microbiology, and messy real-world data. Later I moved into federal delivery and AI governance, including advising the National Science Foundation\u2019s Chief AI Officer. Today I lead GenAI and agentic AI work at Accenture. The through-line is practical: build the thing, understand the institution around it, and make sure the system can survive contact with users, budgets, and oversight.`,
 
   outcomes: [
-    { metric: '99%', label: 'reduction in ML infrastructure cost via codebase and cloud architecture optimization' },
+    { metric: '99.6%', label: 'reduction in ML infrastructure cost via codebase and cloud architecture optimization' },
     { metric: '$30M+', label: 'in program funds secured through strategic AI/ML technical advising' },
     { metric: '100+', label: 'member AI Community of Practice co-chaired, enabling responsible AI governance' },
     { metric: '2', label: 'patents granted across AI-adjacent biology and synergist pharmacology research' },
   ],
 
   proof: [
-    { label: 'Shipped Systems', value: 'State Department GenAI, secured Army automation, IARPA geospatial CV, and enterprise GenAI delivery' },
-    { label: 'Cost Impact', value: '99% ML infrastructure cost reduction on a global geospatial platform', link: 'case-study-ml-cost.html' },
-    { label: 'NSF Governance', value: 'Greenfield AI governance, technical review, community, and vector/graph architecture inside NSF’s CAIO function', link: 'case-study-nsf-ai-governance.html' },
-    { label: 'Research', value: 'First-author 2026 Zenodo DOI, 6 peer-reviewed papers, and 2 granted patents' },
-    { label: 'Third-party Proof', value: 'Recommended by NSF CAIO Dorothy Aronson and Accenture Managing Director Marc Bosch Ruiz' },
+    { label: 'NSF Governance', value: 'Greenfield AI governance, technical review, community, and vector/graph architecture inside NSF’s CAIO function', link: '/case-study-nsf-ai-governance' },
+    { label: 'Cost Impact', value: '99.6% ML infrastructure cost reduction on a global geospatial platform', link: '/case-study-ml-cost' },
+    { label: 'Model Readiness', value: 'Public LLM evaluation workbench for regulated enterprise AI', link: '/projects/llm-eval-workbench' },
+    { label: 'Evaluation Research', value: 'PAEF contract-compliance evaluation: 193 contracts and 7,913 labeled policy checks', link: '/research/paef-contract-compliance' },
+    { label: 'Agentic Delivery', value: 'Governed Azure DevOps and Claude Code workflow for enterprise prototyping', link: '/case-study-agentic-ai-sdlc-platform' },
   ],
 
 
@@ -65,35 +65,78 @@ window.CV_DATA = {
       subtitle: 'Greenfield AI governance inside a newly formed CAIO function',
       body: 'Built pre-strategy AI governance, technical-review, community, security, and data-architecture foundations for responsible AI adoption at NSF. Owned AI use-case intake, created risk-classification and technical-review patterns, co-chaired a 100+ member AI Community of Practice, served as voting engineering review board member for AI systems, ran AI security table-tops, supported Microsoft Copilot rollout, architected a production vector/graph capability for research-impact intelligence, and liaised with NASA, DOE, NAIRR, and other federal partners.',
       tags: ['AI Governance', 'Responsible AI', 'Public Sector AI', 'Technical Review', 'Vector + Graph Architecture', 'AI Security Table-Tops', 'Interagency Coordination'],
-      link: 'case-study-nsf-ai-governance.html',
+      link: '/case-study-nsf-ai-governance',
     },
     {
       id: 'ml-cost',
-      title: '99% ML Infrastructure Cost Reduction',
+      title: '99.6% ML Infrastructure Cost Reduction',
       subtitle: 'Research-origin pipeline to production-grade system',
       body: 'Five compounding engineering defects generating $26,200/month in avoidable cloud spend. Rebuilt codebase and cloud architecture from scratch to $90/month. No new algorithms — production engineering discipline applied to research-origin code.',
       tags: ['ML Engineering', 'Cloud Architecture', 'Cost Optimization', 'Production ML', 'Geospatial CV'],
-      link: 'case-study-ml-cost.html',
+      link: '/case-study-ml-cost',
+    },
+    {
+      id: 'llm-eval-workbench',
+      title: 'LLM Evaluation Workbench',
+      subtitle: 'Model readiness for regulated enterprise AI',
+      body: 'Public evaluation harness for capability, reliability, governance behavior, groundedness, security reasoning, cost, and latency, using benign synthetic or public-domain evaluation scenarios.',
+      tags: ['LLM Evaluation', 'Model Readiness', 'RAG Groundedness', 'AI Governance', 'Cost / Latency'],
+      link: '/projects/llm-eval-workbench',
+    },
+    {
+      id: 'paef-contract-compliance',
+      title: 'PAEF Contract Compliance Evaluation',
+      subtitle: 'Atomic evaluation research with token-level margins',
+      body: 'Evaluation study comparing microagent atomic policy checks with monolithic auditing across 193 service contracts and 7,913 labeled policy checks.',
+      tags: ['Contract Compliance', 'Microagents', 'Token-Level Calibration', 'AI Governance'],
+      link: '/research/paef-contract-compliance',
+    },
+    {
+      id: 'agentic-ai-sdlc',
+      title: 'Agentic AI SDLC Platform',
+      subtitle: 'Governed enterprise prototyping workflow',
+      body: 'Public-safe case study of a Claude Code-integrated, model-adaptable delivery workflow anchored in Azure DevOps, human review, traceability, and security boundaries.',
+      tags: ['Azure DevOps', 'Claude Code', 'Human in the Loop', 'Traceability'],
+      link: '/case-study-agentic-ai-sdlc-platform',
     },
   ],
 
   projects: [
     {
-      id: 'agent-decomposition',
-      title: 'Agent Decomposition — original academic research',
-      role: 'Primary author · independent research',
+      id: 'llm-eval-workbench',
+      title: 'LLM Evaluation Workbench',
+      role: 'Creator · public model-readiness harness',
+      year: '2026',
+      award: 'Public technical flagship · v0.1',
+      summary: 'A config-driven public evaluation harness for regulated-enterprise model readiness: capability, reliability, governance behavior, groundedness, security reasoning, cost, and latency.',
+      details: [
+        'Public-safe regulated-readiness demo suite using benign synthetic scenarios for policy QA, RAG groundedness, schema following, access-control reasoning, and audit explanation quality.',
+        'Reviewable Markdown and JSON artifacts with explicit failure categories and operational metrics.',
+        'Written methodology, limitations, and provider-policy notes, plus a static leaderboard surface ready for provider-backed evaluation runs.',
+      ],
+      stack: ['Python', 'LLM Evaluation', 'AI Governance', 'Cost / Latency', 'CI'],
+      links: [
+        { label: 'GitHub', href: 'https://github.com/codychampion/llm-eval-workbench' },
+        { label: 'Project page', href: '/projects/llm-eval-workbench' },
+      ],
+      images: [],
+    },
+    {
+      id: 'paef-contract-compliance',
+      title: 'PAEF: Atomic LLM Evaluation for Contract Compliance',
+      role: 'First author · evaluation research',
       year: '2026',
       award: 'Zenodo preprint · DOI: 10.5281/zenodo.19848867',
-      summary: 'Original research comparing micro-agent vs. monolithic-agent architectures: when decomposition helps, when it hurts, and how decomposition choices affect cost, latency, reliability, and recoverability in production-grade agentic systems. Builds directly on systems I’ve shipped in enterprise settings.',
+      summary: 'A multi-contract, multi-model evaluation study comparing microagent-based atomic policy checks with monolithic LLM auditing across 193 service contracts and 7,913 labeled policy checks.',
       details: [
-        'Formal taxonomy of decomposition strategies: by skill, by data boundary, by latency budget, and by blast-radius.',
-        'Evaluation framework comparing end-to-end task success, token economics, and failure-mode distributions across decomposition strategies on matched workloads.',
-        'Empirical findings on the crossover points where monoliths outperform micro-agents and vice-versa — with guidance for architects choosing patterns under real constraints.',
-        'Preprint released on Zenodo with DOI; code release planned as follow-on work.',
+        'Compared microagent atomic evaluation with monolithic auditing across gpt-4.1-nano, gpt-4o-mini, and gpt-5-nano.',
+        'Introduced token-level margin analysis for confidence, disagreement, salvage, and audit-ready diagnostics.',
+        'Provides the atomic-evaluation methodology that informs the regulated-enterprise workbench.',
       ],
-      stack: ['Agentic architecture', 'Evaluation', 'Empirical AI research'],
+      stack: ['LLM Evaluation', 'Contract Compliance', 'Microagents', 'Token-Level Analysis'],
       links: [
         { label: 'Zenodo DOI', href: 'https://doi.org/10.5281/zenodo.19848867' },
+        { label: 'Research page', href: '/research/paef-contract-compliance' },
       ],
       images: [],
     },
@@ -136,19 +179,21 @@ window.CV_DATA = {
     },
     {
       id: 'sdlc-agentic',
-      title: 'Agentic SDLC — end-to-end software delivery with agents',
-      role: 'Architect · agentic workflow design for delivery teams',
-      year: '2025',
-      award: 'Accenture delivery pattern · reusable across engagements',
-      summary: 'Designed an agentic software-delivery pattern that embeds specialized agents across the SDLC — requirements decomposition, design, implementation, review, test, and release — with human checkpoints and full audit trails. Built to be dropped into regulated enterprise environments without compromising governance.',
+      title: 'Agentic AI SDLC Platform — Accenture Ireland',
+      role: 'Architect · governed AI-assisted delivery',
+      year: '2026',
+      award: 'Public-safe summary · current enterprise delivery work',
+      summary: 'Building a governed Azure DevOps and Claude Code workflow for enterprise AI prototyping, with human checkpoints, artifact traceability, review controls, security boundaries, and reusable delivery patterns.',
       details: [
-        'Role-based agent roster (spec, architect, implementer, reviewer, tester, release) wired through a shared context and artifact store for reproducibility.',
-        'Human-in-the-loop checkpoints at every state transition with structured approvals, generated change diffs, and rationale capture for audit.',
-        'Evaluation harness measuring correctness, review quality, test coverage deltas, and rework rate, so the system improves from evidence rather than opinion.',
-        'Security controls: sandboxed execution, secret-free prompts, least-privilege tool access, and MCP-based tool orchestration so capabilities are explicit and auditable.',
+        'Azure DevOps remains the system of record for work items, repositories, pull requests, tests, approvals, pipeline results, and release evidence.',
+        'Workflow spans requirements decomposition, solution design, implementation, pull-request review, automated tests, security review, and deployment-readiness evidence.',
+        'Target artifacts include requirement traceability, session summaries, design rationale, generated diffs, test evidence, risk flags, approval history, and known limitations.',
+        'Security boundaries include scoped repository access, secret exclusion, least-privilege tools, human review, and escalation for uncertain outputs.',
       ],
-      stack: ['Agents', 'MCP', 'Claude Code', 'Evaluation harnesses', 'GitLab CI/CD', 'Azure'],
-      links: [],
+      stack: ['Azure DevOps', 'Claude Code', 'Agents', 'Evaluation', 'Auditability', 'Human Review'],
+      links: [
+        { label: 'Case study', href: '/case-study-agentic-ai-sdlc-platform' },
+      ],
       images: [],
     },
     {
@@ -188,7 +233,7 @@ window.CV_DATA = {
   ],
   focus: [
     'Enterprise GenAI architecture — RAG, agents, tool orchestration, LLMOps, Azure, GCP, observability',
-    'LLM evaluation and AI safety — refusal behavior, groundedness, red-team probes, failure taxonomy, cost/latency tracking',
+    'LLM evaluation and model readiness — reliability, governance behavior, groundedness, security reasoning, cost/latency tracking',
     'AI governance for regulated deployment — EU AI Act readiness, risk classification, auditability, access control, prompt injection defense',
     'Available for senior AI roles in Dublin / Ireland / EMEA — regulated enterprise, public sector, financial services, cloud/SaaS AI',
   ],
@@ -198,13 +243,13 @@ window.CV_DATA = {
     // See comments for what each count contains.
     radar: [
       // 2016 DHS/ERDC internship → 2026
-      { axis: 'Applied ML',       years: 10, projects: 7,  note: 'PhD digital-twin metabolome, West Nile forecasting, mosquito microbiome analysis, ODNI crop-stress ML, DARPA programs, 99% cost-optimization, MRSA photodynamics' },
+      { axis: 'Applied ML',       years: 10, projects: 7,  note: 'PhD digital-twin metabolome, West Nile forecasting, mosquito microbiome analysis, ODNI crop-stress ML, DARPA programs, 99.6% cost optimization, MRSA photodynamics' },
       // 2018 ODNI drone CV → 2026
       { axis: 'Computer Vision',  years: 8,  projects: 8,  note: 'AWS Wildfire, ODNI drone, IARPA global geospatial, WACV 2023, 2× IGARSS 2024, IGARSS 2023 biome, sensor-sim platform' },
       // 2011 B.S./M.S. research → 2026
       { axis: 'Research',         years: 15, projects: 11, note: '6 peer-reviewed publications + 1 Zenodo publication + 2 granted patents + PhD + M.S. dissertations' },
       // 2021 Accenture Federal production ML → 2026
-      { axis: 'MLOps / LLMOps',   years: 5,  projects: 5,  note: '99% cost-reduction pipeline, Langfuse observability, AI monitoring framework, micro-vs-monolithic agent eval, GenAI security controls' },
+      { axis: 'MLOps / LLMOps',   years: 5,  projects: 5,  note: '99.6% cost-reduction pipeline, Langfuse observability, AI monitoring framework, micro-vs-monolithic agent eval, GenAI security controls' },
       // Accenture Federal GenAI (diplomatic cable gen, ~2023) → 2026
       { axis: 'LLMs & GenAI',     years: 3,  projects: 7,  note: 'Diplomatic cable generator, embedding benchmark (arXiv), claude-burn-check, agent eval framework, NSF vector+graph DB, AI monitoring, RAG architectures' },
       // NSF CAIO advisor Sept 2024 → 2026
@@ -331,7 +376,7 @@ window.CV_DATA = {
       bullets: [
         'Led lean, multi-disciplinary teams within Accenture Federal\u2019s innovation hub, delivering applied AI across GenAI, computer vision, and geospatial analytics for federal clients.',
         'Shipped a GenAI diplomatic cable generator for the State Department, GenAI task-management automation in secured Army environments, and global-scale geospatial CV for IARPA.',
-        'Personally wrote the ML codebase and cloud architecture optimizations that achieved a 99% infrastructure cost reduction on a global geospatial platform.',
+        'Personally wrote the ML codebase and cloud architecture optimizations that achieved a 99.6% infrastructure cost reduction on a global geospatial platform.',
         'Designed and customized foundation models and ML pipelines for cost-optimized, production-ready deployments in secured environments.',
         'Co-led the Computer Vision Community of Interest, setting technical standards and best practices across the organization.',
       ],

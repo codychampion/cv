@@ -65,9 +65,9 @@ const QuietWeightCV = () => {
           <a href="#sec-publications">Research</a>
           <a href="#sec-contact">Contact</a>
           <span className="sep">·</span>
-          <a href="recruiters.html">For Recruiters</a>
-          <a href="case-study-nsf-ai-governance.html">NSF Case Study ↗</a>
-          <a href="case-study-ml-cost.html">Cost Case Study ↗</a>
+          <a href="/recruiters">For Recruiters</a>
+          <a href="/case-study-nsf-ai-governance">NSF Case Study ↗</a>
+          <a href="/case-study-ml-cost">Cost Case Study ↗</a>
           <a href="print.html">Print CV</a>
         </nav>
       </header>
@@ -600,7 +600,7 @@ const QuietWeightCV = () => {
           <span>
             <a href="print.html">Print CV</a>
             {' · '}
-            <a href="case-study-ml-cost.html">Case Study</a>
+            <a href="/case-study-ml-cost">Case Study</a>
             {' · '}
             <a href={`https://${d.github}`} target="_blank" rel="noopener">GitHub</a>
           </span>

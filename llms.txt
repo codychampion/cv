@@ -20,7 +20,7 @@ Leading design and delivery of production GenAI systems for regulated enterprise
 I build production GenAI systems for regulated environments:
 - Retrieval-Augmented Generation (RAG) with hybrid vector/keyword/graph stacks
 - Agentic workflows with human-in-the-loop checkpoints and audit trails
-- LLM evaluation — refusal behavior, groundedness, instruction drift, cost/latency, failure taxonomy
+- LLM evaluation and model readiness — capability, reliability, governance behavior, groundedness, security reasoning, cost/latency, failure taxonomy
 - Observability and LLMOps — Langfuse, MLflow, quality/safety/cost/latency monitoring
 - Security controls — prompt injection defense, sandboxed execution, role-based access control
 - AI governance — risk classification, auditability, EU AI Act readiness, policy-to-implementation
@@ -32,7 +32,7 @@ Built NSF's first vector and graph database capabilities. Created an initial AI 
 Note: This work occurred during the early build-out of NSF's Chief AI Officer function and before NSF's later public AI Strategy was drafted and published. I did not author the published strategy.
 
 Accenture Federal Services — Machine Learning Engineer Manager, Jun 2021 – Sep 2024.
-Shipped State Department GenAI, Army secured automation, IARPA global geospatial CV. Personally achieved 99% ML infrastructure cost reduction on global geospatial platform.
+Shipped State Department GenAI, Army secured automation, IARPA global geospatial CV. Personally achieved 99.6% ML infrastructure cost reduction on global geospatial platform.
 
 Booz Allen Hamilton — Lead Scientist, DARPA program management. $30M+ in program funds advised.
 
@@ -40,7 +40,7 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 
 ## Key proof points
 
-- 99% ML infrastructure cost reduction (personally owned codebase + cloud architecture)
+- 99.6% ML infrastructure cost reduction (personally owned codebase + cloud architecture)
 - $30M+ in AI/ML program funding advised (Booz Allen / DARPA)
 - Reported directly to NSF Chief AI Officer Dorothy Aronson in a GS-15 AI oversight role
 - 6 peer-reviewed publications + 2 granted patents + Zenodo preprint (DOI: 10.5281/zenodo.19848867)
@@ -60,7 +60,7 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 ## Skills
 
 GenAI: LLMs, RAG, Agents, Agentic workflows, Embeddings, Prompt engineering, Evaluation harnesses
-AI Safety: LLM evaluation, red-team probes, failure taxonomy, refusal behavior, groundedness
+Model Readiness: LLM evaluation, governance behavior, RAG groundedness, security reasoning, failure taxonomy
 AI Governance: Responsible AI, risk classification, audit readiness, EU AI Act, access control
 MLOps/LLMOps: Langfuse, MLflow, CI/CD, observability, cost/latency monitoring
 Cloud: Azure AI Foundry, GCP, AWS, Docker, Kubernetes
@@ -69,10 +69,14 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
 
 ## Public artifacts
 
-- llm-eval-workbench: LLM reliability/safety evaluation harness (GitHub: codychampion/llm-eval-workbench)
+- LLM Evaluation Workbench / Model Readiness Leaderboard: public evaluation harness for regulated enterprise AI, spanning capability, reliability, governance behavior, groundedness, security reasoning, cost, and latency.
+  Project page: https://codychampion.bitsandbeakers.com/projects/llm-eval-workbench
+  GitHub: https://github.com/codychampion/llm-eval-workbench
+- PAEF — Parallelized Atomic Evaluation Framework for Contract Compliance: evaluation research comparing microagent-based atomic policy checks with monolithic LLM auditing across 193 service contracts and 7,913 labeled policy checks. Supports work in model governance, contract compliance, and regulated GenAI systems.
+  Research page: https://codychampion.bitsandbeakers.com/research/paef-contract-compliance
+  Zenodo DOI: https://doi.org/10.5281/zenodo.19848867
 - arxiv-embedding-benchmark: Scientific retrieval and embedding evaluation (PyPI + GitHub)
 - claude-burn-check: Claude Code context-window diagnostic skill (GitHub: codychampion/claude-burn-check)
-- Zenodo preprint: https://doi.org/10.5281/zenodo.19848867
 
 ## Case studies
 
@@ -80,6 +84,12 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
   Greenfield AI governance, technical review, community, security, and vector/graph architecture inside NSF's Chief AI Officer function. Pre-strategy operating layer for responsible AI adoption across a major U.S. science agency.
 - 99.6% ML Inference Cost Reduction for Global Geospatial Workloads: https://codychampion.bitsandbeakers.com/case-study-ml-cost
   Five compounding engineering defects generating $26,200/month rebuilt to $90/month. Personally owned codebase and cloud architecture.
+- LLM Evaluation Workbench / Model Readiness Leaderboard: https://codychampion.bitsandbeakers.com/projects/llm-eval-workbench
+  Public model-readiness benchmark for regulated enterprise AI using benign synthetic or public-domain scenarios, reviewable artifacts, cost, and latency evidence.
+- PAEF: Atomic LLM Evaluation for Contract Compliance: https://codychampion.bitsandbeakers.com/research/paef-contract-compliance
+  Multi-contract, multi-model evaluation research comparing atomic microagent checks with monolithic auditing; published on Zenodo in April 2026.
+- Agentic AI SDLC Platform — Accenture Ireland: https://codychampion.bitsandbeakers.com/case-study-agentic-ai-sdlc-platform
+  Public-safe case study of a governed Azure DevOps and Claude Code workflow for traceable, human-reviewed enterprise AI prototyping.
 
 ## Education
 

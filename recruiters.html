@@ -118,21 +118,31 @@
     <li class="pill">EMEA</li>
   </ul>
 
-  <h2>Three proof pillars</h2>
+  <h2>Five proof pillars</h2>
 
   <div class="card">
-    <div class="card-title">Production GenAI</div>
-    <div class="card-sub">RAG, agents, evaluation, observability, security controls, secure deployment — enterprise and federal clients, Accenture Ireland</div>
+    <div class="card-title">1. NSF AI Governance Foundations</div>
+    <div class="card-sub">Greenfield AI governance, technical review, security exercises, community, and data architecture inside a newly formed Chief AI Officer function.</div>
   </div>
 
   <div class="card">
-    <div class="card-title">Regulated AI Governance</div>
-    <div class="card-sub">Reported directly to NSF's Chief AI Officer · co-chaired 100+ member AI Community of Practice · created an AI deployment playbook · risk classification · audit readiness · approval and voting governance stack</div>
+    <div class="card-title">2. 99.6% ML Cost Reduction</div>
+    <div class="card-sub">Hands-on production ML ownership: a research-origin geospatial pipeline rebuilt from approximately $26,200/month to approximately $90/month.</div>
   </div>
 
   <div class="card">
-    <div class="card-title">Technical Evaluation and Cost Impact</div>
-    <div class="card-sub">LLM eval workbench (reliability/safety harness) · arXiv embedding benchmark · 99% ML infrastructure cost reduction (personally owned) · $30M+ program funds advised</div>
+    <div class="card-title">3. LLM Evaluation Workbench / Model Readiness Leaderboard</div>
+    <div class="card-sub">Public evaluation harness for capability, reliability, governance behavior, groundedness, cost, latency, and reviewable artifacts in regulated GenAI systems.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4. PAEF Contract Compliance Evaluation</div>
+    <div class="card-sub">Evaluation research comparing atomic microagent checks with monolithic auditing across 193 service contracts and 7,913 labeled policy checks.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">5. Agentic AI SDLC Platform - Accenture Ireland</div>
+    <div class="card-sub">Public-safe case study: governed enterprise prototyping with Azure DevOps as system of record, Claude Code-integrated execution, traceability, and human review.</div>
   </div>
 
   <h2>By target audience</h2>
@@ -158,7 +168,7 @@
       I design and build end-to-end GenAI systems that run in production, not just demos that impress in a sandbox. The architecture decisions I own most often: retrieval stack design (hybrid vector, keyword, and graph with source attribution), agent and tool orchestration (MCP-based, least-privilege, auditable), evaluation loops (ground truth plus LLM-as-judge sampling), and observability (Langfuse where it fits, conventional telemetry where it does not).
     </p>
     <p>
-      I work primarily across Azure AI Foundry and GCP, with practical LLMOps around quality, safety, latency, and token spend. The 99% ML infrastructure cost reduction I achieved at Accenture Federal was not a procurement decision — I personally rewrote the ML codebase and cloud architecture. I can design for scale, explain the cost model, and own the implementation.
+      I work primarily across Azure AI Foundry and GCP, with practical LLMOps around quality, safety, latency, and token spend. The 99.6% ML infrastructure cost reduction I achieved at Accenture Federal was not a procurement decision — I personally rewrote the ML codebase and cloud architecture. I can design for scale, explain the cost model, and own the implementation.
     </p>
     <p class="keyword-cluster">
       <strong>Keywords:</strong> Applied AI Architect · GenAI Architect · Enterprise GenAI · RAG · agents · tool orchestration · LLMOps · Azure AI Foundry · GCP · cloud-native AI deployment · observability · Langfuse · MLflow · FastAPI · Docker · Kubernetes · token cost · latency optimization · AI evaluation harnesses · production GenAI · agentic workflows · embedding pipelines
@@ -166,10 +176,10 @@
   </div>
 
   <div class="audience-block" id="ai-labs">
-    <div class="audience-label">AI labs &amp; safety teams — model evaluation, red-teaming, safety evals, AI reliability</div>
-    <h3>LLM Evaluation &amp; AI Safety</h3>
+    <div class="audience-label">AI evaluation and assurance teams — model readiness, governance behavior, AI reliability</div>
+    <h3>LLM Evaluation &amp; AI Assurance</h3>
     <p>
-      My public LLM evaluation work (llm-eval-workbench, PAEF Zenodo preprint) is production-minded, not academic. The evaluation harness I built covers refusal behavior, over-refusal, unsafe compliance, groundedness, instruction drift, cost and latency tracking per probe, and structured failure taxonomy. Red-team probes are first-class test cases, not afterthoughts. Every evaluation run produces structured artifacts — not just a pass/fail score.
+      My public LLM evaluation work (llm-eval-workbench and the PAEF Zenodo preprint) is built around regulated-enterprise model readiness. The harness covers capability, reliability, governance behavior, groundedness, security reasoning, cost and latency tracking, and structured failure taxonomy. Its public scenarios are benign and designed for reviewable evidence rather than safeguard bypass. Every run produces structured artifacts, not just a score.
     </p>
     <p>
       The PAEF preprint (Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.19848867" rel="noopener">10.5281/zenodo.19848867</a>) formalizes a parallelized atomic evaluation framework for contract compliance across multiple models, with token-level margin analysis. The embedding benchmark evaluated 33 models across 1,700 arXiv papers — cross-domain, reproducible, MLOps-rigorous. I think about evaluation the way an engineer thinks about CI: it runs continuously, it catches regressions, and it produces evidence you can show to a skeptic.
@@ -178,7 +188,7 @@
       On the operational side I have built prompt injection defenses, sandboxed tool execution, and access control inside live enterprise GenAI systems. I also have experience explaining AI safety tradeoffs to non-technical stakeholders — governance boards, federal oversight bodies, and clients who need to sign off on deployment risk.
     </p>
     <p class="keyword-cluster">
-      <strong>Keywords:</strong> LLM evaluation · model evaluation · safety evals · red teaming · refusal behavior · over-refusal · unsafe compliance · groundedness · instruction drift · failure taxonomy · cost/latency tracking · eval-as-judge · AI observability · sandboxed tool use · prompt injection defense · model comparison · evaluation harness · AI reliability · LLM benchmarking · PAEF · atomic evaluation
+      <strong>Keywords:</strong> LLM evaluation · model readiness · model evaluation · governance behavior · RAG groundedness · access-control reasoning · failure taxonomy · cost/latency tracking · AI observability · prompt injection resilience · contract compliance · evaluation harness · AI reliability · PAEF · atomic evaluation
     </p>
   </div>
 
@@ -198,11 +208,12 @@
 
   <h2>Key artifacts</h2>
   <ul>
-    <li><a href="case-study-nsf-ai-governance.html">Case study: NSF AI Governance Foundations</a> — greenfield governance, technical review, community, security, and vector/graph architecture inside NSF's CAIO function</li>
-    <li><a href="case-study-ml-cost.html">Case study: 99% ML infrastructure cost reduction</a></li>
-    <li><a href="https://github.com/codychampion/llm-eval-workbench" rel="noopener">llm-eval-workbench</a> — LLM reliability/safety evaluation harness</li>
-    <li><a href="https://doi.org/10.5281/zenodo.19848867" rel="noopener">Zenodo preprint</a> — Parallelized Atomic Evaluation Framework (PAEF)</li>
-    <li><a href="llms.txt">Plain-text AI summary</a> — machine-readable profile</li>
+    <li><a href="/case-study-nsf-ai-governance">Case study: NSF AI Governance Foundations</a> - greenfield governance, technical review, community, security, and vector/graph architecture inside NSF's CAIO function</li>
+    <li><a href="/case-study-ml-cost">Case study: 99.6% ML infrastructure cost reduction</a></li>
+    <li><a href="/projects/llm-eval-workbench">LLM Evaluation Workbench</a> - regulated-enterprise model-readiness benchmark and harness</li>
+    <li><a href="/research/paef-contract-compliance">PAEF Contract Compliance Evaluation</a> - published evaluation research and Zenodo DOI</li>
+    <li><a href="/case-study-agentic-ai-sdlc-platform">Agentic AI SDLC Platform</a> - public-safe current-work case study</li>
+    <li><a href="/llms.txt">Plain-text AI summary</a> - machine-readable profile</li>
   </ul>
 
   <footer>

@@ -43,3 +43,5 @@ Allow: /
 
 User-agent: cohere-ai
 Allow: /
+
+Sitemap: https://codychampion.bitsandbeakers.com/sitemap.xml

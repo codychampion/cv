@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAEF Contract Compliance Evaluation | Cody Champion</title>
+<meta name="description" content="Evaluation research comparing microagent atomic policy checks with monolithic LLM auditing across 193 service contracts and 7,913 labeled checks.">
+<link rel="canonical" href="https://codychampion.bitsandbeakers.com/research/paef-contract-compliance">
+<link rel="stylesheet" href="../pillar-page.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Lora:wght@400;500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="page">
+  <nav class="nav">
+    <a class="brand" href="/">cody.champion</a>
+    <div class="links">
+      <a href="/">Profile</a>
+      <a href="/projects/llm-eval-workbench">LLM workbench</a>
+      <a href="https://doi.org/10.5281/zenodo.19848867">Zenodo DOI</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <div class="eyebrow">Evaluation Research - Published April 28, 2026</div>
+    <h1>PAEF: Atomic LLM Evaluation for Contract Compliance</h1>
+    <p class="deck">A multi-contract, multi-model study of microagent decomposition, monolithic auditing, and token-level confidence analysis for regulated enterprise compliance.</p>
+    <div class="tags">
+      <span class="tag">LLM Evaluation</span><span class="tag">Contract Compliance</span>
+      <span class="tag">Microagents</span><span class="tag">Token-Level Calibration</span>
+      <span class="tag">AI Governance</span>
+    </div>
+  </header>
+  <div class="facts">
+    <div class="fact"><strong>193</strong><span>Service contracts</span></div>
+    <div class="fact"><strong>7,913</strong><span>Labeled policy checks</span></div>
+    <div class="fact"><strong>3</strong><span>Models compared</span></div>
+  </div>
+  <div class="layout">
+    <aside class="rail">
+      <a href="#study">01 Study</a>
+      <a href="#design">02 Design</a>
+      <a href="#analysis">03 Analysis</a>
+      <a href="#transfer">04 Transfer</a>
+      <a href="#citation">05 Citation</a>
+    </aside>
+    <article class="content">
+      <section id="study">
+        <h2>Research question</h2>
+        <p>Can atomic policy-level evaluation improve the auditability and diagnostic quality of LLM contract-compliance review compared with a single monolithic auditing pass?</p>
+        <p>The study evaluates microagent atomic policy checks against monolithic auditing across a labeled service-contract corpus and multiple compact models.</p>
+      </section>
+      <section id="design">
+        <h2>Study design</h2>
+        <div class="card">
+          <p><strong>Corpus:</strong> 193 service contracts and 7,913 labeled policy checks.</p>
+          <p><strong>Models:</strong> gpt-4.1-nano, gpt-4o-mini, and gpt-5-nano.</p>
+          <p><strong>Comparison:</strong> microagent-based atomic checks versus a monolithic LLM auditor.</p>
+        </div>
+        <p>The published study reports that microagent evaluation outperformed monolithic auditing across all three evaluated models.</p>
+      </section>
+      <section id="analysis">
+        <h2>Token-level margin analysis</h2>
+        <p>The method extracts a margin between non-compliance and compliance token likelihoods:</p>
+        <div class="note"><code>Delta = l(Non) - l(Com)</code> and <code>P(Non) = sigmoid(Delta)</code></div>
+        <p>This supports confidence analysis, disagreement review, salvage decisions, and audit-ready diagnostics rather than relying only on a final label.</p>
+      </section>
+      <section id="transfer">
+        <h2>Connection to model readiness</h2>
+        <p>PAEF provides the evaluation pattern behind the <a href="/projects/llm-eval-workbench">LLM Evaluation Workbench</a>: decompose governance-heavy tasks into atomic checks, compare models and evaluation strategies, track uncertainty, and create reviewable artifacts.</p>
+      </section>
+      <section id="citation">
+        <h2>Publication</h2>
+        <p><strong>Parallelized Atomic Evaluation Framework (PAEF) for Contract Compliance: A Multi-Contract, Multi-Model Study with Token-Level Margin Analysis.</strong></p>
+        <p>Champion, Cody; O'Kane, Alan; Prunty, Peter. Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.19848867">10.5281/zenodo.19848867</a>.</p>
+      </section>
+    </article>
+  </div>
+  <footer class="footer">Cody Champion - Dublin - Enterprise GenAI, LLM evaluation, and AI governance</footer>
+</main>
+</body>
+</html>

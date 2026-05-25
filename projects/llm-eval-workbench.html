@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Evaluation Workbench | Cody Champion</title>
+<meta name="description" content="A public model-readiness benchmark for regulated enterprise AI, evaluating reliability, governance behavior, groundedness, cost, and latency.">
+<link rel="canonical" href="https://codychampion.bitsandbeakers.com/projects/llm-eval-workbench">
+<link rel="stylesheet" href="../pillar-page.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Lora:wght@400;500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="page">
+  <nav class="nav">
+    <a class="brand" href="/">cody.champion</a>
+    <div class="links">
+      <a href="/">Profile</a>
+      <a href="/research/paef-contract-compliance">PAEF research</a>
+      <a href="https://github.com/codychampion/llm-eval-workbench">GitHub repository</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <div class="eyebrow">Public Technical Project - Model Readiness</div>
+    <h1>LLM Evaluation Workbench</h1>
+    <p class="deck">Weekly model evaluation for regulated enterprise AI: task performance, reliability, governance behavior, groundedness, cost, and latency.</p>
+    <div class="tags">
+      <span class="tag">LLM Evaluation</span><span class="tag">Model Readiness</span>
+      <span class="tag">RAG Groundedness</span><span class="tag">AI Governance</span>
+      <span class="tag">Cost / Latency</span><span class="tag">Regulated GenAI</span>
+    </div>
+  </header>
+  <div class="facts">
+    <div class="fact"><strong>8</strong><span>Public-safe demo scenarios</span></div>
+    <div class="fact"><strong>8/8</strong><span>Deterministic pipeline validation</span></div>
+    <div class="fact"><strong>v0.1</strong><span>Initial documented harness</span></div>
+  </div>
+  <div class="layout">
+    <aside class="rail">
+      <a href="#purpose">01 Purpose</a>
+      <a href="#dimensions">02 Dimensions</a>
+      <a href="#artifacts">03 Artifacts</a>
+      <a href="#leaderboard">04 Leaderboard</a>
+      <a href="#guardrails">05 Guardrails</a>
+    </aside>
+    <article class="content">
+      <section id="purpose">
+        <h2>Purpose</h2>
+        <p>Public evaluation should show whether a model-backed workflow is dependable enough for enterprise review, not merely whether it can answer a clever prompt. The workbench packages config-driven datasets, adapters, testable failure categories, operational metrics, and reviewable reports.</p>
+        <p>The first release provides a benign synthetic readiness suite and a deterministic adapter that validates the pipeline shape. Provider-backed comparison runs are the next reporting milestone.</p>
+      </section>
+      <section id="dimensions">
+        <h2>Evaluation dimensions</h2>
+        <div class="card">
+          <p><strong>Capability and reliability:</strong> task completion, schema following, and instruction stability.</p>
+          <p><strong>Governance and security reasoning:</strong> appropriate human-review routing, prompt-injection handling, confidentiality, and access control.</p>
+          <p><strong>Groundedness and operations:</strong> evidence-bounded answers, latency, and estimated cost.</p>
+        </div>
+      </section>
+      <section id="artifacts">
+        <h2>Artifacts</h2>
+        <ul>
+          <li>A runnable regulated-enterprise readiness demo command and dataset.</li>
+          <li>Markdown and JSON output with pass rate, cost, latency, and explicit failure categories.</li>
+          <li>Published methodology, limitations, and provider-policy notes.</li>
+          <li>A static leaderboard surface for versioned provider-backed comparisons.</li>
+        </ul>
+        <p><a href="https://github.com/codychampion/llm-eval-workbench">Read the repository and run the demo.</a></p>
+      </section>
+      <section id="leaderboard">
+        <h2>Initial public surface</h2>
+        <p>This row is pipeline validation, not a frontier-model ranking.</p>
+        <table>
+          <thead><tr><th>Adapter</th><th>Suite</th><th>Date</th><th>Cases</th><th>Pass</th><th>Latency</th><th>Cost</th></tr></thead>
+          <tbody><tr><td>mock</td><td>regulated readiness demo</td><td>2026-05-25</td><td>8</td><td>100%</td><td>0.34s avg</td><td>$0.00476</td></tr></tbody>
+        </table>
+      </section>
+      <section id="guardrails">
+        <h2>Public safety posture</h2>
+        <div class="note">This benchmark uses benign synthetic or public-domain scenarios and does not attempt to elicit harmful operational content or bypass provider safeguards.</div>
+        <p>The methodology draws on <a href="/research/paef-contract-compliance">PAEF atomic contract-compliance evaluation</a>: break complex governance tasks into checkable requirements, expose failure modes, and produce evidence suitable for review.</p>
+      </section>
+    </article>
+  </div>
+  <footer class="footer">Cody Champion - Dublin - Enterprise GenAI, LLM evaluation, and AI governance</footer>
+</main>
+</body>
+</html>
