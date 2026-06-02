@@ -54,13 +54,13 @@ window.CV_DATA = {
   // To give an org an official asset: commit a clean local SVG to assets/logos/ and add `svg` here.
   logos: [
     { name: 'Accenture',                       kind: 'employer',  mark: 'accenture',             svg: 'assets/logos/accenture.svg' },
-    { name: 'National Science Foundation (NSF)', kind: 'employer', mark: 'NSF' },
+    { name: 'National Science Foundation (NSF)', kind: 'employer', mark: 'NSF',              svg: 'assets/logos/nsf.svg' },
     { name: 'Booz Allen Hamilton',             kind: 'employer',  mark: 'Booz Allen Hamilton',   svg: 'assets/logos/booz-allen-hamilton.svg' },
     { name: 'ODNI · NGA',                      kind: 'employer',  mark: 'ODNI · NGA' },
-    { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA' },
+    { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA',               svg: 'assets/logos/darpa.svg' },
     { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg' },
-    { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD' },
-    { name: 'U.S. Department of State (DoS)',  kind: 'consulted', mark: 'Dept. of State' },
+    { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD',                 svg: 'assets/logos/dod.svg' },
+    { name: 'U.S. Department of State (DoS)',  kind: 'consulted', mark: 'Dept. of State',  svg: 'assets/logos/dos.svg' },
     { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg' },
   ],
 
