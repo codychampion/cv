@@ -124,12 +124,23 @@ const QuietWeightCV = () => {
         const consulted  = d.logos.filter(l => l.kind === 'consulted');
         const certifiers = d.logos.filter(l => l.kind === 'certifier');
         // Consistent strip logo height — committed SVGs and text wordmarks read at the same
-        // optical scale. SVGs render at a fixed height with auto width (native aspect ratio).
+        // optical scale. SVGs render at a fixed height with auto width (native aspect ratio),
+        // vertically centered so wide wordmarks and squarer seals share a common centerline.
         const LOGO_H = 26;
+        // COHESION: the committed SVGs are a mix of styles — `currentColor` corporate wordmarks
+        // (accenture / nsf / booz allen / anthropic, already ink) alongside full-color federal
+        // seals (DoD blue Pentagon gradient, IARPA cyan+teal, DARPA navy). To read as ONE
+        // monochrome logo wall on the cream (#f8f7f4) page, every <img> gets the SAME filter:
+        //   grayscale(1)  → strips the seals' color so they join the ink family
+        //   contrast(1.1) brightness(0.55) → pushes the mid-grey greyed seals down toward the
+        //                  near-black ink (#1a1916) of the wordmarks, unifying weight
+        // The already-dark currentColor marks are near-black, so this barely moves them.
+        // Muted bands (consulted / certified) drop opacity to sit one tier back from Experience.
+        const LOGO_FILTER = 'grayscale(1) contrast(1.1) brightness(0.55)';
         // Logo: prefer a committed local SVG asset, rendered as a plain <img> at the shared strip
-        // height (org name as alt/title). Monochrome corporate wordmarks (currentColor → ink on the
-        // cream page) and the two-tone IARPA seal both read cleanly on the light background. Fall
-        // back to the clean text wordmark when no svg is present.
+        // height (org name as alt/title), passed through the uniform monochrome filter above so
+        // colored seals and ink wordmarks read as one cohesive wall. Fall back to the clean text
+        // wordmark (same ink tint) when no svg is present.
         const Logo = ({ name, mark, svg, muted }) => {
           const tint = muted ? 'var(--c-text-subtle)' : 'var(--c-text)';
           if (svg) {
@@ -144,7 +155,9 @@ const QuietWeightCV = () => {
                   width: 'auto',
                   display: 'inline-block',
                   verticalAlign: 'middle',
-                  opacity: muted ? 0.9 : 1,
+                  objectFit: 'contain',
+                  filter: LOGO_FILTER,
+                  opacity: muted ? 0.7 : 0.92,
                 }}
               />
             );
@@ -157,7 +170,9 @@ const QuietWeightCV = () => {
                 fontSize: 22,
                 letterSpacing: '-0.01em',
                 color: tint,
-                opacity: muted ? 0.92 : 1,
+                // Match the filtered SVG opacity tiers (Experience 0.92 / muted 0.7) so the
+                // ODNI · NGA text wordmark reads at the same ink weight as its neighbors.
+                opacity: muted ? 0.7 : 0.92,
                 whiteSpace: 'nowrap',
                 lineHeight: 1,
                 display: 'inline-flex',
