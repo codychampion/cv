@@ -1,13 +1,17 @@
 // variant-infographics.jsx — Domain Expertise infographics
 // Designed for Quiet Weight aesthetic (deep ink + steel-teal + IBM Plex)
 
+// Darkened for the LIGHT signal background (--c-bg #f8f7f4). The original
+// pastels were tuned for a dark theme and washed out on white. These read as
+// the colored dots / borders / fills across both the Trajectory and the
+// Capability Map (shared constant).
 const DOMAIN_COLORS = {
-  genai: '#68b8ad',     // steel teal — primary
-  cv: '#86a7d8',        // muted blue
-  mlops: '#91bd88',     // sage
-  gov: '#b894c8',       // muted violet
-  ml: '#d0a36f',        // restrained brass
-  research: '#9aa8a2',  // mineral gray
+  genai: '#2c7d72',     // steel teal — primary
+  cv: '#3f6bb0',        // muted blue
+  mlops: '#4e7d44',     // sage
+  gov: '#7d4f97',       // muted violet
+  ml: '#9a6b29',        // restrained brass
+  research: '#5f6b65',  // mineral gray
 };
 
 // ——— DOMAIN EXPERTISE (quantified bars) ———————————————
@@ -32,8 +36,8 @@ const DomainBars = ({ data, amber, S }) => {
         color: amber,
       }}>
         <div>DOMAIN</div>
-        <div>YEARS ACTIVE <span style={{ color: '#82928d' }}>/ max {maxYears}</span></div>
-        <div>SHIPPED PROJECTS <span style={{ color: '#82928d' }}>/ max {maxProj}</span></div>
+        <div>YEARS ACTIVE <span style={{ color: 'var(--c-text-subtle)' }}>/ max {maxYears}</span></div>
+        <div>SHIPPED PROJECTS <span style={{ color: 'var(--c-text-subtle)' }}>/ max {maxProj}</span></div>
       </div>
 
       {data.map((d, i) => (
@@ -47,16 +51,16 @@ const DomainBars = ({ data, amber, S }) => {
         }}>
           {/* label */}
           <div>
-            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 20, color: '#f0f6f3', lineHeight: 1.15, letterSpacing: '-0.005em' }}>
+            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 20, color: 'var(--c-text)', lineHeight: 1.15, letterSpacing: '-0.005em' }}>
               {d.axis}
             </div>
-            <div style={{ fontSize: 12, color: '#82928d', marginTop: 4, lineHeight: 1.45 }}>
+            <div style={{ fontSize: 12, color: 'var(--c-text-subtle)', marginTop: 4, lineHeight: 1.45 }}>
               {d.note}
             </div>
           </div>
           {/* years bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ flex: 1, height: 10, background: 'rgba(104,184,173,0.08)', position: 'relative' }}>
+            <div style={{ flex: 1, height: 10, background: 'rgba(44,125,114,0.16)', position: 'relative' }}>
               <div style={{
                 position: 'absolute', top: 0, bottom: 0, left: 0,
                 width: `${(d.years / maxYears) * 100}%`,
@@ -69,14 +73,14 @@ const DomainBars = ({ data, amber, S }) => {
           </div>
           {/* projects bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ flex: 1, height: 10, background: 'rgba(104,184,173,0.08)', position: 'relative' }}>
+            <div style={{ flex: 1, height: 10, background: 'rgba(44,125,114,0.16)', position: 'relative' }}>
               <div style={{
                 position: 'absolute', top: 0, bottom: 0, left: 0,
                 width: `${(d.projects / maxProj) * 100}%`,
-                background: 'rgba(104,184,173,0.55)',
+                background: 'rgba(44,125,114,0.6)',
               }} />
             </div>
-            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 26, color: '#f0f6f3', lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
+            <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 26, color: 'var(--c-text)', lineHeight: 1, minWidth: 44, textAlign: 'right', letterSpacing: '-0.02em' }}>
               {d.projects}
             </div>
           </div>
@@ -132,11 +136,20 @@ const Timeline = ({ data, amber, S }) => {
                   {d.year}
                 </div>
                 <div style={{
-                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: '#f0f6f3',
+                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: 'var(--c-text)',
                   lineHeight: 1.3, textAlign: 'center', textWrap: 'pretty',
                 }}>
                   {d.label}
                 </div>
+                {d.org && (
+                  <div style={{
+                    fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 10,
+                    color: 'var(--c-text-subtle)', letterSpacing: '0.03em',
+                    marginTop: 5, textAlign: 'center', lineHeight: 1.3,
+                  }}>
+                    {d.org}
+                  </div>
+                )}
               </div>
 
               {/* connector stub (top) */}
@@ -148,7 +161,7 @@ const Timeline = ({ data, amber, S }) => {
               {/* node — baseline = 140px */}
               <div style={{
                 width: 10, height: 10, borderRadius: '50%', background: c,
-                  boxShadow: `0 0 0 3px #090f0e, 0 0 0 4px ${c}55`,
+                  boxShadow: `0 0 0 3px var(--c-bg), 0 0 0 4px ${c}`,
                 flexShrink: 0,
               }} />
 
@@ -172,11 +185,20 @@ const Timeline = ({ data, amber, S }) => {
                   {d.year}
                 </div>
                 <div style={{
-                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: '#f0f6f3',
+                  fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 15, color: 'var(--c-text)',
                   lineHeight: 1.3, textAlign: 'center', textWrap: 'pretty',
                 }}>
                   {d.label}
                 </div>
+                {d.org && (
+                  <div style={{
+                    fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 10,
+                    color: 'var(--c-text-subtle)', letterSpacing: '0.03em',
+                    marginTop: 5, textAlign: 'center', lineHeight: 1.3,
+                  }}>
+                    {d.org}
+                  </div>
+                )}
               </div>
             </div>
           );
@@ -195,9 +217,9 @@ const SkillTree = ({ data, amber, S }) => {
         return (
           <div key={i}>
             {/* domain header */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, paddingBottom: 16, borderBottom: `1px solid ${c}55` }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, paddingBottom: 16, borderBottom: `1px solid ${c}` }}>
               <div style={{ width: 10, height: 10, background: c, marginTop: 4 }} />
-              <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 28, color: '#f0f6f3', letterSpacing: '-0.015em', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: 28, color: 'var(--c-text)', letterSpacing: '-0.015em', lineHeight: 1 }}>
                 {d.domain}
               </div>
               <div style={{ marginLeft: 'auto', fontFamily: 'IBM Plex Mono, ui-monospace, monospace', fontSize: 11, color: c, letterSpacing: '0.08em' }}>
@@ -213,9 +235,9 @@ const SkillTree = ({ data, amber, S }) => {
                     fontFamily: 'IBM Plex Sans, system-ui, sans-serif',
                     fontSize: heavy ? 14 : 12.5,
                     fontWeight: heavy ? 600 : 400,
-                    color: heavy ? '#f0f6f3' : '#b7c9c3',
+                    color: heavy ? 'var(--c-text)' : 'var(--c-text-subtle)',
                     padding: heavy ? '8px 14px' : '6px 12px',
-                    border: heavy ? `1px solid ${c}` : `1px solid ${c}55`,
+                    border: heavy ? `1px solid ${c}` : `1px solid ${c}aa`,
                     background: heavy ? `${c}22` : 'transparent',
                     borderRadius: 2,
                     lineHeight: 1.2,
@@ -242,7 +264,7 @@ const ExpertiseInfographics = ({ data, amber, S, Num }) => {
           <Num n="04" />
           <div style={S.eyebrow}>Domain Expertise</div>
         </div>
-        <p style={{ fontSize: 15, color: '#9eb2ac', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 760 }}>
+        <p style={{ fontSize: 15, color: 'var(--c-text-subtle)', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 760 }}>
           Two countable metrics per domain, derived only from documented work: <em style={{ color: amber }}>years active</em> (from first shipped artifact in that area — job, publication, or patent) and <em style={{ color: amber }}>shipped projects</em> (distinct production systems, peer-reviewed papers, patents, or named programs — not sub-tasks). Hover a row to see what the count contains.
         </p>
 
@@ -266,7 +288,7 @@ const ExpertiseInfographics = ({ data, amber, S, Num }) => {
           <Num n="06" />
           <div style={S.eyebrow}>Capability Map</div>
         </div>
-        <p style={{ fontSize: 15, color: '#9eb2ac', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 720 }}>
+        <p style={{ fontSize: 15, color: 'var(--c-text-subtle)', margin: '0 0 48px 72px', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 720 }}>
           Sub-capabilities by domain. <em style={{ color: amber }}>Filled tags</em> = heavy production experience; outlined = working familiarity.
         </p>
         <div style={{ marginLeft: 72 }}>

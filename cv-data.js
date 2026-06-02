@@ -40,6 +40,30 @@ window.CV_DATA = {
     { value: '100+', label: 'AI governance community co-chaired' },
   ],
 
+  // Logo strip — truthful affiliations only, grouped into three bands by `kind`:
+  //   kind:'employer'   = direct employer / role held              → band "Experience"
+  //   kind:'consulted'  = federal program advised / delivered for  → band "Consulted & delivered for"
+  //   kind:'certifier'  = certification issuer only (NOT employer)  → band "Certified by"
+  // `svg`  = clean local asset under assets/logos/, rendered as an <img> at a consistent strip
+  //          height. Corporate wordmarks (Accenture, Booz Allen, Anthropic) are monochrome
+  //          (fill="currentColor"); the IARPA seal is its own two-tone brand mark. All assets are
+  //          committed locally — no CDN / hotlinking. Trademarks used nominatively (factual
+  //          affiliation / certification). Federal seals are U.S.-Government public-domain works.
+  // `mark` = clean text wordmark fallback, rendered when no `svg` is present (or if the asset
+  //          fails to load). Orgs without a committed SVG keep wordmark only.
+  // To give an org an official asset: commit a clean local SVG to assets/logos/ and add `svg` here.
+  logos: [
+    { name: 'Accenture',                       kind: 'employer',  mark: 'accenture',             svg: 'assets/logos/accenture.svg' },
+    { name: 'National Science Foundation (NSF)', kind: 'employer', mark: 'NSF' },
+    { name: 'Booz Allen Hamilton',             kind: 'employer',  mark: 'Booz Allen Hamilton',   svg: 'assets/logos/booz-allen-hamilton.svg' },
+    { name: 'ODNI · NGA',                      kind: 'employer',  mark: 'ODNI · NGA' },
+    { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA' },
+    { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg' },
+    { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD' },
+    { name: 'U.S. Department of State (DoS)',  kind: 'consulted', mark: 'Dept. of State' },
+    { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg' },
+  ],
+
   narrative: `I started in scientific machine learning: drones, remote sensing, microbiology, and messy real-world data. Later I moved into federal delivery and AI governance, including advising the National Science Foundation\u2019s Chief AI Officer. Today I lead GenAI and agentic AI work at Accenture. The through-line is practical: build the thing, understand the institution around it, and make sure the system can survive contact with users, budgets, and oversight.`,
 
   outcomes: [
@@ -54,7 +78,6 @@ window.CV_DATA = {
     { label: 'Cost Impact', value: '99.6% ML infrastructure cost reduction on a global geospatial platform', link: '/case-study-ml-cost' },
     { label: 'Model Readiness', value: 'Public LLM evaluation workbench for regulated enterprise AI', link: '/projects/llm-eval-workbench' },
     { label: 'Evaluation Research', value: 'PAEF contract-compliance evaluation: 193 contracts and 7,913 labeled policy checks', link: '/research/paef-contract-compliance' },
-    { label: 'Agentic Delivery', value: 'Governed Azure DevOps and Claude Code workflow for enterprise prototyping', link: '/case-study-agentic-ai-sdlc-platform' },
   ],
 
 
@@ -90,14 +113,6 @@ window.CV_DATA = {
       body: 'Evaluation study comparing microagent atomic policy checks with monolithic auditing across 193 service contracts and 7,913 labeled policy checks.',
       tags: ['Contract Compliance', 'Microagents', 'Token-Level Calibration', 'AI Governance'],
       link: '/research/paef-contract-compliance',
-    },
-    {
-      id: 'agentic-ai-sdlc',
-      title: 'Agentic AI SDLC Platform',
-      subtitle: 'Governed enterprise prototyping workflow',
-      body: 'Public-safe case study of a Claude Code-integrated, model-adaptable delivery workflow anchored in Azure DevOps, human review, traceability, and security boundaries.',
-      tags: ['Azure DevOps', 'Claude Code', 'Human in the Loop', 'Traceability'],
-      link: '/case-study-agentic-ai-sdlc-platform',
     },
   ],
 
@@ -178,25 +193,6 @@ window.CV_DATA = {
       images: [],
     },
     {
-      id: 'sdlc-agentic',
-      title: 'Agentic AI SDLC Platform — Accenture Ireland',
-      role: 'Architect · governed AI-assisted delivery',
-      year: '2026',
-      award: 'Public-safe summary · current enterprise delivery work',
-      summary: 'Building a governed Azure DevOps and Claude Code workflow for enterprise AI prototyping, with human checkpoints, artifact traceability, review controls, security boundaries, and reusable delivery patterns.',
-      details: [
-        'Azure DevOps remains the system of record for work items, repositories, pull requests, tests, approvals, pipeline results, and release evidence.',
-        'Workflow spans requirements decomposition, solution design, implementation, pull-request review, automated tests, security review, and deployment-readiness evidence.',
-        'Target artifacts include requirement traceability, session summaries, design rationale, generated diffs, test evidence, risk flags, approval history, and known limitations.',
-        'Security boundaries include scoped repository access, secret exclusion, least-privilege tools, human review, and escalation for uncertain outputs.',
-      ],
-      stack: ['Azure DevOps', 'Claude Code', 'Agents', 'Evaluation', 'Auditability', 'Human Review'],
-      links: [
-        { label: 'Case study', href: '/case-study-agentic-ai-sdlc-platform' },
-      ],
-      images: [],
-    },
-    {
       id: 'embedding-bench',
       title: 'Embedding Benchmarking — arXiv',
       role: 'Solo build · MLOps-focused evaluation framework',
@@ -256,14 +252,14 @@ window.CV_DATA = {
       { axis: 'AI Governance',    years: 2,  projects: 4,  note: 'NSF AIOps strategy, AI Development Playbook, 100+ CoP, approval/voting/literacy governance stack' },
     ],
     timeline: [
-      { year: 2015, label: 'PhD research begins', color: 'research' },
-      { year: 2018, label: 'Drone ML \u00b7 precision agriculture', color: 'cv' },
-      { year: 2020, label: 'DARPA program management', color: 'ml' },
-      { year: 2021, label: 'AWS Wildfire CV \u2014 3rd place', color: 'cv' },
-      { year: 2023, label: 'WACV + IGARSS first-author', color: 'research' },
-      { year: 2024, label: 'Embedding benchmark \u00b7 arXiv', color: 'genai' },
-      { year: 2025, label: 'NSF CAIO advisor \u2192 Accenture', color: 'gov' },
-      { year: 2026, label: 'Claude Certified Architect', color: 'genai' },
+      { year: 2015, label: 'PhD research begins', org: 'New Mexico State University', color: 'research' },
+      { year: 2018, label: 'Drone ML \u00b7 precision agriculture', org: 'ODNI / NGA', color: 'cv' },
+      { year: 2020, label: 'DARPA program management', org: 'Booz Allen Hamilton', color: 'ml' },
+      { year: 2021, label: 'AWS Wildfire CV \u2014 3rd place', org: 'Accenture Federal', color: 'cv' },
+      { year: 2023, label: 'WACV + IGARSS first-author', org: 'Peer-reviewed research', color: 'research' },
+      { year: 2024, label: 'Embedding benchmark \u00b7 arXiv', org: 'Independent', color: 'genai' },
+      { year: 2025, label: 'NSF CAIO advisor \u2192 Accenture', org: 'NSF \u2192 Accenture Ireland', color: 'gov' },
+      { year: 2026, label: 'Claude Certified Architect', org: 'Anthropic', color: 'genai' },
     ],
     tree: [
       { domain: 'LLMs & GenAI', count: 12, color: 'genai', children: [
@@ -341,8 +337,8 @@ window.CV_DATA = {
   experience: [
     {
       company: 'Accenture',
-      role: 'Industry Data & AI Decision Science Manager',
-      sub: 'AI / GenAI Solutions Architecture',
+      role: 'Applied AI Architect & GenAI Systems Lead',
+      sub: 'GenAI architecture & delivery leadership · official title: Industry Data & AI Decision Science Manager',
       period: 'Aug 2025 — Present',
       location: 'Dublin, Ireland',
       bullets: [

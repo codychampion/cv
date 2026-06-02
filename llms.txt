@@ -88,8 +88,6 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
   Public model-readiness benchmark for regulated enterprise AI using benign synthetic or public-domain scenarios, reviewable artifacts, cost, and latency evidence.
 - PAEF: Atomic LLM Evaluation for Contract Compliance: https://codychampion.bitsandbeakers.com/research/paef-contract-compliance
   Multi-contract, multi-model evaluation research comparing atomic microagent checks with monolithic auditing; published on Zenodo in April 2026.
-- Agentic AI SDLC Platform — Accenture Ireland: https://codychampion.bitsandbeakers.com/case-study-agentic-ai-sdlc-platform
-  Public-safe case study of a governed Azure DevOps and Claude Code workflow for traceable, human-reviewed enterprise AI prototyping.
 
 ## Education
 

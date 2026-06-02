@@ -85,7 +85,6 @@ const QuietWeightCV = () => {
           </h1>
           <div style={{ aspectRatio: '3/4', overflow: 'hidden', border: `1px solid rgba(104,184,173,0.3)`, position: 'relative', background: 'var(--c-bg-subtle)' }}>
             <img src={d.photo} alt="Cody Champion" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 18%', display: 'block', filter: 'saturate(0.94)' }} />
-            <div style={{ position: 'absolute', top: 10, left: 10, ...S.mono, fontSize: 9, color: amber, letterSpacing: '0.15em', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>FIG.00 — CC</div>
           </div>
         </div>
 
@@ -107,11 +106,6 @@ const QuietWeightCV = () => {
               {d.hero.scope ? <>{' '}{d.hero.scope}</> : ''}
               {d.hero.close ? ` ${d.hero.close}` : ''}
             </p>
-            {d.hero.bestFit && (
-              <div style={{ ...S.mono, fontSize: 11, color: 'var(--c-text-subtle)', letterSpacing: '0.04em', maxWidth: 700 }}>
-                {d.hero.bestFit}
-              </div>
-            )}
           </div>
         </div>
         <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 18, maxWidth: 760 }}>
@@ -123,6 +117,101 @@ const QuietWeightCV = () => {
           ))}
         </div>
       </section>
+
+      {/* LOGO STRIP — three bands: Experience · Consulted & delivered for · Certified by */}
+      {d.logos && d.logos.length > 0 && (() => {
+        const employers  = d.logos.filter(l => l.kind === 'employer');
+        const consulted  = d.logos.filter(l => l.kind === 'consulted');
+        const certifiers = d.logos.filter(l => l.kind === 'certifier');
+        // Consistent strip logo height — committed SVGs and text wordmarks read at the same
+        // optical scale. SVGs render at a fixed height with auto width (native aspect ratio).
+        const LOGO_H = 26;
+        // Logo: prefer a committed local SVG asset, rendered as a plain <img> at the shared strip
+        // height (org name as alt/title). Monochrome corporate wordmarks (currentColor → ink on the
+        // cream page) and the two-tone IARPA seal both read cleanly on the light background. Fall
+        // back to the clean text wordmark when no svg is present.
+        const Logo = ({ name, mark, svg, muted }) => {
+          const tint = muted ? 'var(--c-text-subtle)' : 'var(--c-text)';
+          if (svg) {
+            return (
+              <img
+                src={svg}
+                alt={name}
+                title={name}
+                loading="lazy"
+                style={{
+                  height: LOGO_H,
+                  width: 'auto',
+                  display: 'inline-block',
+                  verticalAlign: 'middle',
+                  opacity: muted ? 0.9 : 1,
+                }}
+              />
+            );
+          }
+          return (
+            <span
+              title={name}
+              style={{
+                ...S.serif,
+                fontSize: 22,
+                letterSpacing: '-0.01em',
+                color: tint,
+                opacity: muted ? 0.92 : 1,
+                whiteSpace: 'nowrap',
+                lineHeight: 1,
+                display: 'inline-flex',
+                alignItems: 'center',
+                height: LOGO_H,
+              }}
+            >
+              {mark}
+              {name === 'Accenture' && (
+                <span style={{ color: amber, fontStyle: 'italic', marginLeft: 1 }}>&gt;</span>
+              )}
+            </span>
+          );
+        };
+        return (
+          <section style={{ padding: '40px 72px', borderBottom: `1px solid rgba(104,184,173,0.18)` }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, marginBottom: 22 }}>
+              <div style={S.eyebrow}>Experience</div>
+              <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                Employers &amp; roles held
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '20px 44px' }}>
+              {employers.map((l, i) => (
+                <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} />
+              ))}
+            </div>
+            {consulted.length > 0 && (
+              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
+                <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+                  Consulted &amp; delivered for
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px 36px' }}>
+                  {consulted.map((l, i) => (
+                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
+                  ))}
+                </div>
+              </div>
+            )}
+            {certifiers.length > 0 && (
+              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
+                <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+                  Certified by
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px 36px' }}>
+                  {certifiers.map((l, i) => (
+                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        );
+      })()}
 
       {/* IMPACT SNAPSHOT — fast proof before the long CV */}
       <section style={{ padding: '40px 72px 44px', borderBottom: `1px solid rgba(104,184,173,0.18)`, background: 'rgba(104,184,173,0.025)' }}>
@@ -137,7 +226,7 @@ const QuietWeightCV = () => {
             SCAN FIRST · DETAILS BELOW
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 18 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18 }}>
           {d.proof.map((p, i) => (
             <div key={i} style={{ padding: '18px 0 0', borderTop: '1px solid rgba(104,184,173,0.28)' }}>
               <div style={{ ...S.mono, fontSize: 10, color: amber, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
@@ -596,7 +685,7 @@ const QuietWeightCV = () => {
           </div>
         </div>
         <div className="postscript__foot">
-          <span>C·C · Dublin · MMXXVI · ◆</span>
+          <span>C·C · Dublin · ◆</span>
           <span>
             <a href="print.html">Print CV</a>
             {' · '}
