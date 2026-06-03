@@ -126,8 +126,8 @@ const QuietWeightCV = () => {
         // Consistent strip logo height — committed SVGs and text wordmarks read at the same
         // optical scale. SVGs render at a fixed height with auto width (native aspect ratio),
         // vertically centered so wide wordmarks and squarer seals share a common centerline.
-        const LOGO_H = 28;   // wordmark height (Accenture / Booz Allen / Anthropic)
-        const SEAL_H = 40;   // square federal seals ride taller to match wordmark visual weight
+        const LOGO_H = 34;   // wordmark height (Accenture / Booz Allen / Anthropic)
+        const SEAL_H = 44;   // square federal seals ride a touch taller to match wordmark weight
         // COLOR logo wall: each mark shows in its real brand color — Accenture purple,
         // the round federal seals (NSF / ODNI / DoD / DARPA / IARPA) in full color, and the
         // currentColor wordmarks (Booz Allen / Anthropic) as crisp dark ink. No grayscale filter.
@@ -149,6 +149,7 @@ const QuietWeightCV = () => {
                 style={{
                   height: seal ? SEAL_H : LOGO_H,
                   width: 'auto',
+                  maxWidth: '100%',
                   display: 'inline-block',
                   verticalAlign: 'middle',
                   objectFit: 'contain',
@@ -191,7 +192,7 @@ const QuietWeightCV = () => {
                 Employers &amp; roles held
               </div>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 34px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
               {employers.map((l, i) => (
                 <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} seal={l.seal} />
               ))}
@@ -201,7 +202,7 @@ const QuietWeightCV = () => {
                 <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
                   Consulted &amp; delivered for
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
                   {consulted.map((l, i) => (
                     <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
                   ))}
@@ -213,7 +214,7 @@ const QuietWeightCV = () => {
                 <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
                   Certified by
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
                   {certifiers.map((l, i) => (
                     <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
                   ))}
