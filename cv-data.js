@@ -83,10 +83,18 @@ window.CV_DATA = {
 
   caseStudies: [
     {
+      id: 'lock-in-then-meter',
+      title: 'Lock-In, Then Meter',
+      subtitle: 'A build-vs-buy decision brief for AI inference after the flat-rate era',
+      body: 'A decision brief and cost model on when self-hosting LLM inference actually pays. I work the break-even math against managed APIs and argue the real hedge is not owning GPUs but switchability — an OpenAI-compatible interface, interchangeable open-weight providers, and a frontier model held in reserve. Lock in the interface first; meter the spend second.',
+      tags: ['AI Infrastructure', 'LLMOps', 'Cost Modeling', 'Build vs Buy', 'Decision Brief'],
+      link: '/lock-in-then-meter/',
+    },
+    {
       id: 'nsf-ai-governance',
       title: 'NSF AI Governance Foundations',
       subtitle: 'Greenfield AI governance inside a newly formed CAIO function',
-      body: 'Built pre-strategy AI governance, technical-review, community, security, and data-architecture foundations for responsible AI adoption at NSF. Owned AI use-case intake, created risk-classification and technical-review patterns, co-chaired a 100+ member AI Community of Practice, served as voting engineering review board member for AI systems, ran AI security table-tops, supported Microsoft Copilot rollout, architected a production vector/graph capability for research-impact intelligence, and liaised with NASA, DOE, NAIRR, and other federal partners.',
+      body: 'Designed and led the pre-strategy AI governance, technical-review, community, security, and data-architecture foundations for responsible AI adoption at NSF. Owned AI use-case intake, defined risk-classification and technical-review patterns, co-chaired a 100+ member AI Community of Practice, served as voting engineering review board member for AI systems, directed AI security table-tops, supported Microsoft Copilot rollout, set the technical architecture for a production vector/graph capability for research-impact intelligence — built to my design by the engineering team — and liaised with NASA, DOE, NAIRR, and other federal partners.',
       tags: ['AI Governance', 'Responsible AI', 'Public Sector AI', 'Technical Review', 'Vector + Graph Architecture', 'AI Security Table-Tops', 'Interagency Coordination'],
       link: '/case-study-nsf-ai-governance',
     },
@@ -359,7 +367,7 @@ window.CV_DATA = {
         'Strategic advisor to the NSF Chief AI Officer on enterprise AI governance, risk management, and technology adoption.',
         'Led organization-wide AI transformation: AIOps strategy and AI Development Playbook guiding responsible deployment across mission-critical environments.',
         'Co-chaired a 100+ member AI Community of Practice; established governance frameworks enabling coordinated responsible AI development.',
-        'Engineered the organization\u2019s first vector and graph database capabilities; led tool evaluations as voting member of the engineering review board.',
+        'Designed the organization\u2019s first vector- and graph-database architecture, delivered by the engineering team; led tool evaluations as a voting member of the engineering review board.',
         'Developed governance structures: approval processes, voting boards, documentation standards, AI literacy, risk classification, transparency, audit readiness.',
       ],
     },
