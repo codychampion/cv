@@ -61,7 +61,7 @@ window.CV_DATA = {
     { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA',               svg: 'assets/logos/darpa.svg', seal: true },
     { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg', seal: true },
     { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD',                 svg: 'assets/logos/dod.svg', seal: true },
-    { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg' },
+    { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg', h: 24 },
   ],
 
   narrative: `I started in scientific machine learning: drones, remote sensing, microbiology, and messy real-world data. Later I moved into federal delivery and AI governance, including advising the National Science Foundation\u2019s Chief AI Officer. Today I lead GenAI and agentic AI work at Accenture. The through-line is practical: build the thing, understand the institution around it, and make sure the system can survive contact with users, budgets, and oversight.`,

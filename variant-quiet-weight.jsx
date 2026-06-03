@@ -137,7 +137,7 @@ const QuietWeightCV = () => {
         // height (org name as alt/title), passed through the uniform monochrome filter above so
         // colored seals and ink wordmarks read as one cohesive wall. Fall back to the clean text
         // wordmark (same ink tint) when no svg is present.
-        const Logo = ({ name, mark, svg, muted, seal }) => {
+        const Logo = ({ name, mark, svg, muted, seal, h }) => {
           const tint = muted ? 'var(--c-text-subtle)' : 'var(--c-text)';
           if (svg) {
             return (
@@ -147,7 +147,7 @@ const QuietWeightCV = () => {
                 title={name}
                 loading="lazy"
                 style={{
-                  height: seal ? SEAL_H : LOGO_H,
+                  height: seal ? SEAL_H : (h || LOGO_H),
                   width: 'auto',
                   maxWidth: '100%',
                   display: 'inline-block',
@@ -194,31 +194,35 @@ const QuietWeightCV = () => {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
               {employers.map((l, i) => (
-                <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} seal={l.seal} />
+                <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} seal={l.seal} h={l.h} />
               ))}
             </div>
-            {consulted.length > 0 && (
-              <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
-                <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
-                  Consulted &amp; delivered for
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
-                  {consulted.map((l, i) => (
-                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
-                  ))}
-                </div>
-              </div>
-            )}
-            {certifiers.length > 0 && (
-              <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
-                <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
-                  Certified by
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '24px 16px' }}>
-                  {certifiers.map((l, i) => (
-                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
-                  ))}
-                </div>
+            {(consulted.length > 0 || certifiers.length > 0) && (
+              <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid rgba(104,184,173,0.12)', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 48, alignItems: 'start' }}>
+                {consulted.length > 0 && (
+                  <div>
+                    <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+                      Consulted &amp; delivered for
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '20px 16px' }}>
+                      {consulted.map((l, i) => (
+                        <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} h={l.h} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {certifiers.length > 0 && (
+                  <div style={{ borderLeft: '1px solid rgba(104,184,173,0.12)', paddingLeft: 48 }}>
+                    <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+                      Certified by
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', alignItems: 'center', justifyItems: 'center', gap: '20px 16px' }}>
+                      {certifiers.map((l, i) => (
+                        <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} h={l.h} />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </section>
