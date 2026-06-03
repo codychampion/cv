@@ -54,12 +54,12 @@ window.CV_DATA = {
   // To give an org an official asset: commit a clean local SVG to assets/logos/ and add `svg` here.
   logos: [
     { name: 'Accenture',                       kind: 'employer',  mark: 'accenture',             svg: 'assets/logos/accenture.svg' },
-    { name: 'National Science Foundation (NSF)', kind: 'employer', mark: 'NSF',              svg: 'assets/logos/nsf.svg' },
+    { name: 'National Science Foundation (NSF)', kind: 'employer', mark: 'NSF',              svg: 'assets/logos/nsf.svg', seal: true },
     { name: 'Booz Allen Hamilton',             kind: 'employer',  mark: 'Booz Allen Hamilton',   svg: 'assets/logos/booz-allen-hamilton.svg' },
-    { name: 'ODNI · NGA',                      kind: 'employer',  mark: 'ODNI · NGA',          svg: 'assets/logos/odni.png' },
-    { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA',               svg: 'assets/logos/darpa.svg' },
-    { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg' },
-    { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD',                 svg: 'assets/logos/dod.svg' },
+    { name: 'ODNI · NGA',                      kind: 'employer',  mark: 'ODNI · NGA',          svg: 'assets/logos/odni.png', seal: true },
+    { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA',               svg: 'assets/logos/darpa.svg', seal: true },
+    { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg', seal: true },
+    { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD',                 svg: 'assets/logos/dod.svg', seal: true },
     { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg' },
   ],
 
@@ -106,22 +106,6 @@ window.CV_DATA = {
       body: 'Five compounding engineering defects generating $26,200/month in avoidable cloud spend. Rebuilt codebase and cloud architecture from scratch to $90/month. No new algorithms — production engineering discipline applied to research-origin code.',
       tags: ['ML Engineering', 'Cloud Architecture', 'Cost Optimization', 'Production ML', 'Geospatial CV'],
       link: '/case-study-ml-cost',
-    },
-    {
-      id: 'llm-eval-workbench',
-      title: 'LLM Evaluation Workbench',
-      subtitle: 'Model readiness for regulated enterprise AI',
-      body: 'Public evaluation harness for capability, reliability, governance behavior, groundedness, security reasoning, cost, and latency, using benign synthetic or public-domain evaluation scenarios.',
-      tags: ['LLM Evaluation', 'Model Readiness', 'RAG Groundedness', 'AI Governance', 'Cost / Latency'],
-      link: '/projects/llm-eval-workbench',
-    },
-    {
-      id: 'paef-contract-compliance',
-      title: 'PAEF Contract Compliance Evaluation',
-      subtitle: 'Atomic evaluation research with token-level margins',
-      body: 'Evaluation study comparing microagent atomic policy checks with monolithic auditing across 193 service contracts and 7,913 labeled policy checks.',
-      tags: ['Contract Compliance', 'Microagents', 'Token-Level Calibration', 'AI Governance'],
-      link: '/research/paef-contract-compliance',
     },
   ],
 
@@ -418,12 +402,14 @@ window.CV_DATA = {
     {
       degree: 'Ph.D. Biology',
       school: 'New Mexico State University',
+      logo: 'assets/logos/nmsu.svg',
       period: '2014 — 2018',
       detail: 'Concentration: Microbiology · Minor: Applied Statistics. Dissertation: “Impact of Oxidative Stress on the Malaria Vector, Anopheles gambiae” — investigating the role of NADPH regeneration in redox homeostasis, mosquito longevity, fecundity, and insecticide resistance. Built a digital twin of the mosquito metabolome informed by wet-lab experiments and sequencing data, using the model to identify novel insecticide applications that resulted in a patent. Awarded the NSF Graduate Research Fellowship on a competitive proposal.',
     },
     {
       degree: 'B.S. / M.S. Biology',
       school: 'New Mexico Institute of Mining and Technology',
+      logo: 'assets/logos/nmt.png',
       period: '2009 — 2014',
       detail: 'Dissertation: Photodynamic Anti-MRSA Activity of Modified Indoles.',
     },

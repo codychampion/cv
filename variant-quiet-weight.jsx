@@ -126,17 +126,18 @@ const QuietWeightCV = () => {
         // Consistent strip logo height — committed SVGs and text wordmarks read at the same
         // optical scale. SVGs render at a fixed height with auto width (native aspect ratio),
         // vertically centered so wide wordmarks and squarer seals share a common centerline.
-        const LOGO_H = 30;
+        const LOGO_H = 28;   // wordmark height (Accenture / Booz Allen / Anthropic)
+        const SEAL_H = 40;   // square federal seals ride taller to match wordmark visual weight
         // COLOR logo wall: each mark shows in its real brand color — Accenture purple,
-        // the federal seals (DoD / DARPA / IARPA / ODNI) in full color, and the currentColor
-        // wordmarks (NSF / Booz Allen / Anthropic) as crisp dark ink. No grayscale filter.
+        // the round federal seals (NSF / ODNI / DoD / DARPA / IARPA) in full color, and the
+        // currentColor wordmarks (Booz Allen / Anthropic) as crisp dark ink. No grayscale filter.
         // Muted bands (consulted / certified) sit one tier back via a slight opacity drop only.
         const LOGO_FILTER = 'none';
         // Logo: prefer a committed local SVG asset, rendered as a plain <img> at the shared strip
         // height (org name as alt/title), passed through the uniform monochrome filter above so
         // colored seals and ink wordmarks read as one cohesive wall. Fall back to the clean text
         // wordmark (same ink tint) when no svg is present.
-        const Logo = ({ name, mark, svg, muted }) => {
+        const Logo = ({ name, mark, svg, muted, seal }) => {
           const tint = muted ? 'var(--c-text-subtle)' : 'var(--c-text)';
           if (svg) {
             return (
@@ -146,7 +147,7 @@ const QuietWeightCV = () => {
                 title={name}
                 loading="lazy"
                 style={{
-                  height: LOGO_H,
+                  height: seal ? SEAL_H : LOGO_H,
                   width: 'auto',
                   display: 'inline-block',
                   verticalAlign: 'middle',
@@ -192,7 +193,7 @@ const QuietWeightCV = () => {
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 34px' }}>
               {employers.map((l, i) => (
-                <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} />
+                <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} seal={l.seal} />
               ))}
             </div>
             {consulted.length > 0 && (
@@ -202,7 +203,7 @@ const QuietWeightCV = () => {
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
                   {consulted.map((l, i) => (
-                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
+                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
                   ))}
                 </div>
               </div>
@@ -214,7 +215,7 @@ const QuietWeightCV = () => {
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
                   {certifiers.map((l, i) => (
-                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
+                    <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} seal={l.seal} />
                   ))}
                 </div>
               </div>
@@ -495,7 +496,10 @@ const QuietWeightCV = () => {
         </div>
         {d.education.map((e, i) => (
           <div key={i} style={{ padding: '28px 0', borderTop: '1px solid rgba(104,184,173,0.18)', display: 'grid', gridTemplateColumns: '200px 1fr', gap: 48 }}>
-            <div style={{ ...S.mono, fontSize: 11, color: amber, letterSpacing: '0.08em' }}>{e.period}</div>
+            <div>
+              {e.logo && <img src={e.logo} alt={e.school} loading="lazy" style={{ height: 38, width: 'auto', maxWidth: 150, display: 'block', marginBottom: 14, objectFit: 'contain' }} />}
+              <div style={{ ...S.mono, fontSize: 11, color: amber, letterSpacing: '0.08em' }}>{e.period}</div>
+            </div>
             <div>
               <h3 style={{ ...S.serif, fontSize: 32, color: 'var(--c-text)', margin: 0, letterSpacing: '-0.01em' }}>{e.degree}</h3>
               <div style={{ ...S.serif, fontStyle: 'italic', fontSize: 18, color: amber, marginTop: 4 }}>{e.school}</div>
