@@ -111,7 +111,9 @@ const Timeline = ({ data, amber, S }) => {
         <div style={{ position: 'absolute', right: 0, top: 134, width: 1, height: 13, background: 'rgba(104,184,173,0.35)' }} />
 
         {data.map((d, i) => {
-          const pct = ((d.year - yMin) / span) * 100;
+          // Even spacing per milestone (not year-proportional) — keeps the recent
+          // 2023–2026 cluster from overlapping while 2015–2018 sits sparse.
+          const pct = data.length > 1 ? (i / (data.length - 1)) * 100 : 50;
           const c = DOMAIN_COLORS[d.color] || amber;
           const isTop = i % 2 === 0;
 

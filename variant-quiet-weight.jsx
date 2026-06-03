@@ -126,17 +126,12 @@ const QuietWeightCV = () => {
         // Consistent strip logo height — committed SVGs and text wordmarks read at the same
         // optical scale. SVGs render at a fixed height with auto width (native aspect ratio),
         // vertically centered so wide wordmarks and squarer seals share a common centerline.
-        const LOGO_H = 26;
-        // COHESION: the committed SVGs are a mix of styles — `currentColor` corporate wordmarks
-        // (accenture / nsf / booz allen / anthropic, already ink) alongside full-color federal
-        // seals (DoD blue Pentagon gradient, IARPA cyan+teal, DARPA navy). To read as ONE
-        // monochrome logo wall on the cream (#f8f7f4) page, every <img> gets the SAME filter:
-        //   grayscale(1)  → strips the seals' color so they join the ink family
-        //   contrast(1.1) brightness(0.55) → pushes the mid-grey greyed seals down toward the
-        //                  near-black ink (#1a1916) of the wordmarks, unifying weight
-        // The already-dark currentColor marks are near-black, so this barely moves them.
-        // Muted bands (consulted / certified) drop opacity to sit one tier back from Experience.
-        const LOGO_FILTER = 'grayscale(1) contrast(1.1) brightness(0.55)';
+        const LOGO_H = 30;
+        // COLOR logo wall: each mark shows in its real brand color — Accenture purple,
+        // the federal seals (DoD / DARPA / IARPA / ODNI) in full color, and the currentColor
+        // wordmarks (NSF / Booz Allen / Anthropic) as crisp dark ink. No grayscale filter.
+        // Muted bands (consulted / certified) sit one tier back via a slight opacity drop only.
+        const LOGO_FILTER = 'none';
         // Logo: prefer a committed local SVG asset, rendered as a plain <img> at the shared strip
         // height (org name as alt/title), passed through the uniform monochrome filter above so
         // colored seals and ink wordmarks read as one cohesive wall. Fall back to the clean text
@@ -157,7 +152,7 @@ const QuietWeightCV = () => {
                   verticalAlign: 'middle',
                   objectFit: 'contain',
                   filter: LOGO_FILTER,
-                  opacity: muted ? 0.7 : 0.92,
+                  opacity: muted ? 0.9 : 1,
                 }}
               />
             );
@@ -172,7 +167,7 @@ const QuietWeightCV = () => {
                 color: tint,
                 // Match the filtered SVG opacity tiers (Experience 0.92 / muted 0.7) so the
                 // ODNI · NGA text wordmark reads at the same ink weight as its neighbors.
-                opacity: muted ? 0.7 : 0.92,
+                opacity: muted ? 0.9 : 1,
                 whiteSpace: 'nowrap',
                 lineHeight: 1,
                 display: 'inline-flex',
@@ -188,24 +183,24 @@ const QuietWeightCV = () => {
           );
         };
         return (
-          <section style={{ padding: '40px 72px', borderBottom: `1px solid rgba(104,184,173,0.18)` }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, marginBottom: 22 }}>
+          <section style={{ padding: '34px 72px', borderBottom: `1px solid rgba(104,184,173,0.18)` }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, marginBottom: 18 }}>
               <div style={S.eyebrow}>Experience</div>
               <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                 Employers &amp; roles held
               </div>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '20px 44px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 34px' }}>
               {employers.map((l, i) => (
                 <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={false} />
               ))}
             </div>
             {consulted.length > 0 && (
-              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
+              <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
                 <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
                   Consulted &amp; delivered for
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px 36px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
                   {consulted.map((l, i) => (
                     <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
                   ))}
@@ -213,11 +208,11 @@ const QuietWeightCV = () => {
               </div>
             )}
             {certifiers.length > 0 && (
-              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
+              <div style={{ marginTop: 22, paddingTop: 18, borderTop: '1px solid rgba(104,184,173,0.12)' }}>
                 <div style={{ ...S.mono, fontSize: 10, color: 'var(--c-text-subtle)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
                   Certified by
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px 36px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 30px' }}>
                   {certifiers.map((l, i) => (
                     <Logo key={i} name={l.name} mark={l.mark} svg={l.svg} muted={true} />
                   ))}
@@ -421,7 +416,7 @@ const QuietWeightCV = () => {
                 </div>
               </div>
             ))}
-            <div style={{ ...S.mono, fontSize: 11, color: amber, letterSpacing: '0.1em', margin: '40px 0 16px' }}>COMMUNITIES</div>
+            <div style={{ ...S.mono, fontSize: 11, color: amber, letterSpacing: '0.1em', margin: '40px 0 16px' }}>COMMUNITY & SERVICE</div>
             {d.leadership.communities.map((c, i) => (
               <div key={i} style={{ padding: '18px 0', borderTop: '1px solid rgba(104,184,173,0.18)' }}>
                 <div style={{ ...S.serif, fontSize: 20, color: 'var(--c-text)', lineHeight: 1.25 }}>
