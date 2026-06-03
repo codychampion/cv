@@ -88,6 +88,8 @@ window.CV_DATA = {
       subtitle: 'A build-vs-buy decision brief for AI inference after the flat-rate era',
       body: 'A decision brief and cost model on when self-hosting LLM inference actually pays. I work the break-even math against managed APIs and argue the real hedge is not owning GPUs but switchability — an OpenAI-compatible interface, interchangeable open-weight providers, and a frontier model held in reserve. Lock in the interface first; meter the spend second.',
       tags: ['AI Infrastructure', 'LLMOps', 'Cost Modeling', 'Build vs Buy', 'Decision Brief'],
+      label: 'White Paper',
+      cta: 'Read the brief →',
       link: '/lock-in-then-meter/',
     },
     {

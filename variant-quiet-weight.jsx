@@ -315,13 +315,13 @@ const QuietWeightCV = () => {
       {d.caseStudies && d.caseStudies.length > 0 && (
         <section style={{ padding: '64px 72px', borderBottom: '1px solid rgba(104,184,173,0.14)', background: 'rgba(104,184,173,0.02)' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, marginBottom: 32 }}>
-            <div style={S.eyebrow}>Featured Case Studies</div>
+            <div style={S.eyebrow}>Featured Work</div>
             <div style={{ ...S.mono, fontSize: 11, color: 'var(--c-text-subtle)', letterSpacing: '0.08em' }}>PROOF OF WORK</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {d.caseStudies.map((cs, i) => (
               <div key={i} style={{ border: '1px solid rgba(104,184,173,0.3)', padding: '28px 28px 24px', background: 'var(--c-bg-raised)' }}>
-                <div style={{ ...S.mono, fontSize: 10, color: amber, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Case Study</div>
+                <div style={{ ...S.mono, fontSize: 10, color: amber, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>{cs.label || 'Case Study'}</div>
                 <div style={{ ...S.serif, fontSize: 22, color: 'var(--c-text)', lineHeight: 1.15, marginBottom: 6 }}>{cs.title}</div>
                 <div style={{ fontSize: 13, color: amber, fontStyle: 'italic', marginBottom: 14 }}>{cs.subtitle}</div>
                 <p style={{ fontSize: 14, color: 'var(--c-text-subtle)', lineHeight: 1.55, margin: '0 0 18px', textWrap: 'pretty' }}>{cs.body}</p>
@@ -331,7 +331,7 @@ const QuietWeightCV = () => {
                   ))}
                 </div>
                 <a href={cs.link} style={{ ...S.mono, fontSize: 11, color: amber, textDecoration: 'none', borderBottom: `1px solid ${amber}`, paddingBottom: 1, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  Read case study →
+                  {cs.cta || 'Read case study →'}
                 </a>
               </div>
             ))}
