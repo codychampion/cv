@@ -61,6 +61,7 @@ window.CV_DATA = {
     { name: 'DARPA',                           kind: 'consulted', mark: 'DARPA',               svg: 'assets/logos/darpa.svg', seal: true },
     { name: 'IARPA',                           kind: 'consulted', mark: 'IARPA',                 svg: 'assets/logos/iarpa.svg', seal: true },
     { name: 'Department of Defense (DoD)',     kind: 'consulted', mark: 'DoD',                 svg: 'assets/logos/dod.svg', seal: true },
+    { name: 'Pinterest',                       kind: 'consulted', mark: 'Pinterest' },
     { name: 'Anthropic',                       kind: 'certifier', mark: 'Anthropic',             svg: 'assets/logos/anthropic.svg', h: 24 },
   ],
 
