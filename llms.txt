@@ -80,6 +80,8 @@ Research: 6 peer-reviewed publications, 2 patents, PhD Biology (NMSU)
 
 ## Case studies
 
+- Lock-In, Then Meter (white paper): https://codychampion.bitsandbeakers.com/lock-in-then-meter/
+  A build-versus-buy decision brief for AI inference after the flat-rate era. Argues the real hedge against token metering is switchability (an OpenAI-compatible interface, interchangeable open-weight providers, and a frontier model held in reserve), not owning GPUs. Managed open-model inference usually wins on cost; owned hardware only pays past roughly 100B tokens/month with a dedicated platform team. Includes a downloadable PDF, an editable cost model (xlsx), and the model source (Python).
 - NSF AI Governance Foundations: https://codychampion.bitsandbeakers.com/case-study-nsf-ai-governance
   Greenfield AI governance, technical review, community, security, and vector/graph architecture inside NSF's Chief AI Officer function. Pre-strategy operating layer for responsible AI adoption across a major U.S. science agency.
 - 99.6% ML Inference Cost Reduction for Global Geospatial Workloads: https://codychampion.bitsandbeakers.com/case-study-ml-cost
