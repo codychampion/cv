@@ -91,7 +91,7 @@ window.CV_DATA = {
       tags: ['AI Infrastructure', 'LLMOps', 'Cost Modeling', 'Build vs Buy', 'Decision Brief'],
       label: 'White Paper',
       cta: 'Read the brief →',
-      link: '/lock-in-then-meter/',
+      link: '/writing/lock-in-then-meter/',
     },
     {
       id: 'nsf-ai-governance',
