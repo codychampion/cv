@@ -65,7 +65,7 @@ const QuietWeightCV = () => {
           <a href="#sec-publications">Research</a>
           <a href="#sec-contact">Contact</a>
           <span className="sep">·</span>
-          <a href="/recruiters">For Recruiters</a>
+          <a href="/recruiters">Areas of Focus</a>
           <a href="/case-study-nsf-ai-governance">NSF Case Study ↗</a>
           <a href="/case-study-ml-cost">Cost Case Study ↗</a>
           <a href="print.html">Print CV</a>

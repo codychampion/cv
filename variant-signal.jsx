@@ -243,7 +243,7 @@ const SignalCV = () => {
         <div style={{ gridColumn: 'span 6' }}>
           <div style={S.tick}>Contact</div>
           <div style={{ fontSize: 40, color: fg, marginTop: 12, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-            Open to conversations on <span style={{ color: blue }}>enterprise GenAI</span>,<br />architecture decisions, and production reality.
+            Conversations on <span style={{ color: blue }}>enterprise GenAI</span>,<br />architecture decisions, and production reality.
           </div>
         </div>
         <div style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', gap: 14, justifyContent: 'flex-end', alignItems: 'flex-end' }}>

@@ -31,7 +31,7 @@ window.CV_DATA = {
     proofB: '',
     scope: 'Experience across Accenture, NSF\u2019s Chief AI Officer function, federal AI delivery, enterprise GenAI, and applied ML systems.',
     close: '',
-    bestFit: 'Best fit: Staff Applied AI Architect · GenAI Deployment Lead · LLM Evaluation Lead · AI Governance Engineering Lead · Regulated AI Solutions Architect · Public Sector AI Lead',
+    bestFit: 'Areas of focus: Applied AI architecture · GenAI deployment · LLM evaluation · AI governance engineering · regulated AI systems · public-sector AI',
   },
 
   heroStats: [
@@ -226,7 +226,7 @@ window.CV_DATA = {
     'Enterprise GenAI architecture — RAG, agents, tool orchestration, LLMOps, Azure, GCP, observability',
     'LLM evaluation and model readiness — reliability, governance behavior, groundedness, security reasoning, cost/latency tracking',
     'AI governance for regulated deployment — EU AI Act readiness, risk classification, auditability, access control, prompt injection defense',
-    'Available for senior AI roles in Dublin / Ireland / EMEA — regulated enterprise, public sector, financial services, cloud/SaaS AI',
+    'Dublin-based, working across regulated enterprise, public sector, financial services, and cloud and SaaS AI',
   ],
 
   expertise: {

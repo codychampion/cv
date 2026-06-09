@@ -4,7 +4,7 @@
 
 Name: Cody Champion
 Location: Dublin, Ireland
-Available for: Senior AI roles in Dublin / Ireland / EMEA
+Focus: Applied AI architecture and GenAI systems for regulated environments
 Website: https://codychampion.bitsandbeakers.com/
 Email: cody@bitsandbeakers.com
 LinkedIn: https://www.linkedin.com/in/cody-champion
@@ -47,15 +47,15 @@ ODNI / NGA — IC Postdoctoral Researcher. Drone ML, computer vision, CUDA.
 - Claude Certified Architect, Foundations (Anthropic, March 2026, Early Adopter)
 - AWS Wildfire CV — Third Place, AWS Disaster Response Hackathon
 
-## Best-fit roles
+## Areas of strongest impact
 
-- Staff / Principal Applied AI Architect
-- Senior GenAI Solutions Architect
-- LLM Evaluation Lead
-- AI Governance Engineering Lead
-- Regulated AI Deployment Lead
-- Senior Manager, GenAI Deployment Engineering
-- Applied AI Safety / Evals Lead
+- Applied AI architecture (staff / principal level)
+- GenAI solutions architecture
+- LLM evaluation
+- AI governance engineering
+- Regulated AI deployment
+- GenAI deployment engineering leadership
+- Applied AI safety and evaluations
 
 ## Skills
 
